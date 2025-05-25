@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import "./css/style.css";
 import "./css/media.css";
 import loginImg from "../../img/login.png";
@@ -7,7 +8,7 @@ import google from "../../img/google.png";
 import twitter from "../../img/twitter.png";
 import github from "../../img/github.png";
 
-const Login = () => {
+function Login() {
   return (
     <div id="container">
       <div className="banner">
@@ -31,15 +32,11 @@ const Login = () => {
           <input type="text" placeholder="username" />
           <input type="password" placeholder="password" />
 
-          <a href="/senha">
             <p>Esqueceu a sua senha?</p>
-          </a>
 
           <button>Login</button>
 
-          <a href="/cadastro">
             <p>Criar uma conta</p>
-          </a>
 
           <div className="social">
             <img src={facebook} alt="facebook" />

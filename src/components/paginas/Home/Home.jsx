@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import './Home.css'; // Importe o arquivo CSS
 import Semana from '../../img/SEMANA.png';
 import Saiba from '../../img/saiba.png';
-import Footer from '../../layout/footer/footer.jsx'
 
 
 
