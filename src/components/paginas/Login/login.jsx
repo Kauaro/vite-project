@@ -7,10 +7,16 @@ import facebook from "../../img/facebook.png";
 import google from "../../img/google.png";
 import twitter from "../../img/twitter.png";
 import github from "../../img/github.png";
+import NavBar from '../../layout/navbar/navbar.jsx'
+
 
 function Login() {
   return (
+    
+    <div className="body">
+    <NavBar />
     <div id="container">
+      
       <div className="banner">
         <img src={loginImg} alt="imagem-login" />
         <p style={{ color: "#fff", fontWeight: 400 }}>
@@ -28,9 +34,9 @@ function Login() {
         </h1>
 
         <div className="box">
-          <h2>faça o seu login agora</h2>
-          <input type="text" placeholder="username" />
-          <input type="password" placeholder="password" />
+          <h2>ENTRAR</h2>
+          <input type="text" placeholder="RM" />
+          <input type="password" placeholder="Senha" />
 
             <p>Esqueceu a sua senha?</p>
 
@@ -47,6 +53,8 @@ function Login() {
         </div>
       </div>
     </div>
+    </div>
+    
   );
 };
 

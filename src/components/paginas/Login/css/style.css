@@ -1,20 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
-/*
 
-* {
-    margin: 0;
-    padding: 0;
 
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    color: #fff;
-}
+
 
 p {
     cursor: pointer;
     font-weight: 600;
-    color: slateblue;
+    color: rgb(88, 68, 114);
 }
 
 h1 {
@@ -30,53 +23,56 @@ h2 {
 
 input {
     width: 80%;
-    height: 30px;
+    height: 40px;
     border: none;
     border-bottom: 1px solid silver;
     outline: none;
     font-weight: 600;
     color: #1c1c1c;
     padding-left: 3px;
+    border-radius: 10px;
 }
 
 button {
+    font-size: 15px;
+    font-weight: bolder;
+    color: #fff;
     cursor: pointer;
-    width: 120px;
-    height: 35px;
+    width: 130px;
+    height: 40px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     background: slateblue;
 }
 
-body {
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100vh;
     background-image: url('../img/fundo.png');
     background-repeat: no-repeat;
     background-size: 100%;
     
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-*/
+
 
 #container {
-    width: 320px;
-    height: 520px;
+    width: 450px;
+    height: 650px;
     border-radius: 10px;
     -webkit-box-shadow: 0px 0px 6px -1px #000000;
     box-shadow: 0px 0px 6px -1px #000000;
     background: #785eef;
-
     display: flex;
     align-items: center;
 }
 
 #container .banner {
-    width: 520px;
-    height: 520px;
+    width: 650px;
+    height: 650px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     background: #785eef;
@@ -88,10 +84,10 @@ body {
 }
 
 #container .box-login {
-    width: 320px;
-    height: 520px;
+    width: 450px;
+    height: 650px;
     border-radius: 10px;
-    background: #fff;
+    background: #E6E6FA;
 
     display: flex;
     flex-direction: column;
@@ -101,7 +97,7 @@ body {
 
 .box-login .box {
     width: 80%;
-    height: 320px;
+    height: 400px;
 
     display: flex;
     flex-direction: column;
@@ -123,7 +119,7 @@ body {
 }
 
 .box-login .box-account {
-    width: 80%;
+    width: 800%;
     height: 360px;
 
     display: flex;

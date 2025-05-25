@@ -10,14 +10,14 @@ function NavBar() {
     <div className='NavBar'>
       <div className="header" id="header">
         <nav className="nav container">
-          <Link to="/home" className="nav__logo">
+          <Link to="/" className="nav__logo">
             <img src={Logo} alt="" id='imgLogo' />
           </Link>
 
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
-                <Link to="/home" className="nav__link">Home</Link>
+                <Link to="/" className="nav__link">Home</Link>
               </li>
 
               <li className="nav__item">
