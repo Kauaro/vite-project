@@ -21,8 +21,20 @@ h2 {
     color: slateblue;
 }
 
-input {
+.inputlogin {
     width: 80%;
+    height: 40px;
+    border: none;
+    border-bottom: 1px solid silver;
+    outline: none;
+    font-weight: 600;
+    color: #1c1c1c;
+    padding-left: 3px;
+    border-radius: 10px;
+}
+
+.inputcadastro {
+    width: 10%;
     height: 40px;
     border: none;
     border-bottom: 1px solid silver;
@@ -51,7 +63,7 @@ button {
     align-items: center;
     width: 100%;
     height: 100vh;
-    background-image: url('../img/fundo.png');
+    background-image: url(../../../../../public/imagens/fundo.png);
     background-repeat: no-repeat;
     background-size: 100%;
     

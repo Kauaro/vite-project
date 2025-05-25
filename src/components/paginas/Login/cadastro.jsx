@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "./css/style.css";
 import "./css/media.css";
 import loginImg from "../../img/login.png";
 import userIcon from "../../img/user.png";
+import NavBar from '../../layout/navbar/navbar.jsx';
+
 
 const Cadastro = () => {
   const [showTermos, setShowTermos] = useState(false);
 
   return (
-    <>
-      <div id="container">
+    <div className='body'>
+      <div id="container" >
+        <NavBar />
         <div className="banner">
           <img src={loginImg} alt="imagem-login" />
           <p style={{ color: "#fff" }}>
@@ -29,11 +32,11 @@ const Cadastro = () => {
 
           <div className="box-account">
             <h2>informe seus dados</h2>
-            <input type="text" placeholder="apelido" />
-            <input type="email" placeholder="e-mail" />
-            <input type="email" placeholder="confirmar o e-mail" />
-            <input type="password" placeholder="senha" />
-            <input type="password" placeholder="confirmar a senha" />
+            <input type="text" className='inputcadastro' placeholder="nome" />
+            <input type="text"className='inputcadastro' placeholder="rm " />
+            <input type="email" className='inputcadastro' placeholder="e-mail" />
+            <input type="password" className='inputcadastro' placeholder="senha" />
+            <input type="password" className='inputcadastro' placeholder="confirmar a senha" />
 
             <div className="check">
               <input
@@ -51,7 +54,7 @@ const Cadastro = () => {
 
       <a href="/">
         <div id="bubble">
-          <img src={userIcon} alt="icone-usuário" title="fazer-login" />
+          <img src={userIcon} alt="administrador" title="administrador" />
         </div>
       </a>
 
@@ -77,7 +80,7 @@ const Cadastro = () => {
           <button onClick={() => setShowTermos(false)}>Ok</button>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

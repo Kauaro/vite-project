@@ -4,11 +4,13 @@ import "./css/style.css";
 import "./css/media.css";
 import loginImg from "../../img/login.png";
 import userIcon from "../../img/user.png";
+import NavBar from '../../layout/navbar/navbar.jsx';
 
 const RecuperarSenha = () => {
   return (
-    <>
+        <div className='body'>
       <div id="container">
+        <NavBar />
         <div className="banner">
           <img src={loginImg} alt="imagem-login" />
           <p style={{ color: "#fff" }}>
@@ -27,15 +29,13 @@ const RecuperarSenha = () => {
 
           <div className="box-account">
             <h2>insira a sua conta existente</h2>
-            <input type="text" placeholder="apelido" />
-            <input type="email" placeholder="e-mail" />
-            <input type="email" placeholder="confirmar o e-mail" />
+            <input type="text" className='inputcadastro' placeholder="rm" />
+            <input type="email" className='inputcadastro' placeholder="e-mail" />
+            <input type="email" className='inputcadastro' placeholder="confirmar o e-mail" />
 
-            <p style={{ textAlign: "justify", padding: "0 30px" }}>
-              Um código será enviado para a sua caixa de entrada, copie esse
-              código e cole na próxima tela, certifique-se de que o seu apelido
-              bem como o e-mail esteja corretos e que seja o mesmo da conta que
-              você deseja recuperar
+            <p style={{ textAlign: "center", padding: "0 50px" }}>
+              Um código será enviado ao seu email. <br />
+              Confirme seu rm e seu email
             </p>
 
             <button>Obter o código</button>
@@ -48,7 +48,7 @@ const RecuperarSenha = () => {
           <img src={userIcon} alt="icone-usuário" title="fazer-login" />
         </div>
       </a>
-    </>
+    </div>
   );
 };
 

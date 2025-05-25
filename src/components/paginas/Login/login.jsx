@@ -11,9 +11,11 @@ import NavBar from '../../layout/navbar/navbar.jsx'
 
 
 function Login() {
+
+  
   return (
     
-    <div className="body">
+    <div className="body" >
     <NavBar />
     <div id="container">
       
@@ -35,14 +37,14 @@ function Login() {
 
         <div className="box">
           <h2>ENTRAR</h2>
-          <input type="text" placeholder="RM" />
-          <input type="password" placeholder="Senha" />
+          <input type="text" className="inputlogin" placeholder="RM" />
+          <input type="password" className="inputlogin" placeholder="Senha" />
 
-            <p>Esqueceu a sua senha?</p>
+           <Link to="/recuperarsenha"> <p>Esqueceu a sua senha?</p> </Link>
 
           <button>Login</button>
 
-            <p>Criar uma conta</p>
+           <Link to="/cadastro"> <p>Criar uma conta</p></Link>
 
           <div className="social">
             <img src={facebook} alt="facebook" />
