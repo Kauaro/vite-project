@@ -77,15 +77,7 @@ export default function Home() {
 
         <br /><br /><br />
 
-        <h2 className="H2Projeto">
-          Veja Alguns dos Projetos Disponiveis:
-        </h2>
-
-  
-        <button className="ButtonProjeto">
-          
-          Projetos
-        </button>
+        
 
       </div>
     </div>

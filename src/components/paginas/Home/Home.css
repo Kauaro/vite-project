@@ -2,11 +2,11 @@
 
 .home-container {
     min-height: 100vh;
-    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+
   
   .carousel-container {
     width: 100%;
@@ -33,25 +33,9 @@
     max-width: 60rem; /* tailwind max-w-5xl */
     padding: 4rem 2rem; /* padding 16 8 */
     text-align: center;
-  }
-
-  .ButtonProjeto {
-    padding: 50px;
-    border-radius: 30px;
-    border-color: #fff;
-    background-color: #4B0082	;
-    color: #fff;
-    position: absolute;
-    box-shadow: 0 2px 16px hsla(230, 75%, 32%, .15);
-
-  }
-
-  .H2Projeto {
-
-    position: absolute;
     
-  
   }
+
 
   
   
@@ -85,18 +69,18 @@
     font-size: 2.5rem; /* text-4xl */
     font-weight: bold;
     margin-bottom: 2rem; /* mb-8 */
-    color: #2d3748; /* tailwind text-gray-800 */
+    color: #651f71;
   }
   
   .main-text {
     font-size: 1.25rem; /* text-lg */
-    color: #4a5568; /* tailwind text-gray-600 */
+    color: #651f71;
     line-height: 1.75; /* leading-relaxed */
   }
   
   .main-text-left {
     font-size: 1.25rem; /* text-lg */
-    color: #4a5568; /* tailwind text-gray-600 */
+    color: #651f71;
     line-height: 1.75; /* leading-relaxed */
     position: relative;
     right: 100px;

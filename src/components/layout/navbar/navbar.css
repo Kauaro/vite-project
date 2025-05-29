@@ -31,6 +31,8 @@
   }
 }
 
+
+
 /*=============== BASE ===============*/
 
 
@@ -77,6 +79,7 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #fff;
 }
 
 
@@ -100,7 +103,7 @@ img {
   top: 0;
   left: 0;
   width: 100%;
-  background-color:	#E6E6FA				;
+  background-color:	#7037cd	;
   box-shadow: 0 2px 16px hsla(230, 75%, 32%, .15);
   
 }
@@ -151,6 +154,8 @@ img {
   font-weight: var(--font-semi-bold);
   transition: color .4s;
 }
+
+
 
 .nav__close {
   position: absolute;
