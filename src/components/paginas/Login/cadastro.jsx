@@ -52,11 +52,11 @@ const Cadastro = () => {
         </div>
       </div>
 
-      <a href="/">
+      <Link to="/loginadm">
         <div id="bubble">
           <img src={userIcon} alt="administrador" title="administrador" />
         </div>
-      </a>
+      </Link>
 
       {showTermos && (
         <div
