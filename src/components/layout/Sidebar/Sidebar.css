@@ -1,0 +1,25 @@
+.sidebar {
+    display: block;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+    margin-top: 10px;
+    width: 200px;
+    height: 98.5vh;
+    border: solid rgb(255, 145, 0) 1px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgb(100, 25, 1);
+}
+
+.sidebar a {
+    padding: 20px 10px;
+}
+
+.sidebar a:hover {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgb(200, 200, 250);
+    text-align: center;
+    margin: 2px;
+    box-shadow: 2px 2px 5px rgb(100, 25, 1);
+}

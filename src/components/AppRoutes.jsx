@@ -47,6 +47,7 @@ function AppRoutes() {
         <Route path="/projetonovo" element={<ProjetoNovo />} />
         <Route path="/projetoeditar/:id" element={<ProjetoEditar />} />
 
+
       </Routes>
     </Router>
   );
