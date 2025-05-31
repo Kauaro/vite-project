@@ -1,60 +1,54 @@
-import React from "react";
+import React from 'react';
 import { Link } from 'react-router-dom';
-import "./css/style.css";
-import "./css/media.css";
-import loginImg from "../../img/login.png";
-import facebook from "../../img/facebook.png";
-import google from "../../img/google.png";
-import twitter from "../../img/twitter.png";
-import github from "../../img/github.png";
-import NavBar from '../../layout/navbar/navbar.jsx'
+import './style.css'; // Certifique-se de que o caminho está correto
+import loginBg from '../../img/login-bg.png'; // Ajuste o caminho se necessário
+import logo from '../../img/logo.png'
+import userIcon from "../../img/user.png";
 
 
-function Login() {
-
-  
+const Login = () => {
   return (
-    
-    <div className="body" >
-    <NavBar />
-    <div id="container">
-      
-      <div className="banner">
-        <img src={loginImg} alt="imagem-login" />
-        <p style={{ color: "#fff", fontWeight: 400 }}>
-          Seja bem vindo, acesse e aproveite todo o conteúdo,
-          <br /> somos uma equipe de profissionais empenhados em
-          <br /> trazer o melhor conteúdo direcionado a você, usuário.
-        </p>
-      </div>
+    <div className="login">
+      <img src={loginBg} alt="Login background" className="login__bg" />
 
-      <div className="box-login">
-        <h1>
-          Olá!
-          <br />
-          Seja bem vindo de volta.
-        </h1>
+      <form className="login__form" onSubmit={(e) => e.preventDefault()}>
+        <img src={logo} className="logo" />
+        
 
-        <div className="box">
-          <h2>ENTRAR</h2>
-          <input type="text" className="inputlogin" placeholder="RM" />
-          <input type="password" className="inputlogin" placeholder="Senha" />
+        <div className="login__inputs">
+          <div className="login__box">
+            <input type="email" placeholder="Matricula" required className="login__input" />
+            <i className="ri-mail-fill"></i>
+          </div>
 
-           <Link to="/recuperarsenha"> <p>Esqueceu a sua senha?</p> </Link>
-
-          <button>Login</button>
-
-           <Link to="/cadastro"> <p>Criar uma conta</p></Link>
-
-          <div className="social">
-            <img src={facebook} alt="facebook" />
-            <img src={google} alt="google" />
-            <img src={twitter} alt="twitter" />
-            <img src={github} alt="github" />
+          <div className="login__box">
+            <input type="password" placeholder="Senha" required className="login__input" />
+            <i className="ri-lock-2-fill"></i>
           </div>
         </div>
-      </div>
-    </div>
+
+        <div className="login__check">
+          <div className="login__check-box">
+            <input type="checkbox" className="login__check-input" id="user-check" />
+            <label htmlFor="user-check" className="login__check-label">
+              Lembrar-me
+            </label>
+          </div>
+
+          <a href="#" className="login__forgot">Esqueceu a senha?</a>
+        </div>
+
+        <Link to='/home'>
+        <button type="submit" className="login__button">Login</button>
+        </Link>
+        
+
+      </form>
+      <div id="bubble">
+        <Link to='/loginadm'>
+          <img src={userIcon} alt="administrador" title="administrador" />
+          </Link>
+        </div>
     </div>
     
   );

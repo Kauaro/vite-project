@@ -1,0 +1,56 @@
+.mensagem-container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.mensagem-content {
+  flex: 1;
+  padding: 1rem;
+}
+
+.mensagem-section {
+  background-color: #ffffff;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+
+.mensagem-table-wrapper {
+  overflow-x: auto;
+}
+
+.mensagem-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.mensagem-table th,
+.mensagem-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.mensagem-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.mensagem-btn {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  background-color: #ffc107;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #000;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.mensagem-btn:hover {
+  background-color: #e0a800;
+}

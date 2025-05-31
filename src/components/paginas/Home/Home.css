@@ -1,4 +1,4 @@
-/* Home.css */
+ 
 
 .home-container {
     min-height: 100vh;
@@ -13,6 +13,7 @@
     height: 45rem; /* 96px (tailwind h-96) */
     overflow: hidden;
     position: relative;
+    top: 85px;
   }
   
   .carousel-image {

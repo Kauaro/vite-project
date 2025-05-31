@@ -1,61 +1,4 @@
-/*=============== GOOGLE FONTS ===============*/
-@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&display=swap");
 
-/*=============== VARIABLES CSS ===============*/
-:root {
-  --header-height: 3.5rem;
-
-
-
-  /*========== Font and typography ==========*/
-  /*.5rem = 8px | 1rem = 16px ...*/
-  --body-font: "Syne", sans-serif;
-  --h2-font-size: 1.25rem;
-  --normal-font-size: .938rem;
-
-  /*========== Font weight ==========*/
-  --font-regular: 400;
-  --font-medium: 500;
-  --font-semi-bold: 600;
-
-  /*========== z index ==========*/
-  --z-fixed: 100;
-  --z-modal: 1000;
-}
-
-/*========== Responsive typography ==========*/
-@media screen and (min-width: 1023px) {
-  :root {
-    --h2-font-size: 1.5rem;
-    --normal-font-size: 1rem;
-  }
-}
-
-
-
-/*=============== BASE ===============*/
-
-
-
-input,
-button {
-  border: none;
-  outline: none;
-}
-
-ul {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
 
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
@@ -79,7 +22,7 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #fff;
+  color: #d3d3d3;
 }
 
 
@@ -90,11 +33,11 @@ img {
 }
 
 .nav__item {
-    display: flex;
-    margin-left: 40px;
-    position: relative;
-    top: 30px;
-
+  display: inline-block;
+  padding: 30px;
+  transition: background-color 0.3s ease;
+  border: #7037cd;
+  border-radius: 4px;
 }
 
 .NavBar {
@@ -110,16 +53,23 @@ img {
 
 
 #login-btn {
-    width: 80px;
+    width: 50px;
     position: absolute;
-    top: 0px;
+    top: 15px;
     left: 1700px;
 }
 
 #imgLogo{
     position: relative;
-    right: 170px;
+    right: 300px;
     width: 100px;
+}
+
+.nav__item:hover {
+  border: #7037cd;
+  background-color: #2e125a;
+  color: white;
+  text-align: center;
 }
 
 
@@ -168,44 +118,6 @@ img {
   top: 0;
 }
 
-/*=============== SEARCH ===============*/
-.search__form {
-  display: flex;
-  align-items: center;
-  column-gap: .5rem;
-  background-color: var(--container-color);
-  box-shadow: 0 8px 32px hsla(230, 75%, 15%, .2);
-  padding-inline: 1rem;
-  border-radius: .5rem;
-  transform: translateY(-1rem);
-  transition: transform .4s;
-}
-
-.search__icon {
-  font-size: 1.25rem;
-  color: var(--title-color);
-}
-
-.search__input {
-  width: 100%;
-  padding-block: 1rem;
-  background-color: var(--container-color);
-  color: var(--text-color);
-}
-
-.search__input::placeholder {
-  color: var(--text-color);
-}
-
-/* Show search */
-.show-search {
-  opacity: 1;
-  pointer-events: initial;
-}
-
-.show-search .search__form {
-  transform: translateY(0);
-}
 
 
 /*=============== BREAKPOINTS ===============*/

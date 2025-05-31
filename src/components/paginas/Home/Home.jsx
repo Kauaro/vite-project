@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Home.css'; // Importe o arquivo CSS
 import Semana from '../../img/SEMANA.png';
 import Saiba from '../../img/saiba.png';
+import NavBar from "../../layout/navbar/navbar";
 
 
 
@@ -24,7 +25,11 @@ export default function Home() {
   }, []);
 
   return (
+    <>
+    <NavBar />
+    
     <div className="home-container">
+      
       {/* Carrossel */}
       <div className="carousel-container">
         {images.map((img, i) => (
@@ -81,6 +86,7 @@ export default function Home() {
 
       </div>
     </div>
+    </>
 
   );
 }
