@@ -38,6 +38,8 @@
   transition: background-color 0.3s ease;
   border: #7037cd;
   border-radius: 4px;
+  position: relative;
+  bottom: 77px;
 }
 
 .NavBar {
@@ -48,7 +50,7 @@
   width: 100%;
   background-color:	#7037cd	;
   box-shadow: 0 2px 16px hsla(230, 75%, 32%, .15);
-  
+  height: 85px;
 }
 
 
@@ -61,7 +63,7 @@
 
 #imgLogo{
     position: relative;
-    right: 300px;
+    right: 800px;
     width: 100px;
 }
 
