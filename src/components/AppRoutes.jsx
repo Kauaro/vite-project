@@ -1,55 +1,129 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useAuth } from './contexts/AuthContext';
+import ProtectedRoute from './ProtectedRoute';
+
 import Home from './paginas/Home/Home.jsx';
 import Login from "./paginas/Login/login.jsx"
-
-import HomeAdm from './paginas/HomeAdm/HomeAdm.jsx'
-
 import ForgotPass from "./paginas/LoginAdm/ForgotPass"
 import LoginAdm from "./paginas/LoginAdm/Login"
-
 import Mensagem from "./paginas/Mensagem/Mensagem"
 import MensagemLer from "./paginas/Mensagem/MensagemLer"
-
+import Avaliacoes from "./paginas/Avaliacoes/Avaliacoes"
 import Usuario from "./paginas/Usuario/Usuario"
 import UsuarioEditar from "./paginas/Usuario/UsuarioEditar"
 import UsuarioNovo from "./paginas/Usuario/UsuarioNovo"
 import UsuariosLista from "./paginas/Usuario/UsuariosLista"
-
 import Projeto from "./paginas/ProjetosAdm/Projeto"
 import ProjetoEditar from "./paginas/ProjetosAdm/ProjetoEditar"
 import ProjetoNovo from "./paginas/ProjetosAdm/ProjetoNovo"
 import ProjetosLista from "./paginas/ProjetosAdm/ProjetosLista"
 
+// Componente para redirecionar baseado no tipo de usuário
+const RoleBasedRedirect = () => {
+  const { user } = useAuth();
+  
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  switch (user.role) {
+    case 'aluno':
+      return <Navigate to="/home" replace />;
+    case 'professor':
+      return <Navigate to="/home" replace />;
+    case 'administrador':
+      return <Navigate to="/homeadm" replace />;
+    default:
+      return <Navigate to="/home" replace />;
+  }
+};
 
 function AppRoutes() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/home" element={<Home />} />
+    <Routes>
+      {/* Rota raiz - redireciona baseado no tipo de usuário */}
+      <Route path="/" element={<RoleBasedRedirect />} />
+      
+      {/* Rotas de login */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/loginadm" element={<LoginAdm />} />
+      <Route path="/forgotpass" element={<ForgotPass />} />
 
-        <Route path="/" element={<Login />} />
+      {/* Rotas para todos os usuários autenticados */}
+      <Route path="/home" element={
+        <ProtectedRoute>
+          <Home />
+        </ProtectedRoute>
+      } />
 
-        <Route path="/homeadm" element={<HomeAdm />} />
+      
 
-        <Route path="/loginadm" element={<LoginAdm />} />
-        <Route path="/forgotpass" element={<ForgotPass />} />
+      {/* Rotas de mensagens - todos os usuários */}
+      <Route path="/mensagem" element={
+        <ProtectedRoute>
+          <Mensagem />
+        </ProtectedRoute>
+      } />
+      <Route path="/mensagemler" element={
+        <ProtectedRoute>
+          <MensagemLer />
+        </ProtectedRoute>
+      } />
 
-        <Route path="/mensagem" element={<Mensagem />} />
-        <Route path="/mensagemler" element={<MensagemLer />} />
+      {/* Rota de avaliações - apenas alunos */}
+      <Route path="/avaliacoes" element={
+        <ProtectedRoute allowedRoles={['aluno']}>
+          <Avaliacoes />
+        </ProtectedRoute>
+      } />
 
-        <Route path="/usuario" element={<Usuario />} />
-        <Route path="/usuarioslista" element={<UsuariosLista />} />
-        <Route path="/usuarionovo" element={<UsuarioNovo />} />
-        <Route path="/usuarioeditar/:id" element={<UsuarioEditar />} />
+      {/* Rotas de usuários - apenas administradores */}
+      <Route path="/usuario" element={
+        <ProtectedRoute allowedRoles={['administrador']}>
+          <Usuario />
+        </ProtectedRoute>
+      } />
+      <Route path="/usuarioslista" element={
+        <ProtectedRoute allowedRoles={['administrador']}>
+          <UsuariosLista />
+        </ProtectedRoute>
+      } />
+      <Route path="/usuarionovo" element={
+        <ProtectedRoute allowedRoles={['administrador']}>
+          <UsuarioNovo />
+        </ProtectedRoute>
+      } />
+      <Route path="/usuarioeditar/:id" element={
+        <ProtectedRoute allowedRoles={['administrador']}>
+          <UsuarioEditar />
+        </ProtectedRoute>
+      } />
 
-        <Route path="/projeto" element={<Projeto />} />
-        <Route path="/projetoslista" element={<ProjetosLista />} />
-        <Route path="/projetonovo" element={<ProjetoNovo />} />
-        <Route path="/projetoeditar/:id" element={<ProjetoEditar />} />
+      {/* Rotas de projetos - professores e administradores */}
+      <Route path="/projeto" element={
+        <ProtectedRoute allowedRoles={['professor', 'administrador']}>
+          <Projeto />
+        </ProtectedRoute>
+      } />
+      <Route path="/projetoslista" element={
+        <ProtectedRoute allowedRoles={['professor', 'administrador']}>
+          <ProjetosLista />
+        </ProtectedRoute>
+      } />
+      <Route path="/projetonovo" element={
+        <ProtectedRoute allowedRoles={['professor', 'administrador']}>
+          <ProjetoNovo />
+        </ProtectedRoute>
+      } />
+      <Route path="/projetoeditar/:id" element={
+        <ProtectedRoute allowedRoles={['professor', 'administrador']}>
+          <ProjetoEditar />
+        </ProtectedRoute>
+      } />
 
-
-      </Routes>
-    </Router>
+      {/* Rota de fallback */}
+      <Route path="*" element={<Navigate to="/login" replace />} />
+    </Routes>
   );
 }
 

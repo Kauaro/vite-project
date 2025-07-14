@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import AppRoutes from './components/AppRoutes.jsx';
+import App from './App.jsx';
    
-   const root = ReactDOM.createRoot(document.getElementById('root')); // Criar a raiz
-   root.render(
+const root = ReactDOM.createRoot(document.getElementById('root')); // Criar a raiz
+root.render(
   <React.StrictMode>            
-  
-    <AppRoutes />
-  
-</React.StrictMode>
-   );
+    <App />
+  </React.StrictMode>
+);

@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import './Home.css'; // Importe o arquivo CSS
-import Semana from '../../img/SEMANA.png';
-import Saiba from '../../img/saiba.png';
-import NavBar from "../../layout/navbar/navbar";
-
-
+import { useAuth } from '../../contexts/AuthContext';
+import './Home.css';
 
 
 const images = [
@@ -15,6 +11,7 @@ const images = [
 ];
 
 export default function Home() {
+  const { user, isAluno, isProfessor, isAdministrador } = useAuth();
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -24,13 +21,43 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleLogout = () => {
+    logout();
+    // O redirecionamento será feito automaticamente pelo ProtectedRoute
+};
+
   return (
-    <>
-    <NavBar />
-    
-    <div className="home-container">
       
-      {/* Carrossel */}
+      <div className="home-container">
+      <div className="logout-top-right">
+                <button onClick={handleLogout} className="logout-button-top">
+                    <span className="logout-icon">🚪</span>
+                    Sair
+                </button>
+            </div>  
+
+        {/* Seção de boas-vindas personalizada */}
+
+        <div className="logout-top-right">
+                <button onClick={handleLogout} className="logout-button-top">
+                    <span className="logout-icon">🚪</span>
+                    Sair
+                </button>
+            </div>  
+
+        <div className="welcome-section">
+          <h2>Bem-vindo(a), {user?.name}!</h2>
+          <p className="user-role">
+            {isAluno() && "🎓 Aluno"}
+            {isProfessor() && "👨‍🏫 Professor"}
+            {isAdministrador() && "⚙️ Administrador"}
+          </p>
+        </div>
+
+          {/* Botão de sair no canto superior direito */}
+        
+
+        {/* Carrossel */}
       <div className="carousel-container">
         {images.map((img, i) => (
           <img
@@ -42,51 +69,103 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Texto principal */}
-      <div className="text-container">
-        {/* Imagem decorativa esquerda */}
-        <img
-          src={Saiba}
-          alt="Decoração esquerda"
-          className="left-decoration"
-        />
+      <div className="main-text">
+        <h1 >Sobre o Projeto SLA</h1>
+        <p>O Projeto SLA é uma feira cultural que promove a reflexão e o enfrentamento de questões sociais como racismo,</p>
+        <p>homofobia, xenofobia e preconceito religioso. Com uma abordagem prática, criativa e educativa, os alunos se</p>
+        <p>tornam protagonistas, desenvolvendo projetos interdisciplinares e interativos que transformam as salas de aula</p>
+        <p>em espaços de conscientização. A iniciativa valoriza o respeito, a empatia e a diversidade, incentivando o diálogo</p>
+        <p>e a construção de uma sociedade mais justa e inclusiva. Mais do que uma exposição, o SLA é um movimento de</p>
+        <p>transformação social e formação de agentes de mudança.</p>
+        </div>
 
-        {/* Imagem decorativa direita */}
-        <img
-          src={Semana}
-          alt="Decoração direita"
-          className="right-decoration"
-        />
+        {/* Cards de acesso rápido baseados no tipo de usuário */}
+        <div className="quick-access-wrapper">
+          <div className="quick-access">
+            <h3>Acesso Rápido</h3>
+            <div className="cards-container">
+              
+              {/* Cards para Alunos */}
+              {isAluno() && (
+                <>
+                  <Link to="/projetoslista" className="access-card">
+                    <div className="card-icon">📋</div>
+                    <h4>Meus Projetos</h4>
+                    <p>Visualizar projetos que participo</p>
+                  </Link>
+                  <Link to="/avaliacoes" className="access-card">
+                    <div className="card-icon">📊</div>
+                    <h4>Minhas Avaliações</h4>
+                    <p>Ver notas e comentários dos projetos</p>
+                  </Link>
+                  <Link to="/mensagem" className="access-card">
+                    <div className="card-icon">💬</div>
+                    <h4>Mensagens</h4>
+                    <p>Ver mensagens e comunicações</p>
+                  </Link>
+                </>
+              )}
 
+              {/* Cards para Professores */}
+              {isProfessor() && (
+                <>
+                  <Link to="/projetoslista" className="access-card">
+                    <div className="card-icon">📋</div>
+                    <h4>Meus Projetos</h4>
+                    <p>Gerenciar projetos que administro</p>
+                  </Link>
+                  <Link to="/projetonovo" className="access-card">
+                    <div className="card-icon">➕</div>
+                    <h4>Novo Projeto</h4>
+                    <p>Criar um novo projeto</p>
+                  </Link>
+                  <Link to="/mensagem" className="access-card">
+                    <div className="card-icon">💬</div>
+                    <h4>Mensagens</h4>
+                    <p>Ver mensagens e comunicações</p>
+                  </Link>
+                </>
+              )}
 
+              {/* Cards para Administradores */}
+              {isAdministrador() && (
+                <>
+                  <Link to="/usuarioslista" className="access-card">
+                    <div className="card-icon">👥</div>
+                    <h4>Usuários</h4>
+                    <p>Gerenciar alunos, professores e administradores</p>
+                  </Link>
+                  <Link to="/usuarionovo" className="access-card">
+                    <div className="card-icon">➕</div>
+                    <h4>Novo Usuário</h4>
+                    <p>Cadastrar novo usuário</p>
+                  </Link>
+                  <Link to="/projetoslista" className="access-card">
+                    <div className="card-icon">📋</div>
+                    <h4>Todos os Projetos</h4>
+                    <p>Visualizar e gerenciar todos os projetos</p>
+                  </Link>
+                  <Link to="/projetonovo" className="access-card">
+                    <div className="card-icon">➕</div>
+                    <h4>Novo Projeto</h4>
+                    <p>Criar um novo projeto</p>
+                  </Link>
+                  <Link to="/mensagem" className="access-card">
+                    <div className="card-icon">💬</div>
+                    <h4>Mensagens</h4>
+                    <p>Ver mensagens e comunicações</p>
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
 
-        <br />
-        {/* Texto */}
-        <h1 className="main-title">Sobre o Projeto SLA</h1>
-        <hr />
-        <p className="main-text">
-          O <strong>projeto SLA</strong> é uma feira cultural transformadora, criada com o intuito de desafiar e questionar as barreiras que ainda existem em nossa sociedade. Através dessa iniciativa, temas fundamentais, como <strong>racismo</strong>, <strong>homofobia</strong>, <strong>xenofobia</strong>, <strong>preconceito religioso</strong>, entre outros problemas sociais, são abordados de maneira criativa, sensível e educativa. Em vez de simplesmente apresentar esses tópicos de forma teórica, o projeto busca promover uma imersão prática que desperte a conscientização e a reflexão profunda entre os participantes e visitantes.
-        </p>
-        <p className="main-text-left">
-          A proposta da feira é permitir que os alunos se tornem protagonistas do conhecimento e da mudança. Por meio da elaboração de <strong>projetos interdisciplinares</strong>, eles exploram esses temas em profundidade, desenvolvendo soluções criativas e inovadoras que podem ser aplicadas em contextos reais.
-        </p>
-        <p className="main-text-left">
-          As salas de aula, então, se transformam em verdadeiros <strong>cenários interativos</strong>, nos quais os alunos não só expõem suas ideias, mas também se envolvem ativamente com o público, criando experiências de aprendizado que ultrapassam os limites do conteúdo acadêmico tradicional.
-        </p>
-        <p className="main-text-left">
-          Além de estimular a reflexão sobre os <strong>problemas sociais</strong> mais urgentes, o projeto fomenta o diálogo e o entendimento entre diferentes grupos e perspectivas. O respeito, a <strong>empatia</strong> e a <strong>valorização da diversidade cultural</strong> são pilares centrais da feira, que visa construir uma sociedade mais justa e inclusiva, onde todos possam ser ouvidos, respeitados e celebrados por suas diferenças.
-        </p>
-        <p className="main-text">
-          Com essa iniciativa, o <strong>projeto SLA</strong> vai além de uma simples exposição de ideias: ele é um verdadeiro <strong>movimento cultural</strong>, um convite à ação, ao aprendizado contínuo e à construção de um futuro mais harmonioso, baseado no respeito mútuo e na solidariedade. Ao final, os participantes não apenas adquirem mais conhecimento, mas também se tornam agentes de mudança, comprometidos em transformar suas comunidades e a sociedade como um todo.
-        </p>
-
-        <br /><br /><br />
-
+         
+        
         
 
       </div>
-    </div>
-    </>
 
   );
 }

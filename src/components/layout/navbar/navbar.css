@@ -179,3 +179,106 @@
     margin-inline: auto;
   }
 }
+
+/*=============== USER MENU ===============*/
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+  position: relative;
+  right: 100px;
+}
+
+.user-info:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.user-icon {
+  font-size: 1.2rem;
+}
+
+.user-name {
+  font-weight: 500;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-role {
+  font-size: 1.2rem;
+}
+
+.user-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  z-index: 1000;
+  margin-top: 0.5rem;
+  border: 1px solid #e5e7eb;
+}
+
+.user-menu-header {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.user-menu-header strong {
+  display: block;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.user-role-text {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.user-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: #374151;
+}
+
+.user-menu-item:hover {
+  background-color: #f3f4f6;
+}
+
+.user-menu-item svg {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+/* Responsive adjustments for user menu */
+@media screen and (max-width: 768px) {
+  .user-info {
+    padding: 0.25rem 0.5rem;
+    right: 50px;
+  }
+  
+  .user-name {
+    max-width: 80px;
+    font-size: 0.875rem;
+  }
+  
+  .user-menu {
+    right: -50px;
+    min-width: 180px;
+  }
+}

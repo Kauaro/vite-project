@@ -1,19 +1,22 @@
  
 
 .home-container {
-    min-height: 100vh;
+    min-height: 30vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    padding-left: 2rem;
   }
 
   
   .carousel-container {
-    width: 100%;
-    height: 45rem; /* 96px (tailwind h-96) */
+    width: 85rem;
+    height: 43rem; /* 96px (tailwind h-96) */
     overflow: hidden;
     position: relative;
-    top: 85px;
+    top: 0;
+    left: 400px;
   }
   
   .carousel-image {
@@ -33,7 +36,7 @@
     position: relative;
     max-width: 60rem; /* tailwind max-w-5xl */
     padding: 4rem 2rem; /* padding 16 8 */
-    text-align: center;
+    text-align: left;
     
   }
 
@@ -49,13 +52,14 @@
   }
   
   .left-decoration {
-    right: 950px;
-    top: 300px;
+    width: 23rem;
+    right: 200px;
+    bottom: 1900px;
   }
   
   .right-decoration {
-    top: 600px;
-    left: 850px;
+    bottom: 1500px;
+    left: 1300px;
   }
   
   @media (min-width: 768px) {
@@ -71,19 +75,186 @@
     font-weight: bold;
     margin-bottom: 2rem; /* mb-8 */
     color: #651f71;
+    text-align: center;
+    position: relative;
+    left: 500px;
+    bottom: 1300px;
   }
   
   .main-text {
     font-size: 1.25rem; /* text-lg */
     color: #651f71;
     line-height: 1.75; /* leading-relaxed */
+    position: relative;
+    left: 500px;
+    top: 200px;
   }
   
   .main-text-left {
     font-size: 1.25rem; /* text-lg */
     color: #651f71;
     line-height: 1.75; /* leading-relaxed */
+    text-align: center;
     position: relative;
-    right: 100px;
+    left: 400px;
+    bottom: 1200px; 
+  }
+
+/*=============== WELCOME SECTION ===============*/
+.welcome-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+  margin: 2rem auto;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 2000px;
+  width: 110rem;
+  height: 10rem;
+  position: relative;
+  left: 0;
+
+}
+
+.welcome-section h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.user-role {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/*=============== QUICK ACCESS ===============*/
+.quick-access-wrapper {
+  align-self: flex-start;
+  margin: 2rem 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 1rem;
+  background: white;
+  padding: 1rem;
+  position: relative;
+  bottom: 1000px;
+}
+
+.quick-access {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0;
+  padding: 1rem;
+}
+
+.quick-access h3 {
+  text-align: left;
+  font-size: 1.8rem;
+  color: #651f71;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  align-items: flex-start;
+}
+
+.access-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 300px;
+}
+
+.access-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.access-card h4 {
+  font-size: 1.2rem;
+  color: #651f71;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.access-card p {
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .welcome-section {
+    padding: 1.5rem;
+    margin: 1rem 0;
   }
   
+  .welcome-section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .quick-access {
+    padding: 1rem;
+  }
+  
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .access-card {
+    padding: 1rem;
+  }
+} 
+
+* Botão de sair no canto superior direito */
+.logout-top-right {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.logout-button-top {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  position: relative;
+  top: 50px;
+  right: 20px;
+}

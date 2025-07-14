@@ -1,63 +1,177 @@
-.usuarios-lista-container {
-  display: flex;
-  width: 100%;
-  min-height: 100vh;
-  background-color: #f9f9f9;
-}
 
-.usuarios-lista-content {
-  flex: 1;
-  padding: 1rem;
-}
 
-.usuarios-lista-section {
-  margin: 1rem 0;
-  padding: 1.5rem;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
+/* Estilos específicos para a tabela de usuários */
 .table-wrapper {
   overflow-x: auto;
+  width: 100%;
+  margin-top: 1rem;
 }
 
 .usuarios-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95rem;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .usuarios-table thead {
-  background-color: #f0f0f0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
   text-align: left;
 }
 
-.usuarios-table th,
+.usuarios-table th {
+  padding: 1rem 0.75rem;
+  font-weight: 600;
+  border: none;
+}
+
 .usuarios-table td {
   padding: 0.75rem;
-  border: 1px solid #ddd;
+  border-bottom: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
 }
 
 .usuarios-table tbody tr:hover {
-  background-color: #f5f5f5;
+  background-color: #f8f9ff;
+  transition: background-color 0.3s ease;
+}
+
+.usuarios-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.usuarios-table tbody tr td:last-child {
+  border-right: none;
 }
 
 .btn {
-  padding: 0.4rem 0.8rem;
+  padding: 0.5rem 1rem;
   font-size: 0.875rem;
   font-weight: 600;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .btn.warning {
-  background-color: #ffc107;
+  background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
   color: #000;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
 }
 
 .btn.warning:hover {
-  background-color: #e0a800;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+  background: linear-gradient(135deg, #ffb300 0%, #ffa000 100%);
+}
+
+/* Ajustes específicos para a página de lista de usuários */
+.usuario-section {
+  max-width: 1200px !important;
+  height: auto !important;
+  padding: 2rem !important;
+  position: relative;
+  right: 250px;
+  bottom: 200px;
+}
+
+.usuario-content {
+  position: relative;
+  bottom: 800px !important;
+}
+
+/* Navegar entre os usuarios */
+.navegador-usuarios {
+  display: flex;
+  align-items: center;
+
+  max-width: 800px;
+  width: 100%;
+}
+
+.navegador-item-container {
+  display: flex;
+  align-items: center;
+}
+
+.navegador-separator-container {
+  display: flex;
+  align-items: center;
+  padding: 0 0.25rem;
+}
+
+.navegador-item {
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 1rem 2rem;
+  margin: 1rem 1rem;
+  border-radius: 10px;
+  position: relative;
+  left: 700px;
+  bottom: 500px;
+}
+
+.navegador-item:hover {
+  color: #764ba2;
+  background-color: #f8f9ff;
+  text-decoration: none;
+}
+
+.navegador-item.active {
+  color: #651f71;
+  font-weight: 600;
+  background-color: #f0f0f0;
+}
+
+.navegador-separator {
+  color: #9ca3af;
+  font-weight: 500;
+  position: relative;
+  left: 700px;
+  bottom: 500px;
+}
+
+* Botão de sair no canto superior direito */
+.logout-top-right {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.logout-button-top {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  position: relative;
+  top: 50px;
+  right: 20px;
+}
+
+.logout-button-top:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #c82333 0%, #a71e2a 100%);
+}
+
+.logout-icon {
+  font-size: 1.1rem;
 }
