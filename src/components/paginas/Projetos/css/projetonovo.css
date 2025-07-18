@@ -1,0 +1,112 @@
+
+
+.section-usuario h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5em;
+  color: #482d47;
+}
+
+.projeto-section {
+  max-width: 600px;
+  width: 1000px;
+  position: relative;
+  left: 450px;
+  bottom: 1150px;
+
+}
+
+.form-projeto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  display: inline-block;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f7fafc;
+  transition: border 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border: 1.5px solid #3182ce;
+  outline: none;
+  background: #fff;
+}
+
+.form-group textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.btn.primary {
+  background: #3182ce;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 22px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn.primary:hover {
+  background: #2563eb;
+}
+
+.btn.secondary {
+  background: #e2e8f0;
+  color: #2d3748;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 22px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn.secondary:hover {
+  background: #cbd5e1;
+}
+
+@media (max-width: 700px) {
+  .projeto-content {
+    padding: 16px 4px;
+    margin: 16px 0;
+  }
+  .form-grid {
+    max-width: 100%;
+  }
+} 

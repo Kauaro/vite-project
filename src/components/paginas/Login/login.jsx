@@ -55,7 +55,7 @@ const Login = () => {
         
         <div className="login__inputs">
           <div className="login__box">
-            <label htmlFor="matricula">Matrícula</label>
+            <label htmlFor="matricula">
             <input
               id="matricula"
               type="text"
@@ -65,11 +65,12 @@ const Login = () => {
               required
               className="login__input"
             />
+            </label>
             <i className="ri-mail-fill"></i>
           </div>
 
           <div className="login__box">
-            <label htmlFor="password">Senha</label>
+            <label htmlFor="password">
             <input
               id="password"
               type="password"
@@ -79,6 +80,7 @@ const Login = () => {
               required
               className="login__input"
             />
+            </label>
             <i className="ri-lock-2-fill"></i>
           </div>
         </div>
@@ -98,13 +100,7 @@ const Login = () => {
           {loading ? "Entrando..." : "Entrar"}
         </button>
 
-        {/* Informações de teste */}
-        <div className="login__test-info">
-          <h4>Usuários para teste:</h4>
-          <p><strong>Aluno:</strong> Matrícula: 2024001, Senha: 123456</p>
-          <p><strong>Professor:</strong> Matrícula: PROF001, Senha: 123456</p>
-          <p><strong>Administrador:</strong> Matrícula: ADMIN001, Senha: 123456</p>
-        </div>
+        
       </form>
 
       {/* Toast de notificação */}

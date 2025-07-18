@@ -43,57 +43,61 @@ const mockProjetos = [
     status: 'ativo',
     dataCriacao: '2024-02-10',
     avaliacoes: []
-  }
+  } 
 ];
 
 // Dados mockados de usuários
 const mockUsuarios = [
-  {
-    id: '1',
-    name: 'João Silva',
-    email: 'joao.silva@escola.com',
-    matricula: '2024001',
+  // Alunos
+  { 
+    id: '1', 
+    name: 'João Vitor Pucci', 
+    email: 'joao@gmail.com', 
+    matricula: '90000',
     role: 'aluno',
-    status: 'ativo',
-    dataCadastro: '2024-01-01'
+    password: '123456',
+    projetos: ['projeto1', 'projeto2'] // IDs dos projetos que participa
   },
-  {
-    id: '2',
-    name: 'Maria Santos',
-    email: 'maria.santos@escola.com',
-    matricula: '2024002',
+  { 
+    id: '2', 
+    name: 'Nicoly Naiane', 
+    email: 'nicoly@gmail.com', 
+    matricula: '90001',
     role: 'aluno',
-    status: 'ativo',
-    dataCadastro: '2024-01-02'
+    password: '123456',
+    projetos: ['projeto1']
   },
-  {
-    id: '3',
-    name: 'Prof. Carlos Oliveira',
-    email: 'carlos.oliveira@escola.com',
-    matricula: 'PROF001',
+  // Professores
+  { 
+    id: '3', 
+    name: 'Prof. Elisangela', 
+    email: 'elisangela@gmail.com', 
+    matricula: '10000',
     role: 'professor',
-    status: 'ativo',
-    dataCadastro: '2024-01-01'
+    password: '123456',
+    projetos: ['projeto1', 'projeto3'] // IDs dos projetos que administra
   },
-  {
-    id: '4',
-    name: 'Prof. Ana Costa',
-    email: 'ana.costa@escola.com',
-    matricula: 'PROF002',
+  { 
+    id: '4', 
+    name: 'Prof. Cruz', 
+    email: 'leandro@gmail.com', 
+    matricula: '20000',
     role: 'professor',
-    status: 'ativo',
-    dataCadastro: '2024-01-02'
+    password: '123456',
+    projetos: ['projeto2']
   },
-  {
-    id: '5',
-    name: 'Admin Pedro',
-    email: 'admin@escola.com',
-    matricula: 'ADMIN001',
+  // Administradores
+  { 
+    id: '5', 
+    name: 'Admin Kaua', 
+    email: 'kaua@gmail.com', 
+    matricula: '00001',
     role: 'administrador',
-    status: 'ativo',
-    dataCadastro: '2024-01-01'
+    password: '123456',
+    projetos: [] // Administradores podem ver todos os projetos
   }
 ];
+
 
 export const DataProvider = ({ children }) => {
   const [projetos, setProjetos] = useState(mockProjetos);

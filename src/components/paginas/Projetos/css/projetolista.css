@@ -1,0 +1,151 @@
+
+
+.projeto-section {
+    max-width: 1400px !important;
+  height: auto !important;
+  padding: 2rem !important;
+  position: relative;
+  left: 400px;
+  bottom: 1200px;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.projetos-table tr td {
+  padding: 1rem;
+  border-right: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+
+.card-acesso-projeto {
+  align-self: flex-start;
+  margin: 2rem 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 1rem;
+  background: white;
+  padding: 1rem;
+  height: 1200px;
+}
+
+.quick-access {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0;
+  padding: 1rem;
+}
+
+.quick-access h3 {
+  text-align: left;
+  font-size: 1.8rem;
+  color: #651f71;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  align-items: flex-start;
+}
+
+.access-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 300px;
+}
+
+.access-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.access-card h4 {
+  font-size: 1.2rem;
+  color: #651f71;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.access-card p {
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Navegar entre os usuarios */
+.navegador-projetos {
+  display: flex;
+  align-items: center;
+  max-width: 800px;
+  width: 100%;
+  position: relative;
+  bottom: 700px;
+}
+
+.navegador-item-container {
+  display: flex;
+  align-items: center;
+}
+
+.navegador-separator-container {
+  display: flex;
+  align-items: center;
+  padding: 0 0.25rem;
+}
+
+.navegador-item {
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 1rem 2rem;
+  margin: 1rem 1rem;
+  border-radius: 10px;
+  position: relative;
+  left: 700px;
+  bottom: 500px;
+}
+
+.navegador-item:hover {
+  color: #764ba2;
+  background-color: #f8f9ff;
+  text-decoration: none;
+}
+
+.navegador-item.active {
+  color: #651f71;
+  font-weight: 600;
+  background-color: #f0f0f0;
+}
+
+.navegador-separator {
+  color: #9ca3af;
+  font-weight: 500;
+  position: relative;
+  left: 700px;
+  bottom: 500px;
+}

@@ -8,18 +8,18 @@ const mockUsers = [
   // Alunos
   { 
     id: '1', 
-    name: 'João Silva', 
-    email: 'joao.silva@escola.com', 
-    matricula: '2024001',
+    name: 'João Vitor Pucci', 
+    email: 'joao@gmail.com', 
+    matricula: '90000',
     role: 'aluno',
     password: '123456',
     projetos: ['projeto1', 'projeto2'] // IDs dos projetos que participa
   },
   { 
     id: '2', 
-    name: 'Maria Santos', 
-    email: 'maria.santos@escola.com', 
-    matricula: '2024002',
+    name: 'Nicoly Naiane', 
+    email: 'nicoly@gmail.com', 
+    matricula: '90001',
     role: 'aluno',
     password: '123456',
     projetos: ['projeto1']
@@ -27,18 +27,18 @@ const mockUsers = [
   // Professores
   { 
     id: '3', 
-    name: 'Prof. Carlos Oliveira', 
-    email: 'carlos.oliveira@escola.com', 
-    matricula: 'PROF001',
+    name: 'Prof. Elisangela', 
+    email: 'elisangela@gmail.com', 
+    matricula: '10000',
     role: 'professor',
     password: '123456',
     projetos: ['projeto1', 'projeto3'] // IDs dos projetos que administra
   },
   { 
     id: '4', 
-    name: 'Prof. Ana Costa', 
-    email: 'ana.costa@escola.com', 
-    matricula: 'PROF002',
+    name: 'Prof. Cruz', 
+    email: 'leandro@gmail.com', 
+    matricula: '20000',
     role: 'professor',
     password: '123456',
     projetos: ['projeto2']
@@ -46,9 +46,9 @@ const mockUsers = [
   // Administradores
   { 
     id: '5', 
-    name: 'Admin Pedro', 
-    email: 'admin@escola.com', 
-    matricula: 'ADMIN001',
+    name: 'Admin Kaua', 
+    email: 'kaua@gmail.com', 
+    matricula: '00001',
     role: 'administrador',
     password: '123456',
     projetos: [] // Administradores podem ver todos os projetos

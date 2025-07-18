@@ -4,8 +4,6 @@ import ProtectedRoute from './ProtectedRoute';
 
 import Home from './paginas/Home/Home.jsx';
 import Login from "./paginas/Login/login.jsx"
-import ForgotPass from "./paginas/LoginAdm/ForgotPass"
-import LoginAdm from "./paginas/LoginAdm/Login"
 import Mensagem from "./paginas/Mensagem/Mensagem"
 import MensagemLer from "./paginas/Mensagem/MensagemLer"
 import Avaliacoes from "./paginas/Avaliacoes/Avaliacoes"
@@ -13,10 +11,10 @@ import Usuario from "./paginas/Usuario/Usuario"
 import UsuarioEditar from "./paginas/Usuario/UsuarioEditar"
 import UsuarioNovo from "./paginas/Usuario/UsuarioNovo"
 import UsuariosLista from "./paginas/Usuario/UsuariosLista"
-import Projeto from "./paginas/ProjetosAdm/Projeto"
-import ProjetoEditar from "./paginas/ProjetosAdm/ProjetoEditar"
-import ProjetoNovo from "./paginas/ProjetosAdm/ProjetoNovo"
-import ProjetosLista from "./paginas/ProjetosAdm/ProjetosLista"
+import Projeto from "./paginas/Projetos/Projetos"
+import ProjetoEditar from "./paginas/Projetos/ProjetoEditar"
+import ProjetoNovo from "./paginas/Projetos/ProjetoNovo"
+import ProjetosLista from "./paginas/Projetos/ProjetosLista"
 
 // Componente para redirecionar baseado no tipo de usuário
 const RoleBasedRedirect = () => {
@@ -46,8 +44,7 @@ function AppRoutes() {
       
       {/* Rotas de login */}
       <Route path="/login" element={<Login />} />
-      <Route path="/loginadm" element={<LoginAdm />} />
-      <Route path="/forgotpass" element={<ForgotPass />} />
+
 
       {/* Rotas para todos os usuários autenticados */}
       <Route path="/home" element={
