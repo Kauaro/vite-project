@@ -119,19 +119,19 @@ export default function  Usuario() {
                 {/* Navegador Breadcrumb */}
                 <div className="breadcrumb-navigator">
                     <div className="breadcrumb-item-container">
-                        <span className="breadcrumb-item active">Usuário</span>
+                        <span className="navegador-usuario-item active">Usuário</span>
                     </div>
                     <div className="breadcrumb-separator-container">
-                        <span className="breadcrumb-separator">/</span>
+                        <span className="navegador-usuario-separator">/</span>
                     </div>
                     <div className="breadcrumb-item-container">
-                        <Link to="/usuarioslista" className="breadcrumb-item">Lista Usuário</Link>
+                        <Link to="/usuarioslista" className="navegador-usuario-item">Lista Usuário</Link>
                     </div>
                     <div className="breadcrumb-separator-container">
-                        <span className="breadcrumb-separator">/</span>
+                        <span className="navegador-usuario-separator">/</span>
                     </div>
                     <div className="breadcrumb-item-container">
-                        <Link to="/usuarionovo" className="breadcrumb-item">Novo Usuário</Link>
+                        <Link to="/usuarionovo" className="navegador-usuario-item">Novo Usuário</Link>
                     </div>
                 </div>
 
