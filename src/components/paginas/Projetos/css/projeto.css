@@ -43,56 +43,8 @@
     font-size: 1.1rem;
   }
   
-  .usuario-content {
-    flex: 1;
-    padding: 1rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    bottom: 1000px;
-  }
+
   
-  .usuario-section {
-    margin: 1rem 0;
-    padding: 1.5rem;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 1000px;
-    height: 300px;    
-  }
-  
-  .usuario-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-  }
-  
-  .novo-usuario, .lista-usuario {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    min-width: 200px;
-    text-align: center;
-  }
-  
-  .novo-usuario:hover, .lista-usuario:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    text-decoration: none;
-    color: white;
-  }
   
   .logout-button {
     background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);

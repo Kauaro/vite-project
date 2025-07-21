@@ -69,11 +69,7 @@ const UsuariosLista = () => {
                                     <h4>Minhas Avaliações</h4>
                                     <p>Ver notas e comentários dos projetos</p>
                                 </Link>
-                                <Link to="/mensagem" className="access-card">
-                                    <div className="card-icon">💬</div>
-                                    <h4>Mensagens</h4>
-                                    <p>Ver mensagens e comunicações</p>
-                                </Link>
+                                
                             </>
                         )}
 
@@ -90,11 +86,7 @@ const UsuariosLista = () => {
                                     <h4>Novo Projeto</h4>
                                     <p>Criar um novo projeto</p>
                                 </Link>
-                                <Link to="/mensagem" className="access-card">
-                                    <div className="card-icon">💬</div>
-                                    <h4>Mensagens</h4>
-                                    <p>Ver mensagens e comunicações</p>
-                                </Link>
+                                
                             </>
                         )}
 
@@ -121,11 +113,7 @@ const UsuariosLista = () => {
                                     <h4>Novo Projeto</h4>
                                     <p>Criar um novo projeto</p>
                                 </Link>
-                                <Link to="/mensagem" className="access-card">
-                                    <div className="card-icon">💬</div>
-                                    <h4>Mensagens</h4>
-                                    <p>Ver mensagens e comunicações</p>
-                                </Link>
+                                
                             </>
                         )}
                     </div>

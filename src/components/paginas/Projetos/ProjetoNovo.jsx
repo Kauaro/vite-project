@@ -80,11 +80,7 @@ const ProjetoNovo = () => {
                                     <h4>Minhas Avaliações</h4>
                                     <p>Ver notas e comentários dos projetos</p>
                                 </Link>
-                                <Link to="/mensagem" className="access-card">
-                                    <div className="card-icon">💬</div>
-                                    <h4>Mensagens</h4>
-                                    <p>Ver mensagens e comunicações</p>
-                                </Link>
+                                
                             </>
                         )}
                         {/* Cards para Professores */}
@@ -100,11 +96,7 @@ const ProjetoNovo = () => {
                                     <h4>Novo Projeto</h4>
                                     <p>Criar um novo projeto</p>
                                 </Link>
-                                <Link to="/mensagem" className="access-card">
-                                    <div className="card-icon">💬</div>
-                                    <h4>Mensagens</h4>
-                                    <p>Ver mensagens e comunicações</p>
-                                </Link>
+                                
                             </>
                         )}
                         {/* Cards para Administradores */}
@@ -130,11 +122,7 @@ const ProjetoNovo = () => {
                                     <h4>Novo Projeto</h4>
                                     <p>Criar um novo projeto</p>
                                 </Link>
-                                <Link to="/mensagem" className="access-card">
-                                    <div className="card-icon">💬</div>
-                                    <h4>Mensagens</h4>
-                                    <p>Ver mensagens e comunicações</p>
-                                </Link>
+                                
                             </>
                         )}
                     </div>
@@ -143,9 +131,7 @@ const ProjetoNovo = () => {
             <div className="projeto-content">
                 <div className="navegador-projetos">
                     <div className="navegador-item-container">
-                        {(isProfessor() || isAdministrador()) && (
-                            <Link to="/projetolista" className="navegador-item">Projeto</Link>
-                        )}
+                    <Link to="/projetoslista" className="navegador-item">Projetos</Link>
                     </div>
                     <div className="navegador-separator-container">
                         <span className="navegador-separator">/</span>
@@ -154,7 +140,7 @@ const ProjetoNovo = () => {
                         <span className="navegador-item active">Novo Projeto</span>
                     </div>
                 </div>
-                <section className="projeto-section">
+                <section className="projeto-novo-section">
                     <div className="form-projeto">
                         <form className="form" onSubmit={handleSubmit}>
                             <div className="form-group">

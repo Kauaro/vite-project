@@ -66,8 +66,7 @@ const UsuarioNovo = () => {
                 <div className="quick-access">
                     <h3>Acesso Rápido</h3>
                     <div className="cards-container">
-                        
-                        {/* Cards para Alunos */}
+
                         {isAluno() && (
                             <>
                                 <Link to="/projetoslista" className="access-card">
@@ -88,7 +87,6 @@ const UsuarioNovo = () => {
                             </>
                         )}
 
-                        {/* Cards para Professores */}
                         {isProfessor() && (
                             <>
                                 <Link to="/projetoslista" className="access-card">
@@ -109,7 +107,6 @@ const UsuarioNovo = () => {
                             </>
                         )}
 
-                        {/* Cards para Administradores */}
                         {isAdministrador() && (
                             <>
                                 <Link to="/usuarioslista" className="access-card">
@@ -122,20 +119,18 @@ const UsuarioNovo = () => {
                                     <h4>Novo Usuário</h4>
                                     <p>Cadastrar novo usuário</p>
                                 </Link>
-                                <Link to="/projetoslista" className="access-card">
-                                    <div className="card-icon">📋</div>
-                                    <h4>Todos os Projetos</h4>
-                                    <p>Visualizar e gerenciar todos os projetos</p>
-                                </Link>
+                                
                                 <Link to="/projetonovo" className="access-card">
                                     <div className="card-icon">➕</div>
                                     <h4>Novo Projeto</h4>
                                     <p>Criar um novo projeto</p>
                                 </Link>
-                                <Link to="/mensagem" className="access-card">
-                                    <div className="card-icon">💬</div>
-                                    <h4>Mensagens</h4>
-                                    <p>Ver mensagens e comunicações</p>
+                               
+
+                                <Link to="/projetoslista" className="access-card">
+                                    <div className="card-icon">📋</div>
+                                    <h4>Todos os Projetos</h4>
+                                    <p>Visualizar e gerenciar todos os projetos</p>
                                 </Link>
                             </>
                         )}

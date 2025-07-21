@@ -6,13 +6,16 @@
   color: #482d47;
 }
 
-.projeto-section {
-  max-width: 600px;
-  width: 1000px;
+.projeto-novo-section {
+  width: 1300px;
+  max-width: 1500px;
   position: relative;
-  left: 450px;
-  bottom: 1150px;
-
+  left: 400px;
+  bottom: 1100px;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
 }
 
 .form-projeto {
@@ -25,8 +28,8 @@
   display: inline-block;
   flex-direction: column;
   gap: 18px;
-  width: 100%;
-  max-width: 800px;
+  width: 8  0%;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
 }

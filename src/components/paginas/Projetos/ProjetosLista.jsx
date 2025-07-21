@@ -35,6 +35,10 @@ const ProjetosLista = () => {
         navigate(`/projetoeditar/${id}`);
     };
 
+    const handleAvalia = () => {
+        navigate("/avaliacoes");
+    };
+
     const handleExcluir = async (id) => {
         if (window.confirm('Tem certeza que deseja excluir este projeto?')) {
             await ProjetoService.deleteProjeto(id);
@@ -77,11 +81,7 @@ const ProjetosLista = () => {
                     <h4>Minhas Avaliações</h4>
                     <p>Ver notas e comentários dos projetos</p>
                   </Link>
-                  <Link to="/mensagem" className="access-card">
-                    <div className="card-icon">💬</div>
-                    <h4>Mensagens</h4>
-                    <p>Ver mensagens e comunicações</p>
-                  </Link>
+                  
                 </>
               )}
 
@@ -98,11 +98,7 @@ const ProjetosLista = () => {
                     <h4>Novo Projeto</h4>
                     <p>Criar um novo projeto</p>
                   </Link>
-                  <Link to="/mensagem" className="access-card">
-                    <div className="card-icon">💬</div>
-                    <h4>Mensagens</h4>
-                    <p>Ver mensagens e comunicações</p>
-                  </Link>
+                  
                 </>
               )}
 
@@ -129,11 +125,7 @@ const ProjetosLista = () => {
                     <h4>Novo Projeto</h4>
                     <p>Criar um novo projeto</p>
                   </Link>
-                  <Link to="/mensagem" className="access-card">
-                    <div className="card-icon">💬</div>
-                    <h4>Mensagens</h4>
-                    <p>Ver mensagens e comunicações</p>
-                  </Link>
+                  
                 </>
               )}
             </div>
@@ -161,6 +153,7 @@ const ProjetosLista = () => {
                                     <th>ID</th>
                                     <th>Nome</th>
                                     <th>Descrição</th>
+                                    <th>Tema</th>
                                     <th>Professor</th>
                                     <th>Alunos</th>
                                     {(isProfessor() || isAdministrador()) && <th>Ações</th>}
@@ -172,6 +165,7 @@ const ProjetosLista = () => {
                                         <td>{projeto.id}</td>
                                         <td>{projeto.nome}</td>
                                         <td>{projeto.descricao}</td>
+                                        <td>{projeto.tema}</td> 
                                         <td>{projeto.professor}</td>
                                         <td>{projeto.alunos?.join(', ')}</td>
                                         {(isProfessor() || isAdministrador()) && (
@@ -180,6 +174,7 @@ const ProjetosLista = () => {
                                                     <>
                                                         <button onClick={() => handleEditar(projeto.id)} className="btn warning">✏️ Editar</button>
                                                         <button onClick={() => handleExcluir(projeto.id)} className="btn danger">🗑️ Excluir</button>
+                                                        <button onClick={() => handleAvalia(projeto.id)} className="btn visu">📊 Avaliacoes</button>
                                                     </>
                                                 )}
                                             </td>

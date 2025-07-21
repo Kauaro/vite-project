@@ -1,12 +1,13 @@
 
 
 .projeto-section {
-    max-width: 1400px !important;
+  width: 100%;
+  max-width: 1300px !important;
   height: auto !important;
   padding: 2rem !important;
   position: relative;
   left: 400px;
-  bottom: 1200px;
+  bottom: 1100px;
   border-radius: 20px;
   background-color: #fff;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -148,4 +149,17 @@
   position: relative;
   left: 700px;
   bottom: 500px;
+}
+
+.btn {
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: #fff;
+  background-color: #667eea;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }

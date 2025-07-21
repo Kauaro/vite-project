@@ -43,15 +43,6 @@
   font-size: 1.1rem;
 }
 
-.usuario-content {
-  flex: 1;
-  padding: 1rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  bottom: 1000px;
-}
 
 .usuario-section {
   margin: 1rem 0;

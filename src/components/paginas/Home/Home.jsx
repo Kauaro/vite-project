@@ -23,27 +23,14 @@ export default function Home() {
 
   const handleLogout = () => {
     logout();
-    // O redirecionamento será feito automaticamente pelo ProtectedRoute
 };
 
   return (
       
       <div className="home-container">
-      <div className="logout-top-right">
-                <button onClick={handleLogout} className="logout-button-top">
-                    <span className="logout-icon">🚪</span>
-                    Sair
-                </button>
-            </div>  
+      
 
-        {/* Seção de boas-vindas personalizada */}
 
-        <div className="logout-top-right">
-                <button onClick={handleLogout} className="logout-button-top">
-                    <span className="logout-icon">🚪</span>
-                    Sair
-                </button>
-            </div>  
 
         <div className="welcome-section">
           <h2>Bem-vindo(a), {user?.name}!</h2>
@@ -55,7 +42,12 @@ export default function Home() {
         </div>
 
           {/* Botão de sair no canto superior direito */}
-        
+          <div className="logout-top-right">
+                <button onClick={handleLogout} className="logout-button-top">
+                    <span className="logout-icon">🚪</span>
+                    Sair
+                </button>
+            </div>  
 
         {/* Carrossel */}
       <div className="carousel-container">

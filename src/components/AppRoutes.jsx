@@ -6,7 +6,7 @@ import Home from './paginas/Home/Home.jsx';
 import Login from "./paginas/Login/login.jsx"
 import Mensagem from "./paginas/Mensagem/Mensagem"
 import MensagemLer from "./paginas/Mensagem/MensagemLer"
-import Avaliacoes from "./paginas/Avaliacoes/Avaliacoes"
+import Avaliacoes from "./paginas/Avaliacoes/Avaliacoes.jsx"
 import Usuario from "./paginas/Usuario/Usuario"
 import UsuarioEditar from "./paginas/Usuario/UsuarioEditar"
 import UsuarioNovo from "./paginas/Usuario/UsuarioNovo"

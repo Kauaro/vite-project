@@ -138,19 +138,24 @@
 
 /* Ajustes específicos para a página de novo usuário */
 .usuario-section {
-  max-width: 800px !important;
+  max-width: 1000px !important;
   height: auto !important;
   padding: 2rem !important;
   position: relative;
-  right: 250px;
+  right: 0;
   bottom: 200px;
 }
 
 .usuario-content {
+  flex: 1;
+  padding: 1rem;
+  width: 100%;
+  max-width: 2000px;
+  display: flex;
+  justify-content: center;
   position: relative;
-  bottom: 800px !important;
+  bottom: 1000px;
 }
-
 /* Navegar entre os usuarios */
 .breadcrumb-navigator {
   display: flex;
