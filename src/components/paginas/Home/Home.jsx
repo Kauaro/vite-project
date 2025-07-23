@@ -21,9 +21,7 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleLogout = () => {
-    logout();
-};
+
 
   return (
       
@@ -43,11 +41,12 @@ export default function Home() {
 
           {/* Botão de sair no canto superior direito */}
           <div className="logout-top-right">
-                <button onClick={handleLogout} className="logout-button-top">
-                    <span className="logout-icon">🚪</span>
-                    Sair
-                </button>
-            </div>  
+              
+              <Link to="/login" className="logout-button-top">
+                  <span className="logout-icon">🚪</span>
+                  Sair
+              </Link>
+          </div>
 
         {/* Carrossel */}
       <div className="carousel-container">
@@ -90,11 +89,7 @@ export default function Home() {
                     <h4>Minhas Avaliações</h4>
                     <p>Ver notas e comentários dos projetos</p>
                   </Link>
-                  <Link to="/mensagem" className="access-card">
-                    <div className="card-icon">💬</div>
-                    <h4>Mensagens</h4>
-                    <p>Ver mensagens e comunicações</p>
-                  </Link>
+                  
                 </>
               )}
 
@@ -111,11 +106,7 @@ export default function Home() {
                     <h4>Novo Projeto</h4>
                     <p>Criar um novo projeto</p>
                   </Link>
-                  <Link to="/mensagem" className="access-card">
-                    <div className="card-icon">💬</div>
-                    <h4>Mensagens</h4>
-                    <p>Ver mensagens e comunicações</p>
-                  </Link>
+                  
                 </>
               )}
 
@@ -142,20 +133,12 @@ export default function Home() {
                     <h4>Novo Projeto</h4>
                     <p>Criar um novo projeto</p>
                   </Link>
-                  <Link to="/mensagem" className="access-card">
-                    <div className="card-icon">💬</div>
-                    <h4>Mensagens</h4>
-                    <p>Ver mensagens e comunicações</p>
-                  </Link>
+                  
                 </>
               )}
             </div>
           </div>
         </div>
-
-         
-        
-        
 
       </div>
 

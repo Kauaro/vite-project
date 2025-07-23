@@ -157,11 +157,24 @@
 }
 
 .cards-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 1.5rem;
   margin-top: 1rem;
-  align-items: flex-start;
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .cards-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
 }
 
 .access-card {
@@ -257,4 +270,101 @@
   position: relative;
   top: 50px;
   right: 20px;
+}
+
+/* Responsividade extra para telas médias e pequenas */
+@media (max-width: 900px) {
+  .carousel-container {
+    width: 100vw;
+    height: 30vw;
+    left: 0;
+  }
+  .main-title, .main-text, .main-text-left {
+    left: 0;
+    bottom: 0;
+    top: 0;
+    text-align: center;
+    font-size: 2rem;
+    padding: 0 1rem;
+  }
+  .left-decoration, .right-decoration {
+    display: none;
+  }
+  .welcome-section {
+    width: 95vw;
+    height: auto;
+    padding: 1rem;
+  }
+  .quick-access-wrapper {
+    bottom: 0;
+    margin: 1rem 0;
+  }
+  .main-title {
+    font-size: 1.7rem;
+  }
+  .main-text, .main-text-left {
+    font-size: 1rem;
+  }
+  .welcome-section h2 {
+    font-size: 1.2rem;
+  }
+  .quick-access h3 {
+    font-size: 1.2rem;
+  }
+  .access-card h4 {
+    font-size: 1rem;
+  }
+  .access-card p, .user-role {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .carousel-container {
+    width: 100vw;
+    height: 40vw;
+    left: 0;
+  }
+  .main-title, .main-text, .main-text-left {
+    font-size: 1.2rem;
+    padding: 0 0.5rem;
+  }
+  .welcome-section {
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 100vw;
+    margin: 0;
+  }
+  .quick-access {
+    width: 100vw;
+    padding: 0.5rem;
+  }
+  .cards-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  .access-card {
+    width: 100%;
+    min-width: 0;
+    padding: 0.5rem;
+  }
+  .main-title {
+    font-size: 1.1rem;
+  }
+  .main-text, .main-text-left {
+    font-size: 0.9rem;
+  }
+  .welcome-section h2 {
+    font-size: 1rem;
+  }
+  .quick-access h3 {
+    font-size: 1rem;
+  }
+  .access-card h4 {
+    font-size: 0.9rem;
+  }
+  .access-card p, .user-role {
+    font-size: 0.75rem;
+  }
 }
