@@ -157,12 +157,14 @@
   bottom: 1000px;
 }
 /* Navegar entre os usuarios */
-.breadcrumb-navigator {
+.breadcrumb-navigator-usuario-novo {
   display: flex;
   align-items: center;
-
   max-width: 800px;
   width: 100%;
+  position: relative;
+  left: 500px;
+  bottom: 550px;
 }
 
 .navegador-item-container {
@@ -185,9 +187,7 @@
   padding: 1rem 2rem;
   margin: 1rem 1rem;
   border-radius: 10px;
-  position: relative;
-  left: 200px;
-  bottom: 70px;
+  
 }
 
 .navegador-usuario-item:hover {
@@ -205,9 +205,7 @@
 .navegador-usuario-separator {
   color: #9ca3af;
   font-weight: 500;
-  position: relative;
-  left: 200px;
-  bottom: 70px;
+  
 }
 
 

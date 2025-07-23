@@ -4,17 +4,14 @@ import ProtectedRoute from './ProtectedRoute';
 
 import Home from './paginas/Home/Home.jsx';
 import Login from "./paginas/Login/login.jsx"
-import Mensagem from "./paginas/Mensagem/Mensagem"
-import MensagemLer from "./paginas/Mensagem/MensagemLer"
-import Avaliacoes from "./paginas/Avaliacoes/Avaliacoes.jsx"
 import Usuario from "./paginas/Usuario/Usuario"
 import UsuarioEditar from "./paginas/Usuario/UsuarioEditar"
 import UsuarioNovo from "./paginas/Usuario/UsuarioNovo"
 import UsuariosLista from "./paginas/Usuario/UsuariosLista"
-import Projeto from "./paginas/Projetos/Projetos"
 import ProjetoEditar from "./paginas/Projetos/ProjetoEditar"
 import ProjetoNovo from "./paginas/Projetos/ProjetoNovo"
 import ProjetosLista from "./paginas/Projetos/ProjetosLista"
+import Avaliacoes from "./paginas/Avaliacoes/Avaliacoes"
 
 // Componente para redirecionar baseado no tipo de usuário
 const RoleBasedRedirect = () => {
@@ -53,23 +50,8 @@ function AppRoutes() {
         </ProtectedRoute>
       } />
 
-      
-
-      {/* Rotas de mensagens - todos os usuários */}
-      <Route path="/mensagem" element={
-        <ProtectedRoute>
-          <Mensagem />
-        </ProtectedRoute>
-      } />
-      <Route path="/mensagemler" element={
-        <ProtectedRoute>
-          <MensagemLer />
-        </ProtectedRoute>
-      } />
-
-      {/* Rota de avaliações - apenas alunos */}
       <Route path="/avaliacoes" element={
-        <ProtectedRoute allowedRoles={['aluno']}>
+        <ProtectedRoute>
           <Avaliacoes />
         </ProtectedRoute>
       } />
@@ -97,11 +79,7 @@ function AppRoutes() {
       } />
 
       {/* Rotas de projetos - professores e administradores */}
-      <Route path="/projeto" element={
-        <ProtectedRoute allowedRoles={['professor', 'administrador']}>
-          <Projeto />
-        </ProtectedRoute>
-      } />
+      
       <Route path="/projetoslista" element={
         <ProtectedRoute allowedRoles={['professor', 'administrador']}>
           <ProjetosLista />

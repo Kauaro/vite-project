@@ -141,7 +141,7 @@ const UsuarioNovo = () => {
             {/* Formulário de cadastro */}
             <div className="usuario-content">
 
-                <div className="breadcrumb-navigator">
+                <div className="breadcrumb-navigator-usuario-novo">
                     <div className="breadcrumb-item-container">
                         <Link to="/usuario" className="navegador-usuario-item">Usuário</Link>
                     </div>

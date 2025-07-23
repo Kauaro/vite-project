@@ -236,11 +236,12 @@
 .breadcrumb-navigator {
   display: flex;
   align-items: center;
-
   max-width: 800px;
   width: 100%;
+  position: relative;
+  left: 500px;
+  bottom: 500px;
 }
-
 .navegador-item-container {
   display: flex;
   align-items: center;

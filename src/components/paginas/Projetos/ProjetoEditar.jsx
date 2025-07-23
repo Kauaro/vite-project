@@ -10,6 +10,7 @@ const ProjetoEditar = () => {
     const [projeto, setProjeto] = useState(null);
     const [nome, setNome] = useState("");
     const [descricao, setDescricao] = useState("");
+    const [tema, setTema] = useState("");
     const [alunos, setAlunos] = useState("");
 
     useEffect(() => {
@@ -17,6 +18,7 @@ const ProjetoEditar = () => {
             setProjeto(response.data);
             setNome(response.data.nome);
             setDescricao(response.data.descricao);
+            setTema(response.data.tema);
             setAlunos(response.data.alunos?.join(', ') || "");
         }).catch((error) => {
             console.log(error);
@@ -43,6 +45,7 @@ const ProjetoEditar = () => {
         const dadosAtualizados = {
             nome,
             descricao,
+            tema,
             alunos: alunos.split(',').map(a => a.trim()).filter(Boolean),
         };
         try {
@@ -63,7 +66,7 @@ const ProjetoEditar = () => {
         <div className="usuario-editar-container">
             <div className="logout-top-right">
                 <button onClick={handleLogout} className="logout-button-top">
-                    <span className="logout-icon">🔚</span>
+                    <span className="logout-icon">🚪</span>
                     Sair
                 </button>
             </div>
@@ -82,6 +85,16 @@ const ProjetoEditar = () => {
                             <label htmlFor="inputDescricao">Descrição</label>
                             <textarea id="inputDescricao" value={descricao} onChange={e => setDescricao(e.target.value)} required />
                         </div>
+                        <div className="form-group">
+                                <label htmlFor="inputTema">Tema</label>
+                                <select id="inputTema" name="tema" value={tema} onChange={e => setTema(e.target.value)} required>
+                                    <option value="">Selecione o tema</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
                         <div className="form-group">
                             <label htmlFor="inputAlunos">Alunos (separados por vírgula)</label>
                             <input type="text" id="inputAlunos" value={alunos} onChange={e => setAlunos(e.target.value)} />
