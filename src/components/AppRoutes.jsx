@@ -50,8 +50,8 @@ function AppRoutes() {
         </ProtectedRoute>
       } />
 
-      <Route path="/avaliacoes" element={
-        <ProtectedRoute>
+      <Route path="/avaliacoes/:id" element={
+        <ProtectedRoute allowedRoles={['professor', 'administrador', 'aluno']}>
           <Avaliacoes />
         </ProtectedRoute>
       } />
@@ -81,7 +81,7 @@ function AppRoutes() {
       {/* Rotas de projetos - professores e administradores */}
       
       <Route path="/projetoslista" element={
-        <ProtectedRoute allowedRoles={['professor', 'administrador']}>
+        <ProtectedRoute allowedRoles={['professor', 'administrador', 'aluno']}>
           <ProjetosLista />
         </ProtectedRoute>
       } />

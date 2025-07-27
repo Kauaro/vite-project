@@ -79,16 +79,17 @@ export default function Home() {
               {/* Cards para Alunos */}
               {isAluno() && (
                 <>
+                <Link to="/home" className="access-card">
+                    <div className="card-icon">🏠</div>
+                    <h4>Inicio</h4>
+                    <p>Tela inicial.</p>
+                  </Link>
                   <Link to="/projetoslista" className="access-card">
                     <div className="card-icon">📋</div>
                     <h4>Meus Projetos</h4>
                     <p>Visualizar projetos que participo</p>
                   </Link>
-                  <Link to="/avaliacoes" className="access-card">
-                    <div className="card-icon">📊</div>
-                    <h4>Minhas Avaliações</h4>
-                    <p>Ver notas e comentários dos projetos</p>
-                  </Link>
+                  
                   
                 </>
               )}

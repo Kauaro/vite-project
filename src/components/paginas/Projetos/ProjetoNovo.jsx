@@ -75,11 +75,7 @@ const ProjetoNovo = () => {
                                     <h4>Meus Projetos</h4>
                                     <p>Visualizar projetos que participo</p>
                                 </Link>
-                                <Link to="/avaliacoes" className="access-card">
-                                    <div className="card-icon">📊</div>
-                                    <h4>Minhas Avaliações</h4>
-                                    <p>Ver notas e comentários dos projetos</p>
-                                </Link>
+                                
                                 
                             </>
                         )}

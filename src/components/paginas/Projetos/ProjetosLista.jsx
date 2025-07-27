@@ -35,8 +35,8 @@ const ProjetosLista = () => {
         navigate(`/projetoeditar/${id}`);
     };
 
-    const handleAvalia = () => {
-        navigate("/avaliacoes");
+    const handleAvalia = (id) => {
+        navigate(`/avaliacoes/${id}`);
     };
 
     const handleExcluir = async (id) => {
@@ -71,16 +71,18 @@ const ProjetosLista = () => {
               {/* Cards para Alunos */}
               {isAluno() && (
                 <>
+                <Link to="/home" className="access-card">
+                    <div className="card-icon">🏠</div>
+                    <h4>Inicio</h4>
+                    <p>Tela inicial.</p>
+                  </Link>
                   <Link to="/projetoslista" className="access-card">
                     <div className="card-icon">📋</div>
                     <h4>Meus Projetos</h4>
                     <p>Visualizar projetos que participo</p>
                   </Link>
-                  <Link to="/avaliacoes" className="access-card">
-                    <div className="card-icon">📊</div>
-                    <h4>Minhas Avaliações</h4>
-                    <p>Ver notas e comentários dos projetos</p>
-                  </Link>
+                  
+                  
                   
                 </>
               )}
@@ -137,7 +139,9 @@ const ProjetosLista = () => {
                         <span className="navegador-item active">Projetos</span>
                     </div>
                     <div className="navegador-separator-container">
-                        <span className="navegador-separator">/</span>
+                        {(isProfessor() || isAdministrador()) && (
+                            <span className="navegador-separator">/</span>
+                        )}
                     </div>
                     <div className="navegador-item-container">
                         {(isProfessor() || isAdministrador()) && (
@@ -156,7 +160,7 @@ const ProjetosLista = () => {
                                     <th>Tema</th>
                                     <th>Professor</th>
                                     <th>Alunos</th>
-                                    {(isProfessor() || isAdministrador()) && <th>Ações</th>}
+                                    {(isProfessor() || isAdministrador() || isAluno()) && <th>Ações</th>}
                                 </tr>
                             </thead>
                             <tbody>
@@ -168,21 +172,22 @@ const ProjetosLista = () => {
                                         <td>{projeto.tema}</td> 
                                         <td>{projeto.professor}</td>
                                         <td>{projeto.alunos?.join(', ')}</td>
-                                        {(isProfessor() || isAdministrador()) && (
+                                        {(isProfessor() || isAdministrador() || isAluno()) && (
                                             <td>
                                                 {canEditProject(projeto.id) && (
                                                     <>
                                                         <button onClick={() => handleEditar(projeto.id)} className="btn warning">✏️ Editar</button>
                                                         <button onClick={() => handleExcluir(projeto.id)} className="btn danger">🗑️ Excluir</button>
-                                                        <button onClick={() => handleAvalia(projeto.id)} className="btn visu">📊 Avaliacoes</button>
                                                     </>
                                                 )}
+                                                {/* Botão de Avaliações sempre visível para todos os papéis */}
+                                                <button onClick={() => handleAvalia(projeto.id)} className="btn visu">📊 Avaliacoes</button>
                                             </td>
                                         )}
                                     </tr>
                                 ))}
                             </tbody>
-                        </table>
+                        </table>    
                     </div>
                 </section>
             </div>
