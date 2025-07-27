@@ -1,14 +1,43 @@
 import './Avaliacoes.css';
 import { useAuth } from '../../contexts/AuthContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useData } from '../../contexts/DataContext';
+import ProjetoService from '../../services/ProjetoService';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 export default function Avaliacoes() {
   const { user, isAluno, isProfessor, isAdministrador, logout } = useAuth();
-  const { projetos } = useData();
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { getProjetoById, getUsuarioById } = useData();
 
-  // Para aluno, só pode participar de 1 projeto
-  const projetosParaExibir = isAluno() ? projetos.slice(0, 1) : projetos;
+  const projeto = getProjetoById(id);
+
+  // MOCK DE AVALIAÇÕES FICTÍCIAS
+  const avaliacoesFicticias = [
+    {
+      alunoId: '90001',
+      nome: 'João Vitor Pucci',
+      matricula: '90000',
+      comentario: 'Ótima participação no projeto, sempre colaborativo.',
+      nota: 9.5
+    },
+    {
+      alunoId: '90002',
+      nome: 'Nicoly Naiane',
+      matricula: '90001',
+      comentario: 'Demonstrou bom entendimento, mas pode melhorar a comunicação.',
+      nota: 8.0
+    },
+    {
+      alunoId: '90003',
+      nome: 'Richard Ribeiro',
+      matricula: '90002',
+      comentario: 'Precisa se dedicar mais às entregas.',
+      nota: 6.5
+    }
+  ];
 
   return (
 
@@ -33,30 +62,37 @@ export default function Avaliacoes() {
           </p>
         </div>
 
-      {/* 
-      <div className="card-projeto-avaliacoes">
-        <div className="acesso">
-          <h3>Meus Projetos</h3>
-          <div className="cards-container-avaliacoes">
-            {projetosParaExibir.length === 0 && (
-              <div className="access-card">
-                <div className="card-icon">❌</div>
-                <h4>Nenhum projeto encontrado</h4>
-                <p>Você ainda não participa de nenhum projeto.</p>
-              </div>
-            )}
-            {projetosParaExibir.map((projeto) => (
-              <div className="access-card" key={projeto.id}>
-                <div className="card-icon">📋</div>
-                <h4>{projeto.nome}</h4>
-                <p>{projeto.descricao}</p>
-                <p><b>Professor:</b> {projeto.professor}</p>
-              </div>
+      {/* AVALIAÇÕES PROJETOS */}
+    <div className="avaliacoes-projetos">
+      <div className="avaliacoes-projetos-container">
+        <h3>Avaliações do Projeto  - {projeto?.nome}</h3>
+        <table className="avaliacoes-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Matrícula</th>
+              <th>Descrição</th>
+              <th>Nota</th>
+            </tr>
+          </thead>
+          <tbody>
+            {avaliacoesFicticias.map((avaliacao, idx) => (
+              <tr key={"ficticia-" + idx}>
+                <td>{avaliacao.nome}</td>
+                <td>{avaliacao.matricula}</td>
+                <td>{avaliacao.comentario}</td>
+                <td>{avaliacao.nota}</td>
+              </tr>
             ))}
-          </div>
-        </div>
-      </div>
-       */}
+            {avaliacoesFicticias.length === 0 && (
+              <tr>
+                <td colSpan={4}>Nenhuma avaliação encontrada.</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>  
+    </div>       
 
         {/* Cards de acesso rápido baseados no tipo de usuário */}
         <div className="card-acesso-avaliacoes">
@@ -72,11 +108,7 @@ export default function Avaliacoes() {
                     <h4>Meus Projetos</h4>
                     <p>Visualizar projetos que participo</p>
                   </Link>
-                  <Link to="/avaliacoes" className="access-card">
-                    <div className="card-icon">📊</div>
-                    <h4>Minhas Avaliações</h4>
-                    <p>Ver notas e comentários dos projetos</p>
-                  </Link>
+                  
                   
                 </>
               )}
@@ -94,11 +126,7 @@ export default function Avaliacoes() {
                     <h4>Novo Projeto</h4>
                     <p>Criar um novo projeto</p>
                   </Link>
-                  <Link to="/avaliacoes" className="access-card">
-                    <div className="card-icon">📊</div>
-                    <h4>Avaliações</h4>
-                    <p>Ver notas e comentários dos projetos</p>
-                  </Link>
+                  
                 </>
               )}
 
@@ -125,11 +153,7 @@ export default function Avaliacoes() {
                     <h4>Novo Projeto</h4>
                     <p>Criar um novo projeto</p>
                   </Link>
-                  <Link to="/avaliacoes" className="access-card">
-                    <div className="card-icon">📊</div>
-                    <h4>Avaliações</h4>
-                    <p>Ver notas e comentários dos projetos</p>
-                  </Link>
+                  
                   
                 </>
               )}
