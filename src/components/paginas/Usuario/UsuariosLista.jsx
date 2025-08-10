@@ -6,7 +6,7 @@ import './css/UsuariosLista.css';
 import UsuarioService from "../../services/UsuarioService";
 
 const UsuariosLista = () => {
-    const { user, isAluno, isProfessor, isAdministrador, logout } = useAuth();
+    const { isUser, isAluno, isProfessor, isAdministrador, logout } = useAuth();
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -18,17 +18,28 @@ const UsuariosLista = () => {
         navigate(`/usuarioeditar/${id}`);
     };
 
-    const [usuarios, setUsuarios] = useState([]);
+    const [usuario, setUsuario] = useState([]);
 
     useEffect(() => {
-        UsuarioService.getAllUsuarios()
+        fetch('http://localhost:8080/api/Usuario')
             .then((response) => {
-                setUsuarios(response.data);
+                return response.json();
+            })
+            .then((data) => {
+                                 
+                if (Array.isArray(data)) {
+                    setUsuario(data);
+                } else {
+                    const usuarios = data.usuario || [];
+                    setUsuario(usuarios);
+                }
             })
             .catch((error) => {
                 console.log(error);
             });
     }, []);
+
+
 
     return (
         <div className="usuario-container">
@@ -137,33 +148,27 @@ const UsuariosLista = () => {
                     </div>
                 </div>
 
-                <section className="usuario-section">
+                <section className="usuario-section-tabela">
                     <div className="table-wrapper">
                         <table className="usuarios-table">
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Nome</th>
-                                    <th>Email</th>
-                                    <th>Acesso</th>
-                                    <th>Cadastro</th>
-                                    <th>Status</th>
                                     <th>Abrir</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {usuarios?.map((usuario) => (
+                                {usuario.map((usuario) => (
                                     <tr key={usuario.id}>
                                         <td>{usuario.id}</td>
-                                        <td>{usuario.nome}</td>
-                                        <td>{usuario.email}</td>
-                                        <td>{usuario.nivelAcesso}</td>
-                                        <td>{usuario.dataCadastro}</td>
-                                        <td>{usuario.statusUsuario}</td>
+                                        <td>{usuario.nome}</td> 
                                         <td>
                                             <button onClick={() => getId(usuario.id)} className="btn warning">
                                                 📩 Abrir
                                             </button>
+                                            <button onClick={() => handleExcluir(usuario.id)} className="btn danger">
+                                                🗑️ Excluir</button>
                                         </td>
                                     </tr>
                                 ))}
