@@ -2,9 +2,9 @@ import './Avaliacoes.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { useData } from '../../contexts/DataContext';
-import ProjetoService from '../../services/ProjetoService';
-import { useState, useEffect } from 'react';
+import '../Projetos/ProjetosLista'
 import { useParams } from 'react-router-dom';
+
 
 export default function Avaliacoes() {
   const { user, isAluno, isProfessor, isAdministrador, logout } = useAuth();
