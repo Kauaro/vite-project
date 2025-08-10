@@ -71,13 +71,14 @@
 }
 
 /* Ajustes específicos para a página de lista de usuários */
-.usuario-section {
-  max-width: 1200px !important;
+.usuario-section-tabela {
+  max-width: 2000px !important;
+  width: 1300px !important;
   height: auto !important;
   padding: 2rem !important;
   position: relative;
-  right: 250px;
-  bottom: 200px;
+  left: 200px;
+  bottom: 350px;
 }
 
 .usuario-content {
@@ -89,9 +90,11 @@
 .navegador-usuarios {
   display: flex;
   align-items: center;
-
   max-width: 800px;
   width: 100%;
+  position: absolute;
+  top: 50px !important;
+  right: 1025px;
 }
 
 .navegador-item-container {

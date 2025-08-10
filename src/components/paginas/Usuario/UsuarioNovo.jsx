@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import UsuarioService from "../../services/UsuarioService";
 
 const UsuarioNovo = () => {
-    const { user, isAluno, isProfessor, isAdministrador } = useAuth();
+    const { user, isAluno, isProfessor, isAdministrador, logout } = useAuth();
     const [nome, setNome] = useState("");
     const [matricula, setMatricula] = useState("");
     const [email, setEmail] = useState("");
@@ -15,24 +15,41 @@ const UsuarioNovo = () => {
 
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    /*const handleSubmit = async (e) => {
+        e.preventDefault(); 
+    */
+        const [novoUsuario, setNovoUsuario] = useState({
+            "nome": '',
+            "matricula": '',
+            "email": '',
+            "senha": '',
+            "nivelAcesso": ''
+        });
 
-        const novoUsuario = {
-            nome,
-            matricula,
-            email,
-            senha,
-            nivelAcesso,
+        const handleEditUsuario = (event, nome) => {
+            setNovoUsuario({
+                ...novoUsuario,
+                [nome]: event.target.value,
+            });
         };
 
+        const handleUsuario = async (event) => {
         try {
-            await UsuarioService.createUsuario(novoUsuario);
-            alert("Usuário cadastrado com sucesso!");
+            event.preventDefault();
+            const response = await fetch('http://localhost:8080/api/Usuario', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(novoUsuario),
+            });
+            const json = await response.json();
+            console.log(response.status);
+            console.log(json);
+            alert("Usuario cadastrado com sucesso!");
             navigate("/usuarioslista");
         } catch (error) {
-            console.error("Erro ao cadastrar usuário:", error);
-            alert("Erro ao cadastrar usuário!");
+
         }
     };
 
@@ -147,26 +164,26 @@ const UsuarioNovo = () => {
                 </div>
 
                 <section className="usuario-section">
-                    <form className="form-grid" onSubmit={handleSubmit}>
+                    <form className="form-grid" onSubmit={handleUsuario}>
                         <div className="form-group">
                             <label htmlFor="inputNome">Nome</label>
-                            <input type="text" id="inputNome" value={nome} onChange={(e) => setNome(e.target.value)} required />
+                            <input type="text" id="inputNome" value={novoUsuario.nome} onChange={(e) => {handleEditUsuario(e, 'nome')}} required />
                         </div>
                         <div className="form-group">
                             <label htmlFor="inputMatricula">Matrícula</label>
-                            <input type="text" id="inputMatricula" value={matricula} onChange={(e) => setMatricula(e.target.value)} required />
+                            <input type="text" id="inputMatricula" value={novoUsuario.matricula} onChange={(e) => {handleEditUsuario(e, 'matricula')}} required />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="inputEmail4">Email</label>
-                            <input type="email" id="inputEmail4" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                            <label htmlFor="inputEmail4">Email</label>  
+                            <input type="email" id="inputEmail4" value={novoUsuario.email} onChange={(e) => {handleEditUsuario(e, 'email')}} required />
                         </div>
                         <div className="form-group">
                             <label htmlFor="inputSenha">Senha</label>
-                            <input type="password" id="inputSenha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
-                        </div>
+                            <input type="password" id="inputSenha" value={novoUsuario.senha} onChange={(e) => {handleEditUsuario(e, 'senha')}} required />
+                        </div>  
                         <div className="form-group">
                             <label htmlFor="inputAcesso">Nível de Acesso</label>
-                            <select id="inputAcesso" value={nivelAcesso} onChange={(e) => setNivelAcesso(e.target.value)} required>
+                                <select id="inputAcesso" value={novoUsuario.nivelAcesso} onChange={(e) => {handleEditUsuario(e, 'nivelAcesso')}} required>
                                 <option value="">Selecione o nível de acesso</option>
                                 <option value="aluno">Aluno</option>
                                 <option value="professor">Professor</option>
