@@ -15,10 +15,7 @@ const mockProjetos = [
     alunos: ['1', '2'], // IDs dos alunos participantes
     status: 'ativo',
     dataCriacao: '2024-01-15',
-    avaliacoes: [
-      { alunoId: '1', nota: 8.5, comentario: 'Excelente participação' },
-      { alunoId: '2', nota: 7.8, comentario: 'Bom trabalho' }
-    ]
+    
   },
   {
     id: 'projeto2',
@@ -29,9 +26,7 @@ const mockProjetos = [
     alunos: ['1'], // IDs dos alunos participantes
     status: 'ativo',
     dataCriacao: '2024-02-01',
-    avaliacoes: [
-      { alunoId: '1', nota: 9.0, comentario: 'Trabalho excepcional' }
-    ]
+   
   },
   {
     id: 'projeto3',
