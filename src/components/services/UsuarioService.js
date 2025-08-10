@@ -1,22 +1,33 @@
 import http from '../../common/http-common';
-const API_URL = "usuario/";
+
+// Usando proxy do Vite: baseURL = /api/
+const API_PREFIX = 'Usuario/';
 
 const createUsuario = (usuario) => {
-    return api.post("/usuarios", usuario);
+  // POST /api/Usuario/save → http://localhost:8080/Usuario/save
+  return http.mainInstance.post(`${API_PREFIX}save`, usuario);
 };
 
 const getAllUsuarios = () => {
-    return http.mainInstance.get(API_URL + 'findAll');
+  // GET /api/Usuario/findAll
+  return http.mainInstance.get(`${API_PREFIX}findAll`);
 };
 
 const getById = (id) => {
-    return http.mainInstance.get(API_URL + `findById/${id}`);
+  // GET /api/Usuario/findById/{id}
+  return http.mainInstance.get(`${API_PREFIX}findById/${id}`);
+};
+
+const deleteUsuario = (id) => {
+  // DELETE /api/Usuario/delete/{id}
+  return http.mainInstance.delete(`${API_PREFIX}delete/${id}`);
 };
 
 const UsuarioService = {
-    createUsuario,
-    getAllUsuarios,
-    getById,
-}
+  createUsuario,
+  getAllUsuarios,
+  getById,
+  deleteUsuario,
+};
 
 export default UsuarioService;
