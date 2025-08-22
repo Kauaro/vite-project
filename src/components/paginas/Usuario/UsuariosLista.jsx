@@ -153,16 +153,18 @@ const UsuariosLista = () => {
                         <table className="usuarios-table">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>Matricula</th>
                                     <th>Nome</th>
+                                    <th>Nivel Acesso</th>
                                     <th>Abrir</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {usuario.map((usuario) => (
                                     <tr key={usuario.id}>
-                                        <td>{usuario.id}</td>
+                                        <td>{usuario.matricula}</td>
                                         <td>{usuario.nome}</td> 
+                                        <td>{usuario.nivelAcesso}</td>
                                         <td>
                                             <button onClick={() => getId(usuario.id)} className="btn warning">
                                                 📩 Abrir
