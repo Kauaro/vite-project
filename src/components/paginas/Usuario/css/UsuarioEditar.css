@@ -1,3 +1,14 @@
+
+/* Ajustes específicos para a página de novo usuário */
+.section-usuario {
+  max-width: 2000px !important;
+  height: 150px !important;
+  padding: 2rem !important;
+  position: relative;
+  right: 0;
+  bottom: 0;
+}
+
 .usuario-editar-container {
   display: flex;
   width: 100%;
@@ -69,6 +80,20 @@
   background-color: #0056b3;
 }
 
+.btn.secondary {
+  background-color: #6c757d;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn.secondary:hover {
+  background-color: #5a6268;
+  color: white;
+  text-decoration: none;
+}
+
 .btn.warning {
   background-color: #ffc107;
   color: #000;
@@ -85,4 +110,25 @@
 
 .btn.danger:hover {
   background-color: #c82333;
+}
+
+/* Loading e Error states */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 1.2rem;
+  color: #dc3545;
+  gap: 1rem;
 }

@@ -14,29 +14,71 @@ const UsuariosLista = () => {
         // O redirecionamento será feito automaticamente pelo ProtectedRoute
     };
 
-    const getId = (id) => {
-        navigate(`/usuarioeditar/${id}`);
+    const getId = (id, matricula) => {
+        const identificador = id || matricula;
+        if (identificador) {
+            navigate(`/usuarioeditar/${identificador}`);
+        } else {
+            alert('Erro: Não foi possível identificar o usuário para edição.');
+        }
     };
 
     const [usuario, setUsuario] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:8080/api/Usuario')
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                                 
-                if (Array.isArray(data)) {
-                    setUsuario(data);
+    // Função para excluir usuário
+    const handleExcluir = async (id, matricula) => {
+        console.log('Tentando excluir usuário com ID:', id, 'Matrícula:', matricula); // Debug
+        
+        // Usa matricula se id não estiver disponível
+        const identificador = id || matricula;
+        
+        if (!identificador) {
+            alert('Erro: Não foi possível identificar o usuário para exclusão.');
+            return;
+        }
+        
+        if (window.confirm('Tem certeza que deseja excluir este usuário?')) {
+            try {
+                const response = await fetch(`http://localhost:8080/api/Usuario/${identificador}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                
+                if (response.ok) {
+                    alert("Usuário excluído com sucesso!");
+                    // Atualiza a lista de usuários sem recarregar a página
+                    fetchUsuarios();
                 } else {
-                    const usuarios = data.usuario || [];
-                    setUsuario(usuarios);
+                    alert("Erro ao excluir usuário. Tente novamente.");
                 }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+            } catch (error) {
+                console.error("Erro ao excluir usuário:", error);
+                alert("Erro ao excluir usuário. Tente novamente.");
+            }
+        }
+    };
+
+    // Função para buscar usuários
+    const fetchUsuarios = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/api/Usuario');
+            const data = await response.json();
+            
+            if (Array.isArray(data)) {
+                setUsuario(data);
+            } else {
+                const usuarios = data.usuario || [];
+                setUsuario(usuarios);
+            }
+        } catch (error) {
+            console.log('Erro ao buscar usuários:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchUsuarios();
     }, []);
 
 
@@ -160,20 +202,22 @@ const UsuariosLista = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {usuario.map((usuario) => (
-                                    <tr key={usuario.id}>
-                                        <td>{usuario.matricula}</td>
-                                        <td>{usuario.nome}</td> 
-                                        <td>{usuario.nivelAcesso}</td>
-                                        <td>
-                                            <button onClick={() => getId(usuario.id)} className="btn warning">
+                                {usuario.map((usuarioItem, index) => {
+                                    return (
+                                        <tr key={usuarioItem.id || usuarioItem.matricula || index}>
+                                            <td>{usuarioItem.matricula}</td>
+                                            <td>{usuarioItem.nome}</td> 
+                                            <td>{usuarioItem.nivelAcesso}</td>
+                                            <td>
+                                                <button onClick={() => getId(usuarioItem.id, usuarioItem.matricula)} className="btn warning">
                                                 📩 Abrir
                                             </button>
-                                            <button onClick={() => handleExcluir(usuario.id)} className="btn danger">
-                                                🗑️ Excluir</button>
-                                        </td>
-                                    </tr>
-                                ))}
+                                                <button onClick={() => handleExcluir(usuarioItem.id, usuarioItem.matricula)} className="btn danger">
+                                                    🗑️ Excluir</button>
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
                             </tbody>
                         </table>
                     </div>

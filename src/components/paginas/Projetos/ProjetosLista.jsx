@@ -9,10 +9,18 @@ const ProjetosLista = () => {
     const { user, isAluno, isProfessor, isAdministrador, logout, canEditProject } = useAuth();
     const navigate = useNavigate();
     const [projetos, setProjetos] = useState([]);
+    const [isUsingMock, setIsUsingMock] = useState(false);
 
     useEffect(() => {
-        ProjetoService.getAllProjetos()
-            .then((response) => {
+        const carregarProjetos = async () => {
+            try {
+                const response = await ProjetoService.getAllProjetos();
+                
+                // Verifica se está usando dados mock
+                if (response.data && response.data.length > 0 && response.data[0].hasOwnProperty('tema')) {
+                    setIsUsingMock(true);
+                }
+                
                 // Filtra projetos conforme o papel do usuário
                 if (isAdministrador()) {
                     setProjetos(response.data);
@@ -21,11 +29,27 @@ const ProjetosLista = () => {
                 } else if (isAluno()) {
                     setProjetos(response.data.filter(p => user.projetos.includes(p.id)));
                 }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+            } catch (error) {
+                console.error('Erro ao carregar projetos:', error);
+                // Em caso de erro, usa dados mock
+                setIsUsingMock(true);
+                const projetosMock = [
+                    {
+                        id: '01',
+                        nome: 'Projeto Consciência Negra',
+                        descricao: 'Projeto interdisciplinar sobre a importância da Consciência Negra.',
+                        professor: 'Prof. Elisangela',
+                        alunos: ['João Vitor Pucci', 'Nicoly Naiane'],
+                        tema: 'Consciência Negra'
+                    }
+                ];
+                setProjetos(projetosMock);
+            }
+        };
+        
+        carregarProjetos();
     }, [user, isAluno, isProfessor, isAdministrador]);
+
 
     const handleLogout = () => {
         logout();
@@ -41,8 +65,13 @@ const ProjetosLista = () => {
 
     const handleExcluir = async (id) => {
         if (window.confirm('Tem certeza que deseja excluir este projeto?')) {
-            await ProjetoService.deleteProjeto(id);
-            setProjetos(projetos.filter(p => p.id !== id));
+            try {
+                await ProjetoService.deleteProjeto(id);
+                setProjetos(projetos.filter(p => p.id !== id));
+            } catch (error) {
+                console.error('Erro ao excluir projeto:', error);
+                alert('Erro ao excluir projeto. Tente novamente.');
+            }
         }
     };
 
@@ -61,6 +90,19 @@ const ProjetosLista = () => {
                     {isProfessor() && "👨‍🏫 Professor"}
                     {isAdministrador() && "⚙️ Administrador"}
                 </p>
+                {isUsingMock && (
+                    <div style={{ 
+                        background: '#fff3cd', 
+                        border: '1px solid #ffeaa7', 
+                        borderRadius: '4px', 
+                        padding: '8px', 
+                        margin: '10px 0',
+                        fontSize: '14px',
+                        color: '#856404'
+                    }}>
+                        ⚠️ Usando dados de demonstração (API não disponível)
+                    </div>
+                )}
             </div>
              {/* Cards de acesso rápido baseados no tipo de usuário */}
         <div className="card-acesso-projeto">

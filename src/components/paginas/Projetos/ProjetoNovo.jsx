@@ -6,11 +6,6 @@ import './css/projetonovo.css';
 
 const ProjetoNovo = () => {
     const { user, isAluno, isProfessor, isAdministrador, logout } = useAuth();
-    const [nome, setNome] = useState("");
-    const [descricao, setDescricao] = useState("");
-    const [professor, setProfessor] = useState(""); 
-    const [alunos, setAlunos] = useState(""); // lista separada por vírgula
-    const [tema, setTema] = useState(""); // Adicionado para armazenar o tema selecionado
     const navigate = useNavigate();
 
     // Só permite acesso para professor/admin
@@ -24,22 +19,38 @@ const ProjetoNovo = () => {
         );
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const novoProjeto = {
-            nome,
-            descricao,
-            professor: user.name,
-            alunos: alunos.split(',').map(a => a.trim()).filter(Boolean),
-            tema: tema, // Adicionado o tema ao objeto do projeto
-        };
+    const [novoProjeto, setNovoProjeto] = useState({
+        "nome": '',
+        "descricao": '',
+        "tema": '',
+        "professor": '',
+        "alunos": ''
+    });
+
+    const handleEditProjeto = (event, nome) => {
+        setNovoProjeto({
+            ...novoProjeto,
+            [nome]: event.target.value,
+        });
+    };
+
+    const handleProjeto = async (event) => {
         try {
-            await ProjetoService.createProjeto(novoProjeto);
+            event.preventDefault();
+            const response = await fetch('http://localhost:8080/api/Projeto', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(novoProjeto),
+            });
+            const json = await response.json();
+            console.log(response.status);
+            console.log(json);
             alert("Projeto cadastrado com sucesso!");
             navigate("/projetoslista");
         } catch (error) {
             console.error("Erro ao cadastrar projeto:", error);
-            alert("Erro ao cadastrar projeto!");
         }
     };
 
@@ -138,32 +149,32 @@ const ProjetoNovo = () => {
                 </div>
                 <section className="projeto-novo-section">
                     <div className="form-projeto">
-                        <form className="form" onSubmit={handleSubmit}>
+                        <form className="form" onSubmit={handleProjeto}>
                             <div className="form-group">
                                 <label htmlFor="inputNome">Nome do Projeto</label>
-                                <input type="text" id="inputNome" value={nome} onChange={(e) => setNome(e.target.value)} required />
+                                <input type="text" id="inputNome" value={novoProjeto.nome} onChange={(e) => {handleEditProjeto(e, 'nome')}} required />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputDescricao">Descrição</label>
-                                <textarea id="inputDescricao" value={descricao} onChange={(e) => setDescricao(e.target.value)} required />
+                                <textarea id="inputDescricao" value={novoProjeto.descricao} onChange={(e) => {handleEditProjeto(e, 'descricao')}} required />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="tema">Tema</label>
-                                <select id="tema" name="tema" value={tema} onChange={e => setTema(e.target.value)} required>
+                                <select id="tema" name="tema" value={novoProjeto.tema} onChange={(e) => {handleEditProjeto(e, 'tema')}} required >
                                     <option value="">Selecione o tema</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
+                                    <option value="1">Racismo</option>
+                                    <option value="2">Homofobia</option>
+                                    <option value="3">Neurodivergente</option>
+                                    <option value="4">Feminicidio</option>
                                 </select>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputProfessor">Professor</label>
-                                <input id="inputProfessor" value={professor} onChange={(e) => setProfessor(e.target.value)} required />
+                                <input id="inputProfessor" value={novoProjeto.professor} onChange={(e) => {handleEditProjeto(e, 'professor')}} required/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputAlunos">Alunos (separados por vírgula)</label>
-                                <input type="text" id="inputAlunos" value={alunos} onChange={(e) => setAlunos(e.target.value)} />
+                                <input type="text" id="inputAlunos" value={novoProjeto.alunos} onChange={(e) => {handleEditProjeto(e, 'alunos')}} required/>
                             </div>
                             <div className="form-actions">
                                 <button type="submit" className="btn primary">Cadastrar Projeto</button>
