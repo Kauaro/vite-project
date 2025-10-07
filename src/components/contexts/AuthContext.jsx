@@ -1,63 +1,11 @@
-
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext(null);
-
-// Dados mockados para demonstração com diferentes tipos de usuário
-const mockUsers = [
-  // Alunos
-  { 
-    id: '1', 
-    name: 'João Vitor Pucci', 
-    email: 'joao@gmail.com', 
-    matricula: '90000',
-    role: 'aluno',
-    password: '123456',
-    projetos: ['projeto1', 'projeto2'] // IDs dos projetos que participa
-  },
-  { 
-    id: '2', 
-    name: 'Nicoly Naiane', 
-    email: 'nicoly@gmail.com', 
-    matricula: '90001',
-    role: 'aluno',
-    password: '123456',
-    projetos: ['projeto1']
-  },
-  // Professores
-  { 
-    id: '3', 
-    name: 'Prof. Elisangela', 
-    email: 'elisangela@gmail.com', 
-    matricula: '10000',
-    role: 'professor',
-    password: '123456',
-    projetos: ['projeto1', 'projeto3'] // IDs dos projetos que administra
-  },
-  { 
-    id: '4', 
-    name: 'Prof. Cruz', 
-    email: 'leandro@gmail.com', 
-    matricula: '20000',
-    role: 'professor',
-    password: '123456',
-    projetos: ['projeto2']
-  },
-  // Administradores
-  { 
-    id: '5', 
-    name: 'Admin Kaua', 
-    email: 'kaua@gmail.com', 
-    matricula: '00001',
-    role: 'administrador',
-    password: '123456',
-    projetos: [] // Administradores podem ver todos os projetos
-  }
-];
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
+  // Carrega usuário do localStorage ao iniciar
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
@@ -65,54 +13,65 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const login = async (matricula, password) => {
-    // Busca usuário por matrícula
-    const foundUser = mockUsers.find(u => u.matricula === matricula && u.password === password);
-    
-    if (foundUser) {
-      // Remove a senha antes de salvar no estado
-      const { password, ...userWithoutPassword } = foundUser;
-      setUser(userWithoutPassword);
-      localStorage.setItem('user', JSON.stringify(userWithoutPassword));
-      return true;
+  const login = async (matricula, senha) => {
+  try {
+    const response = await fetch("http://localhost:8080/api/Usuario/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ matricula, senha })
+    });
+
+    if (!response.ok) {
+      return { success: false, message: "Matrícula ou senha incorretos." };
     }
-    return false;
-  };
+
+    const data = await response.json();
+
+    const loggedUser = {
+      matricula: data.matricula,
+      nome: data.nome,
+      role: data.role,
+      projetos: []
+    };
+
+    setUser(loggedUser);
+    localStorage.setItem('user', JSON.stringify(loggedUser));
+
+    return { success: true, message: data.message || "Login realizado com sucesso!" };
+  } catch (err) {
+    console.error("Erro no login:", err);
+    return { success: false, message: "Erro no servidor." };
+  }
+};
+
+  
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
   };
 
-  // Funções para verificar permissões
+  // Funções de permissão
   const isAluno = () => user?.role === 'aluno';
   const isProfessor = () => user?.role === 'professor';
   const isAdministrador = () => user?.role === 'administrador';
 
-  // Função para verificar se o usuário pode acessar um projeto específico
   const canAccessProject = (projectId) => {
     if (!user) return false;
-    if (isAdministrador()) return true; // Administradores podem ver todos os projetos
+    if (isAdministrador()) return true;
     return user.projetos.includes(projectId);
   };
 
-  // Função para verificar se o usuário pode editar um projeto
   const canEditProject = (projectId) => {
     if (!user) return false;
-    if (isAdministrador()) return true; // Administradores podem editar todos os projetos
-    if (isProfessor()) return user.projetos.includes(projectId); // Professores só podem editar seus projetos
-    return false; // Alunos não podem editar projetos
+    if (isAdministrador()) return true;
+    if (isProfessor()) return user.projetos.includes(projectId);
+    return false;
   };
 
-  // Função para verificar se o usuário pode gerenciar usuários
-  const canManageUsers = () => {
-    return isAdministrador();
-  };
+  const canManageUsers = () => isAdministrador();
 
-  // Função para verificar se o usuário pode criar projetos
-  const canCreateProjects = () => {
-    return isProfessor() || isAdministrador();
-  };
+  const canCreateProjects = () => isProfessor() || isAdministrador();
 
   return (
     <AuthContext.Provider value={{

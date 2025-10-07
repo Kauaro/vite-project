@@ -81,6 +81,11 @@ export default function  Usuario() {
                     <h4>Novo Usuário</h4>
                     <p>Cadastrar novo usuário</p>
                   </Link>
+                  <Link to="/alunoslista" className="access-card">
+                    <div className="card-icon">📱</div>
+                    <h4>Alunos</h4>
+                    <p>Gerenciar lista de alunos</p>
+                  </Link>
                   <Link to="/projetoslista" className="access-card">
                     <div className="card-icon">📋</div>
                     <h4>Todos os Projetos</h4>

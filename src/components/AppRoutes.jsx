@@ -8,6 +8,7 @@ import Usuario from "./paginas/Usuario/Usuario"
 import UsuarioEditar from "./paginas/Usuario/UsuarioEditar"
 import UsuarioNovo from "./paginas/Usuario/UsuarioNovo"
 import UsuariosLista from "./paginas/Usuario/UsuariosLista"
+import AlunosLista from "./paginas/Alunos/AlunosLista"
 import ProjetoEditar from "./paginas/Projetos/ProjetoEditar"
 import ProjetoNovo from "./paginas/Projetos/ProjetoNovo"
 import ProjetosLista from "./paginas/Projetos/ProjetosLista"
@@ -75,6 +76,13 @@ function AppRoutes() {
       <Route path="/usuarioeditar/:id" element={
         <ProtectedRoute allowedRoles={['administrador']}>
           <UsuarioEditar />
+        </ProtectedRoute>
+      } />
+
+      {/* Rotas de alunos - apenas administradores */}
+      <Route path="/alunoslista" element={
+        <ProtectedRoute allowedRoles={['administrador']}>
+          <AlunosLista />
         </ProtectedRoute>
       } />
 

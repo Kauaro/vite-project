@@ -26,12 +26,8 @@ export default function Home() {
   return (
       
       <div className="home-container">
-      
-
-
-
         <div className="welcome-section">
-          <h2>Bem-vindo(a), {user?.name}!</h2>
+          <h2>Bem-vindo(a), {user?.nome}!</h2>
           <p className="user-role">
             {isAluno() && "🎓 Aluno"}
             {isProfessor() && "👨‍🏫 Professor"}
@@ -123,6 +119,11 @@ export default function Home() {
                     <div className="card-icon">➕</div>
                     <h4>Novo Usuário</h4>
                     <p>Cadastrar novo usuário</p>
+                  </Link>
+                  <Link to="/alunoslista" className="access-card">
+                    <div className="card-icon">📱</div>
+                    <h4>Alunos</h4>
+                    <p>Gerenciar lista de alunos</p>
                   </Link>
                   <Link to="/projetoslista" className="access-card">
                     <div className="card-icon">📋</div>

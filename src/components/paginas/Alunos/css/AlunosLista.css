@@ -1,6 +1,4 @@
-
-
-/* =============== MODERN USUARIOS TABLE =============== */
+/* =============== MODERN ALUNOS TABLE =============== */
 
 /* Header com estatísticas */
 .stats-header {
@@ -107,9 +105,9 @@
 }
 
 .table-row:hover {
-  background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+  background: linear-gradient(135deg, #f8fff9 0%, #f0fdf4 100%);
   transform: scale(1.01);
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.1);
 }
 
 .usuarios-table td {
@@ -118,13 +116,28 @@
 }
 
 /* Células específicas */
+.id-cell {
+  display: flex;
+  align-items: center;
+}
+
+.id-badge {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
 .matricula-cell {
   display: flex;
   align-items: center;
 }
 
 .matricula-badge {
-  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 20px;
@@ -159,24 +172,20 @@
   font-size: 1rem;
 }
 
-.role-cell {
+.email-cell {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
-.role-icon {
-  font-size: 1.2rem;
+.email-icon {
+  font-size: 1.1rem;
+  opacity: 0.7;
 }
 
-.role-badge {
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 0.85rem;
-  text-transform: capitalize;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+.email-text {
+  color: #64748b;
+  font-size: 0.95rem;
 }
 
 .actions-cell {
@@ -228,8 +237,8 @@
   background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
 }
 
-.btn-delete {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+.btn-avaliacao {
+  background: linear-gradient(135deg, #acb432 0%, #a7761c 100%);
   color: white;
 }
 
@@ -284,7 +293,7 @@
   background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
 }
 
-/* Ajustes específicos para a página de lista de usuários */
+/* Ajustes específicos para a página de lista de alunos */
 .usuario-section-tabela {
   max-width: 2000px !important;
   width: 1300px !important;
@@ -295,68 +304,15 @@
   bottom: 350px;
 }
 
-.usuario-content {
+.aluno-usuario-content {
   position: relative;
-  bottom: 600px !important;
+  bottom: 800px !important;
+  left: 200px !important;
 }
 
-/* Navegar entre os usuarios */
-.navegador-usuarios {
-  display: flex;
-  align-items: center;
-  max-width: 800px;
-  width: 100%;
-  position: absolute;
-  top: 50px !important;
-  right: 1025px;
-}
 
-.navegador-item-container {
-  display: flex;
-  align-items: center;
-}
 
-.navegador-separator-container {
-  display: flex;
-  align-items: center;
-  padding: 0 0.25rem;
-}
-
-.navegador-item {
-  color: #fff;
-  text-decoration: none;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  font-weight: 500;
-  transition: color 0.3s ease;
-  padding: 1rem 2rem;
-  margin: 1rem 1rem;
-  border-radius: 10px;
-  position: relative;
-  left: 700px;
-  bottom: 500px;
-}
-
-.navegador-item:hover {
-  color: #764ba2;
-  background-color: #f8f9ff;
-  text-decoration: none;
-}
-
-.navegador-item.active {
-  color: #651f71;
-  font-weight: 600;
-  background-color: #f0f0f0;
-}
-
-.navegador-separator {
-  color: #9ca3af;
-  font-weight: 500;
-  position: relative;
-  left: 700px;
-  bottom: 500px;
-}
-
-* Botão de sair no canto superior direito */
+/* Botão de sair no canto superior direito */
 .logout-top-right {
   position: absolute;
   top: 1rem;
@@ -391,4 +347,85 @@
 
 .logout-icon {
   font-size: 1.1rem;
+}
+
+/* Estilos para cards de acesso rápido */
+.card-acesso-usuario {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.quick-access h3 {
+  color: #495057;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.access-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+}
+
+.access-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #28a745;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.access-card h4 {
+  color: #495057;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.access-card p {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Seção de usuário */
+.section-usuario {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.section-usuario h2 {
+  color: #495057;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-role {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
 }

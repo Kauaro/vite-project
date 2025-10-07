@@ -250,7 +250,7 @@ const UsuarioEditar = () => {
                         </div>
                         <div className="form-group">
                             <label htmlFor="inputSenha">Senha</label>
-                            <input type="password" id="inputSenha" name="senha" placeholder="DIGITE A SENHA" onChange={handleInputChange} />
+                            <input type="password" id="inputSenha" name="senha" value={usuario.senha || ''} onChange={handleInputChange} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="inputAcesso">Nível de Acesso</label>
