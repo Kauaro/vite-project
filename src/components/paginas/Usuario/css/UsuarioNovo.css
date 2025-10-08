@@ -35,7 +35,7 @@
 }
 
 /* Estilos específicos para o formulário */
-.form-grid {
+.form-grid-novo {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;

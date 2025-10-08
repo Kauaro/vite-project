@@ -27,6 +27,8 @@ export const AuthProvider = ({ children }) => {
 
     const data = await response.json();
 
+    localStorage.setItem("usuario", JSON.stringify(data));
+
     const loggedUser = {
       matricula: data.matricula,
       nome: data.nome,
@@ -63,7 +65,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const canEditProject = (projectId) => {
-    if (!user) return false;
+    if (!user) return true;
     if (isAdministrador()) return true;
     if (isProfessor()) return user.projetos.includes(projectId);
     return false;

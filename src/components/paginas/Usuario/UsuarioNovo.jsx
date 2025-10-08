@@ -54,9 +54,9 @@ const UsuarioNovo = () => {
     };
 
     const handleLogout = () => {
-        logout();
-        // O redirecionamento será feito automaticamente pelo ProtectedRoute
-    };
+  localStorage.removeItem("user"); // Remove apenas os dados do usuário
+  navigate("/login");
+};
 
     return (
         <div className="usuario-container">
@@ -78,80 +78,87 @@ const UsuarioNovo = () => {
                 </p>
             </div>
 
-            {/* Cards de acesso rápido baseados no tipo de usuário */}
-            <div className="card-acesso-usuario">
-                <div className="quick-access">
-                    <h3>Acesso Rápido</h3>
-                    <div className="cards-container">
-
-                        {isAluno() && (
-                            <>
-                                <Link to="/projetoslista" className="access-card">
-                                    <div className="card-icon">📋</div>
-                                    <h4>Meus Projetos</h4>
-                                    <p>Visualizar projetos que participo</p>
-                                </Link>
-                                
-                            </>
-                        )}
-
-                        {isProfessor() && (
-                            <>
-                                <Link to="/projetoslista" className="access-card">
-                                    <div className="card-icon">📋</div>
-                                    <h4>Meus Projetos</h4>
-                                    <p>Gerenciar projetos que administro</p>
-                                </Link>
-                                <Link to="/projetonovo" className="access-card">
-                                    <div className="card-icon">➕</div>
-                                    <h4>Novo Projeto</h4>
-                                    <p>Criar um novo projeto</p>
-                                </Link>
-                                
-                            </>
-                        )}
-
-                        {isAdministrador() && (
-                            <>
-                                <Link to="/usuarioslista" className="access-card">
-                                    <div className="card-icon">👥</div>
-                                    <h4>Usuários</h4>
-                                    <p>Gerenciar alunos, professores e administradores</p>
-                                </Link>
-                                <Link to="/usuarionovo" className="access-card">
-                                    <div className="card-icon">➕</div>
-                                    <h4>Novo Usuário</h4>
-                                    <p>Cadastrar novo usuário</p>
-                                </Link>
-                                
-                                <Link to="/projetonovo" className="access-card">
-                                    <div className="card-icon">➕</div>
-                                    <h4>Novo Projeto</h4>
-                                    <p>Criar um novo projeto</p>
-                                </Link>
-                               
-
-                                <Link to="/projetoslista" className="access-card">
-                                    <div className="card-icon">📋</div>
-                                    <h4>Todos os Projetos</h4>
-                                    <p>Visualizar e gerenciar todos os projetos</p>
-                                </Link>
-                            </>
-                        )}
-                    </div>
-                </div>
-            </div>
-
+           {/* Cards de acesso rápido baseados no tipo de usuário */}
+                   <div className="quick-access-wrapper">
+                     <div className="quick-access">
+                       <h3>Acesso Rápido</h3>
+                       <div className="cards-container">
+                         
+                         {/* Cards para Alunos */}
+                         {isAluno() && (
+                           <>
+                           <Link to="/home" className="access-card">
+                               <div className="card-icon">🏠</div>
+                               <h4>Dashboard</h4>
+                               <p>Tela inicial com todas as navegações.</p>
+                             </Link>
+                             <Link to="/projetoslista" className="access-card">
+                               <div className="card-icon">📋</div>
+                               <h4>Meus Projetos</h4>
+                               <p>Visualizar projetos que participo</p>
+                             </Link>
+                             
+                             
+                           </>
+                         )}
+           
+                         {/* Cards para Professores */}
+                         {isProfessor() && (
+                           <>
+                           <Link to="/home" className="access-card">
+                               <div className="card-icon">🏠</div>
+                               <h4>Dashboard</h4>
+                               <p>Tela inicial com todas as navegações.</p>
+                             </Link>
+                             <Link to="/projetoslista" className="access-card">
+                               <div className="card-icon">📋</div>
+                               <h4>Meus Projetos</h4>
+                               <p>Gerenciar projetos que administro</p>
+                             </Link>
+                             <Link to="/projetonovo" className="access-card">
+                               <div className="card-icon">➕</div>
+                               <h4>Novo Projeto</h4>
+                               <p>Criar um novo projeto</p>
+                             </Link>
+                             
+                           </>
+                         )}
+           
+                         {/* Cards para Administradores */}
+                         {isAdministrador() && (
+                           <>
+                           <Link to="/home" className="access-card">
+                               <div className="card-icon">🏠</div>
+                               <h4>Dashboard</h4>
+                               <p>Tela inicial com todas as navegações.</p>
+                             </Link>
+                             <Link to="/usuarioslista" className="access-card">
+                               <div className="card-icon">👥</div>
+                               <h4>Usuários</h4>
+                               <p>Gerenciar alunos, professores e administradores</p>
+                             </Link>
+                             <Link to="/alunoslista" className="access-card">
+                               <div className="card-icon">📱</div>
+                               <h4>Alunos</h4>
+                               <p>Gerenciar lista de alunos</p>
+                             </Link>
+                             <Link to="/projetoslista" className="access-card">
+                               <div className="card-icon">📊</div>
+                               <h4>Projetos</h4>
+                               <p>Visualizar e gerenciar todos os projetos</p>
+                             </Link>
+                             
+                           </>
+                         )}
+                       </div>
+                     </div>
+                   </div>
+                   
             {/* Formulário de cadastro */}
             <div className="usuario-content">
 
                 <div className="breadcrumb-navigator-usuario-novo">
-                    <div className="breadcrumb-item-container">
-                        <Link to="/usuario" className="navegador-usuario-item">Usuário</Link>
-                    </div>
-                    <div className="breadcrumb-separator-container">
-                        <span className="navegador-usuario-separator">/</span>
-                    </div>
+                    
                     <div className="breadcrumb-item-container">
                         <Link to="/usuarioslista" className="navegador-usuario-item">Lista Usuário</Link>
                     </div>
@@ -164,7 +171,7 @@ const UsuarioNovo = () => {
                 </div>
 
                 <section className="usuario-section">
-                    <form className="form-grid" onSubmit={handleUsuario}>
+                    <form className="form-grid-novo" onSubmit={handleUsuario}>
                         <div className="form-group">
                             <label htmlFor="inputNome">Nome</label>
                             <input type="text" id="inputNome" value={novoUsuario.nome} onChange={(e) => {handleEditUsuario(e, 'nome')}} required />

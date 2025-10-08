@@ -1,30 +1,7 @@
 // Serviço mock para Projetos
 const STORAGE_KEY = 'mockProjetos';
 
-// Dados iniciais de exemplo
-const projetosIniciais = [
-  {
-    id: '01',
-    nome: 'Projeto Consciência Negra',
-    descricao: 'Projeto interdisciplinar sobre a importância da Consciência Negra.',
-    professor: 'Prof. Elisangela',
-    alunos: ['João Vitor Pucci', 'Nicoly Naiane'],
-  },
-  {
-    id: '02',
-    nome: 'Projeto Vozes Silenciadas',
-    descricao: 'Projeto de pesquisa sobre minorias e representatividade.',
-    professor: 'Prof. Cruz',
-    alunos: ['João Vitor Pucci'],
-  },
-  {
-    id: '03',
-    nome: 'Projeto Semana da Mulher',
-    descricao: 'Ações e debates sobre o papel da mulher na sociedade.',
-    professor: 'Prof. Elisangela',
-    alunos: [],
-  },
-];
+
 
 function getProjetosFromStorage() {
   const data = localStorage.getItem(STORAGE_KEY);

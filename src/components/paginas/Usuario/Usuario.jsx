@@ -7,9 +7,9 @@ export default function  Usuario() {
     const { user, isAluno, isProfessor, isAdministrador, logout } = useAuth();
     
     const handleLogout = () => {
-        logout();
-        // O redirecionamento será feito automaticamente pelo ProtectedRoute
-    };
+  localStorage.removeItem("user"); // Remove apenas os dados do usuário
+  navigate("/login");
+};
 
     return (
         <div className="usuario-container">

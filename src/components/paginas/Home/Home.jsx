@@ -67,7 +67,7 @@ export default function Home() {
         </div>
 
         {/* Cards de acesso rápido baseados no tipo de usuário */}
-        <div className="quick-access-wrapper">
+        <div className="quick-access-wrapper-home">
           <div className="quick-access">
             <h3>Acesso Rápido</h3>
             <div className="cards-container">
@@ -77,8 +77,8 @@ export default function Home() {
                 <>
                 <Link to="/home" className="access-card">
                     <div className="card-icon">🏠</div>
-                    <h4>Inicio</h4>
-                    <p>Tela inicial.</p>
+                    <h4>Dashboard</h4>
+                    <p>Tela inicial com todas as navegações.</p>
                   </Link>
                   <Link to="/projetoslista" className="access-card">
                     <div className="card-icon">📋</div>
@@ -93,6 +93,11 @@ export default function Home() {
               {/* Cards para Professores */}
               {isProfessor() && (
                 <>
+                <Link to="/home" className="access-card">
+                    <div className="card-icon">🏠</div>
+                    <h4>Dashboard</h4>
+                    <p>Tela inicial com todas as navegações.</p>
+                  </Link>
                   <Link to="/projetoslista" className="access-card">
                     <div className="card-icon">📋</div>
                     <h4>Meus Projetos</h4>
@@ -110,15 +115,15 @@ export default function Home() {
               {/* Cards para Administradores */}
               {isAdministrador() && (
                 <>
+                <Link to="/home" className="access-card">
+                    <div className="card-icon">🏠</div>
+                    <h4>Dashboard</h4>
+                    <p>Tela inicial com todas as navegações.</p>
+                  </Link>
                   <Link to="/usuarioslista" className="access-card">
                     <div className="card-icon">👥</div>
                     <h4>Usuários</h4>
                     <p>Gerenciar alunos, professores e administradores</p>
-                  </Link>
-                  <Link to="/usuarionovo" className="access-card">
-                    <div className="card-icon">➕</div>
-                    <h4>Novo Usuário</h4>
-                    <p>Cadastrar novo usuário</p>
                   </Link>
                   <Link to="/alunoslista" className="access-card">
                     <div className="card-icon">📱</div>
@@ -126,14 +131,9 @@ export default function Home() {
                     <p>Gerenciar lista de alunos</p>
                   </Link>
                   <Link to="/projetoslista" className="access-card">
-                    <div className="card-icon">📋</div>
-                    <h4>Todos os Projetos</h4>
+                    <div className="card-icon">📊</div> 
+                    <h4>Projetos</h4>
                     <p>Visualizar e gerenciar todos os projetos</p>
-                  </Link>
-                  <Link to="/projetonovo" className="access-card">
-                    <div className="card-icon">➕</div>
-                    <h4>Novo Projeto</h4>
-                    <p>Criar um novo projeto</p>
                   </Link>
                   
                 </>

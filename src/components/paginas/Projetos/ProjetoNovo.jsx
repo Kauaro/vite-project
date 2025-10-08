@@ -19,12 +19,15 @@ const ProjetoNovo = () => {
         );
     }
 
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+
+
     const [novoProjeto, setNovoProjeto] = useState({
         "nome": '',
         "descricao": '',
         "tema": '',
-        "professor": '',
-        "alunos": ''
+        "aluno": ''
     });
 
     const handleEditProjeto = (event, nome) => {
@@ -35,28 +38,38 @@ const ProjetoNovo = () => {
     };
 
     const handleProjeto = async (event) => {
-        try {
-            event.preventDefault();
-            const response = await fetch('http://localhost:8080/api/Projeto', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(novoProjeto),
-            });
-            const json = await response.json();
-            console.log(response.status);
-            console.log(json);
-            alert("Projeto cadastrado com sucesso!");
-            navigate("/projetoslista");
-        } catch (error) {
-            console.error("Erro ao cadastrar projeto:", error);
+    event.preventDefault();
+
+    try {
+        const response = await fetch(`http://localhost:8080/api/Projeto/${usuario.id}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(novoProjeto),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erro HTTP ${response.status}`);
         }
-    };
+
+        // Só tenta parsear se houver conteúdo
+        let data = null;
+        const text = await response.text();
+        if (text) data = JSON.parse(text);
+
+        console.log("Resposta do backend:", data);
+        alert("Projeto cadastrado com sucesso!");
+        navigate("/projetoslista");
+
+    } catch (error) {
+        console.error("Erro ao cadastrar projeto:", error);
+        alert("Erro ao cadastrar projeto. Confira o console.");
+    }
+};
 
     const handleLogout = () => {
-        logout();
-    };
+  localStorage.removeItem("user"); // Remove apenas os dados do usuário
+  navigate("/login");
+};
 
     return (
         <div className="usuario-container">
@@ -74,67 +87,80 @@ const ProjetoNovo = () => {
                 </p>
             </div>
             {/* Cards de acesso rápido baseados no tipo de usuário */}
-            <div className="card-acesso-projeto">
-                <div className="quick-access">
-                    <h3>Acesso Rápido</h3>
-                    <div className="cards-container">
-                        {/* Cards para Alunos */}
-                        {isAluno() && (
+                    <div className="quick-access-wrapper">
+                      <div className="quick-access">
+                        <h3>Acesso Rápido</h3>
+                        <div className="cards-container">
+                          
+                          {/* Cards para Alunos */}
+                          {isAluno() && (
                             <>
-                                <Link to="/projetoslista" className="access-card">
-                                    <div className="card-icon">📋</div>
-                                    <h4>Meus Projetos</h4>
-                                    <p>Visualizar projetos que participo</p>
-                                </Link>
-                                
-                                
+                            <Link to="/home" className="access-card">
+                                <div className="card-icon">🏠</div>
+                                <h4>Dashboard</h4>
+                                <p>Tela inicial com todas as navegações.</p>
+                              </Link>
+                              <Link to="/projetoslista" className="access-card">
+                                <div className="card-icon">📋</div>
+                                <h4>Meus Projetos</h4>
+                                <p>Visualizar projetos que participo</p>
+                              </Link>
+                              
+                              
                             </>
-                        )}
-                        {/* Cards para Professores */}
-                        {isProfessor() && (
+                          )}
+            
+                          {/* Cards para Professores */}
+                          {isProfessor() && (
                             <>
-                                <Link to="/projetoslista" className="access-card">
-                                    <div className="card-icon">📋</div>
-                                    <h4>Meus Projetos</h4>
-                                    <p>Gerenciar projetos que administro</p>
-                                </Link>
-                                <Link to="/projetonovo" className="access-card">
-                                    <div className="card-icon">➕</div>
-                                    <h4>Novo Projeto</h4>
-                                    <p>Criar um novo projeto</p>
-                                </Link>
-                                
+                            <Link to="/home" className="access-card">
+                                <div className="card-icon">🏠</div>
+                                <h4>Dashboard</h4>
+                                <p>Tela inicial com todas as navegações.</p>
+                              </Link>
+                              <Link to="/projetoslista" className="access-card">
+                                <div className="card-icon">📋</div>
+                                <h4>Meus Projetos</h4>
+                                <p>Gerenciar projetos que administro</p>
+                              </Link>
+                              <Link to="/projetonovo" className="access-card">
+                                <div className="card-icon">➕</div>
+                                <h4>Novo Projeto</h4>
+                                <p>Criar um novo projeto</p>
+                              </Link>
+                              
                             </>
-                        )}
-                        {/* Cards para Administradores */}
-                        {isAdministrador() && (
+                          )}
+            
+                          {/* Cards para Administradores */}
+                          {isAdministrador() && (
                             <>
-                                <Link to="/usuarioslista" className="access-card">
-                                    <div className="card-icon">👥</div>
-                                    <h4>Usuários</h4>
-                                    <p>Gerenciar alunos, professores e administradores</p>
-                                </Link>
-                                <Link to="/usuarionovo" className="access-card">
-                                    <div className="card-icon">➕</div>
-                                    <h4>Novo Usuário</h4>
-                                    <p>Cadastrar novo usuário</p>
-                                </Link>
-                                <Link to="/projetoslista" className="access-card">
-                                    <div className="card-icon">📋</div>
-                                    <h4>Todos os Projetos</h4>
-                                    <p>Visualizar e gerenciar todos os projetos</p>
-                                </Link>
-                                <Link to="/projetonovo" className="access-card">
-                                    <div className="card-icon">➕</div>
-                                    <h4>Novo Projeto</h4>
-                                    <p>Criar um novo projeto</p>
-                                </Link>
-                                
+                            <Link to="/home" className="access-card">
+                                <div className="card-icon">🏠</div>
+                                <h4>Dashboard</h4>
+                                <p>Tela inicial com todas as navegações.</p>
+                              </Link>
+                              <Link to="/usuarioslista" className="access-card">
+                                <div className="card-icon">👥</div>
+                                <h4>Usuários</h4>
+                                <p>Gerenciar alunos, professores e administradores</p>
+                              </Link>
+                              <Link to="/alunoslista" className="access-card">
+                                <div className="card-icon">📱</div>
+                                <h4>Alunos</h4>
+                                <p>Gerenciar lista de alunos</p>
+                              </Link>
+                              <Link to="/projetoslista" className="access-card">
+                                <div className="card-icon">📊</div>
+                                <h4>Projetos</h4>
+                                <p>Visualizar e gerenciar todos os projetos</p>
+                              </Link>
+                              
                             </>
-                        )}
+                          )}
+                        </div>
+                      </div>
                     </div>
-                </div>
-            </div>
             <div className="projeto-content">
                 <div className="navegador-projetos">
                     <div className="navegador-item-container">
@@ -169,12 +195,12 @@ const ProjetoNovo = () => {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="inputProfessor">Professor</label>
-                                <input id="inputProfessor" value={novoProjeto.professor} onChange={(e) => {handleEditProjeto(e, 'professor')}} required/>
+                                <label htmlFor="inputProfessor">Responsável</label>
+                                <input id="inputProfessor" value={usuario.nome} readOnly disabled />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputAlunos">Alunos (separados por vírgula)</label>
-                                <input type="text" id="inputAlunos" value={novoProjeto.alunos} onChange={(e) => {handleEditProjeto(e, 'alunos')}} required/>
+                                <input type="text" id="inputAlunos" value={novoProjeto.aluno} onChange={(e) => {handleEditProjeto(e, 'aluno')}} required/>
                             </div>
                             <div className="form-actions">
                                 <button type="submit" className="btn primary">Cadastrar Projeto</button>

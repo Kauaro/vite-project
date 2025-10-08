@@ -11,8 +11,9 @@ const AlunosLista = () => {
     const [aluno, setAluno] = useState([]);
 
     const handleLogout = () => {
-        logout();
-    };
+  localStorage.removeItem("user"); // Remove apenas os dados do usuário
+  navigate("/login");
+};
 
     const handleEditar = (matricula) => {
         if (matricula) {
@@ -83,71 +84,80 @@ const AlunosLista = () => {
             </div>
 
             {/* Cards de acesso rápido baseados no tipo de usuário */}
-            <div className="card-acesso-usuario">
-                <div className="quick-access">
-                    <h3>Acesso Rápido</h3>
-                    <div className="cards-container">
-                        
-                        {/* Cards para Alunos */}
-                        {isAluno() && (
-                            <>
-                                <Link to="/projetoslista" className="access-card">
-                                    <div className="card-icon">📋</div>
-                                    <h4>Meus Projetos</h4>
-                                    <p>Visualizar projetos que participo</p>
-                                </Link>
-                            </>
-                        )}
+        <div className="quick-access-wrapper">
+          <div className="quick-access">
+            <h3>Acesso Rápido</h3>
+            <div className="cards-container">
+              
+              {/* Cards para Alunos */}
+              {isAluno() && (
+                <>
+                <Link to="/home" className="access-card">
+                    <div className="card-icon">🏠</div>
+                    <h4>Dashboard</h4>
+                    <p>Tela inicial com todas as navegações.</p>
+                  </Link>
+                  <Link to="/projetoslista" className="access-card">
+                    <div className="card-icon">📋</div>
+                    <h4>Meus Projetos</h4>
+                    <p>Visualizar projetos que participo</p>
+                  </Link>
+                  
+                  
+                </>
+              )}
 
-                        {/* Cards para Professores */}
-                        {isProfessor() && (
-                            <>
-                                <Link to="/projetoslista" className="access-card">
-                                    <div className="card-icon">📋</div>
-                                    <h4>Meus Projetos</h4>
-                                    <p>Gerenciar projetos que administro</p>
-                                </Link>
-                                <Link to="/projetonovo" className="access-card">
-                                    <div className="card-icon">➕</div>
-                                    <h4>Novo Projeto</h4>
-                                    <p>Criar um novo projeto</p>
-                                </Link>
-                            </>
-                        )}
+              {/* Cards para Professores */}
+              {isProfessor() && (
+                <>
+                <Link to="/home" className="access-card">
+                    <div className="card-icon">🏠</div>
+                    <h4>Dashboard</h4>
+                    <p>Tela inicial com todas as navegações.</p>
+                  </Link>
+                  <Link to="/projetoslista" className="access-card">
+                    <div className="card-icon">📋</div>
+                    <h4>Meus Projetos</h4>
+                    <p>Gerenciar projetos que administro</p>
+                  </Link>
+                  <Link to="/projetonovo" className="access-card">
+                    <div className="card-icon">➕</div>
+                    <h4>Novo Projeto</h4>
+                    <p>Criar um novo projeto</p>
+                  </Link>
+                  
+                </>
+              )}
 
-                        {/* Cards para Administradores */}
-                        {isAdministrador() && (
-                            <>
-                                <Link to="/usuarioslista" className="access-card">
-                                    <div className="card-icon">👥</div>
-                                    <h4>Usuários</h4>
-                                    <p>Gerenciar alunos, professores e administradores</p>
-                                </Link>
-                                <Link to="/usuarionovo" className="access-card">
-                                    <div className="card-icon">➕</div>
-                                    <h4>Novo Usuário</h4>
-                                    <p>Cadastrar novo usuário</p>
-                                </Link>
-                                <Link to="/alunoslista" className="access-card">
-                                    <div className="card-icon">🎓</div>
-                                    <h4>Alunos</h4>
-                                    <p>Gerenciar lista de alunos</p>
-                                </Link>
-                                <Link to="/projetoslista" className="access-card">
-                                    <div className="card-icon">📋</div>
-                                    <h4>Todos os Projetos</h4>
-                                    <p>Visualizar e gerenciar todos os projetos</p>
-                                </Link>
-                                <Link to="/projetonovo" className="access-card">
-                                    <div className="card-icon">➕</div>
-                                    <h4>Novo Projeto</h4>
-                                    <p>Criar um novo projeto</p>
-                                </Link>
-                            </>
-                        )}
-                    </div>
-                </div>
+              {/* Cards para Administradores */}
+              {isAdministrador() && (
+                <>
+                <Link to="/home" className="access-card">
+                    <div className="card-icon">🏠</div>
+                    <h4>Dashboard</h4>
+                    <p>Tela inicial com todas as navegações.</p>
+                  </Link>
+                  <Link to="/usuarioslista" className="access-card">
+                    <div className="card-icon">👥</div>
+                    <h4>Usuários</h4>
+                    <p>Gerenciar alunos, professores e administradores</p>
+                  </Link>
+                  <Link to="/alunoslista" className="access-card">
+                    <div className="card-icon">📱</div>
+                    <h4>Alunos</h4>
+                    <p>Gerenciar lista de alunos</p>
+                  </Link>
+                  <Link to="/projetoslista" className="access-card">
+                    <div className="card-icon">📊</div>
+                    <h4>Projetos</h4>
+                    <p>Visualizar e gerenciar todos os projetos</p>
+                  </Link>
+                  
+                </>
+              )}
             </div>
+          </div>
+        </div>
 
             {/* Tabela de alunos */}
             <div className="aluno-usuario-content">
