@@ -27,17 +27,15 @@ export const AuthProvider = ({ children }) => {
 
     const data = await response.json();
 
-    localStorage.setItem("usuario", JSON.stringify(data));
-
     const loggedUser = {
       matricula: data.matricula,
       nome: data.nome,
-      role: data.role,
-      projetos: []
+      role: data.role?.toLowerCase(), // ✅ garante que role fique minúsculo
+      projetos: data.projetos || []
     };
 
     setUser(loggedUser);
-    localStorage.setItem('user', JSON.stringify(loggedUser));
+    localStorage.setItem('user', JSON.stringify(loggedUser)); // ✅ usa sempre a mesma chave
 
     return { success: true, message: data.message || "Login realizado com sucesso!" };
   } catch (err) {
@@ -45,6 +43,7 @@ export const AuthProvider = ({ children }) => {
     return { success: false, message: "Erro no servidor." };
   }
 };
+
 
   
 
