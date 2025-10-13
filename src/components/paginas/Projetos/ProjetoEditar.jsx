@@ -24,7 +24,7 @@ const ProjetoEditar = () => {
     const fetchProjeto = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`http://localhost:8080/api/Projeto/${id}`);
+        const response = await fetch(`https://productclienthub-ld2x.onrender.com/api/Projeto/${id}`);
         if (response.ok) {
           const data = await response.json();
           setProjeto({

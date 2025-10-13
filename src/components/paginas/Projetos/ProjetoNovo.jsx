@@ -41,7 +41,7 @@ const ProjetoNovo = () => {
     event.preventDefault();
 
     try {
-        const response = await fetch(`http://localhost:8080/api/Projeto/${usuario.id}`, {
+        const response = await fetch(`https://productclienthub-ld2x.onrender.com/api/Projeto/${usuario.id}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(novoProjeto),

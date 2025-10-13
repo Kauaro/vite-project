@@ -14,7 +14,7 @@ const ProjetosLista = () => {
     // Função para buscar usuários
     const fetchProjeto = async () => {
         try {
-            const response = await fetch('http://localhost:8080/api/Projeto');
+            const response = await fetch('https://productclienthub-ld2x.onrender.com/api/Projeto');
             const data = await response.json();
             
             if (Array.isArray(data)) {
@@ -45,7 +45,7 @@ const ProjetosLista = () => {
     };
 
     const handleCadastrar = (id) => {
-        navigate(`/projetonovo/${usuario.id}`);
+        navigate(`/${usuario.id}`);
     }
 
     const handleExcluir = async (id) => {

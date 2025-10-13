@@ -15,7 +15,7 @@ const UsuarioEditar = () => {
         const fetchUsuario = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(`http://localhost:8080/api/Usuario/${id}`);
+                const response = await fetch(`https://productclienthub-ld2x.onrender.com/api/Usuario/${id}`);
                 
                 if (response.ok) {
                     const data = await response.json();
@@ -68,7 +68,7 @@ const UsuarioEditar = () => {
         
         try {
             // Primeiro tenta PUT, se falhar tenta POST
-            let response = await fetch(`http://localhost:8080/api/Usuario/${id}`, {
+            let response = await fetch(`https://productclienthub-ld2x.onrender.com/api/Usuario/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ const UsuarioEditar = () => {
             // Se PUT falhar, tenta POST
             if (!response.ok && response.status === 405) {
                 console.log('PUT não suportado, tentando POST...');
-                response = await fetch(`http://localhost:8080/api/Usuario/${id}`, {
+                response = await fetch(`https://productclienthub-ld2x.onrender.com/api/Usuario/${id}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (matricula, senha) => {
   try {
-    const response = await fetch("http://localhost:8080/api/Usuario/login", {
+    const response = await fetch("https://productclienthub-ld2x.onrender.com/api/Usuario/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ matricula, senha })

@@ -36,7 +36,7 @@ const UsuarioNovo = () => {
         const handleUsuario = async (event) => {
         try {
             event.preventDefault();
-            const response = await fetch('http://localhost:8080/api/Usuario', {
+            const response = await fetch('https://productclienthub-ld2x.onrender.com/api/Usuario', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

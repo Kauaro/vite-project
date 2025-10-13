@@ -39,7 +39,7 @@ const UsuariosLista = () => {
         
         if (window.confirm('Tem certeza que deseja excluir este usuário?')) {
             try {
-                const response = await fetch(`http://localhost:8080/api/Usuario/${identificador}`, {
+                const response = await fetch(`https://productclienthub-ld2x.onrender.com/api/Usuario/${identificador}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ const UsuariosLista = () => {
     // Função para buscar usuários
     const fetchUsuarios = async () => {
         try {
-            const response = await fetch('http://localhost:8080/api/Usuario');
+            const response = await fetch('https://productclienthub-ld2x.onrender.com/api/Usuario');
             const data = await response.json();
             
             if (Array.isArray(data)) {
