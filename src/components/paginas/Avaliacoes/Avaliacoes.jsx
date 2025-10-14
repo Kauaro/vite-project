@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useData } from '../../contexts/DataContext';
 import '../Projetos/ProjetosLista'
 import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 
 export default function Avaliacoes() {
@@ -11,33 +12,32 @@ export default function Avaliacoes() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { getProjetoById, getUsuarioById } = useData();
+  const [avaliacoes, setAvaliacoes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const projeto = getProjetoById(id);
 
-  // MOCK DE AVALIAÇÕES FICTÍCIAS
-  const avaliacoesFicticias = [
-    {
-      alunoId: '90001',
-      nome: 'João Vitor Pucci',
-      matricula: '90000',
-      comentario: 'Ótima participação no projeto, sempre colaborativo.',
-      nota: 9.5
-    },
-    {
-      alunoId: '90002',
-      nome: 'Nicoly Naiane',
-      matricula: '90001',
-      comentario: 'Demonstrou bom entendimento, mas pode melhorar a comunicação.',
-      nota: 8.0
-    },
-    {
-      alunoId: '90003',
-      nome: 'Richard Ribeiro',
-      matricula: '90002',
-      comentario: 'Precisa se dedicar mais às entregas.',
-      nota: 6.5
+  useEffect(() => {
+    const fetchAvaliacoes = async () => {
+      try {
+        const response = await fetch(`https://productclienthub-ld2x.onrender.com/api/Avaliacao/codigo/${projeto?.Codigo}`);
+        if (response.ok) {
+          const data = await response.json();
+          setAvaliacoes(Array.isArray(data) ? data : []);
+        }
+      } catch (error) {
+        console.error('Erro ao buscar avaliações:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (projeto?.Codigo) {
+      fetchAvaliacoes();
+    } else {
+      setLoading(false);
     }
-  ];
+  }, [id]);
 
   return (
 
@@ -76,15 +76,21 @@ export default function Avaliacoes() {
             </tr>
           </thead>
           <tbody>
-            {avaliacoesFicticias.map((avaliacao, idx) => (
-              <tr key={"ficticia-" + idx}>
-                <td>{avaliacao.nome}</td>
-                <td>{avaliacao.matricula}</td>
-                <td>{avaliacao.comentario}</td>
-                <td>{avaliacao.nota}</td>
+            {loading ? (
+              <tr>
+                <td colSpan={4}>Carregando...</td>
               </tr>
-            ))}
-            {avaliacoesFicticias.length === 0 && (
+            ) : (
+              avaliacoes.map((avaliacao, idx) => (
+                <tr key={avaliacao.id || idx}>
+                  <td>{avaliacao.nome || avaliacao.alunoNome}</td>
+                  <td>{avaliacao.matricula || avaliacao.alunoMatricula}</td>
+                  <td>{avaliacao.comentario || avaliacao.descricao}</td>
+                  <td>{avaliacao.nota}</td>
+                </tr>
+              ))
+            )}
+            {!loading && avaliacoes.length === 0 && (
               <tr>
                 <td colSpan={4}>Nenhuma avaliação encontrada.</td>
               </tr>
@@ -95,70 +101,77 @@ export default function Avaliacoes() {
     </div>       
 
         {/* Cards de acesso rápido baseados no tipo de usuário */}
+        <div className="quick-access-wrapper">
         <div className="card-acesso-avaliacoes">
           <div className="quick-access">
             <h3>Acesso Rápido</h3>
             <div className="cards-container">
               
               {/* Cards para Alunos */}
-              {isAluno() && (
-                <>
-                  <Link to="/projetoslista" className="access-card">
-                    <div className="card-icon">📋</div>
-                    <h4>Meus Projetos</h4>
-                    <p>Visualizar projetos que participo</p>
-                  </Link>
-                  
-                  
-                </>
-              )}
+                        {isAluno() && (
+                            <>
+                            <Link to="/home" className="access-card">
+                                <div className="card-icon">🏠</div>
+                                <h4>Dashboard</h4>
+                                <p>Tela inicial com todas as navegações.</p>
+                            </Link>
+                            <Link to="/projetoslista" className="access-card">
+                                <div className="card-icon">📋</div>
+                                <h4>Meus Projetos</h4>
+                                <p>Visualizar projetos que participo</p>
+                            </Link>
+                            </>
+                        )}
 
-              {/* Cards para Professores */}
-              {isProfessor() && (
-                <>
-                  <Link to="/projetoslista" className="access-card">
-                    <div className="card-icon">📋</div>
-                    <h4>Meus Projetos</h4>
-                    <p>Gerenciar projetos que administro</p>
-                  </Link>
-                  <Link to="/projetonovo" className="access-card">
-                    <div className="card-icon">➕</div>
-                    <h4>Novo Projeto</h4>
-                    <p>Criar um novo projeto</p>
-                  </Link>
-                  
-                </>
-              )}
+                        {/* Cards para Professores */}
+                        {isProfessor() && (
+                            <>
+                            <Link to="/home" className="access-card">
+                                <div className="card-icon">🏠</div>
+                                <h4>Dashboard</h4>
+                                <p>Tela inicial com todas as navegações.</p>
+                            </Link>
+                            <Link to="/projetoslista" className="access-card">
+                                <div className="card-icon">📋</div>
+                                <h4>Meus Projetos</h4>
+                                <p>Gerenciar projetos que administro</p>
+                            </Link>
+                            <Link to="/projetonovo" className="access-card">
+                                <div className="card-icon">➕</div>
+                                <h4>Novo Projeto</h4>
+                                <p>Criar um novo projeto</p>
+                            </Link>
+                            </>
+                        )}
 
-              {/* Cards para Administradores */}
-              {isAdministrador() && (
-                <>
-                  <Link to="/usuarioslista" className="access-card">
-                    <div className="card-icon">👥</div>
-                    <h4>Usuários</h4>
-                    <p>Gerenciar alunos, professores e administradores</p>
-                  </Link>
-                  <Link to="/usuarionovo" className="access-card">
-                    <div className="card-icon">➕</div>
-                    <h4>Novo Usuário</h4>
-                    <p>Cadastrar novo usuário</p>
-                  </Link>
-                  <Link to="/projetoslista" className="access-card">
-                    <div className="card-icon">📋</div>
-                    <h4>Todos os Projetos</h4>
-                    <p>Visualizar e gerenciar todos os projetos</p>
-                  </Link>
-                  <Link to="/projetonovo" className="access-card">
-                    <div className="card-icon">➕</div>
-                    <h4>Novo Projeto</h4>
-                    <p>Criar um novo projeto</p>
-                  </Link>
-                  
-                  
-                </>
-              )}
+                        {/* Cards para Administradores */}
+                        {isAdministrador() && (
+                            <>
+                            <Link to="/home" className="access-card">
+                                <div className="card-icon">🏠</div>
+                                <h4>Dashboard</h4>
+                                <p>Tela inicial com todas as navegações.</p>
+                            </Link>
+                            <Link to="/usuarioslista" className="access-card">
+                                <div className="card-icon">👥</div>
+                                <h4>Usuários</h4>
+                                <p>Gerenciar alunos, professores e administradores</p>
+                            </Link>
+                            <Link to="/alunoslista" className="access-card">
+                                <div className="card-icon">📱</div>
+                                <h4>Alunos</h4>
+                                <p>Gerenciar lista de alunos</p>
+                            </Link>
+                            <Link to="/projetoslista" className="access-card">
+                                <div className="card-icon">📊</div>
+                                <h4>Projetos</h4>
+                                <p>Visualizar e gerenciar todos os projetos</p>
+                            </Link>
+                            </>
+                        )}
             </div>
           </div>
+        </div>
         </div>
 
       </div>

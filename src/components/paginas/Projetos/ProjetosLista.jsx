@@ -8,23 +8,25 @@ const ProjetosLista = () => {
     const navigate = useNavigate();
     const [projeto, setProjeto] = useState([]);
 
-        const usuario = JSON.parse(localStorage.getItem("usuario"));
+        const [usuario] = useState(() => {
+        try {
+            return JSON.parse(localStorage.getItem("usuario")) || {};
+        } catch {
+            return {};
+        }
+    });
 
 
-    // Função para buscar usuários
     const fetchProjeto = async () => {
         try {
             const response = await fetch('https://productclienthub-ld2x.onrender.com/api/Projeto');
-            const data = await response.json();
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
             
-            if (Array.isArray(data)) {
-                setProjeto(data);
-            } else {
-                const projeto = data.projeto || [];
-                setProjeto(projeto);
-            }
+            const data = await response.json();
+            setProjeto(Array.isArray(data) ? data : data.projeto || []);
         } catch (error) {
-            console.log('Erro ao buscar projetos:', error);
+            console.error('Erro ao buscar projetos:', error);
+            setProjeto([]);
         }
     };
 
@@ -44,8 +46,8 @@ const ProjetosLista = () => {
         navigate(`/avaliacoes/${id}`);
     };
 
-    const handleCadastrar = (id) => {
-        navigate(`/${usuario.id}`);
+    const handleCadastrar = () => {
+        navigate('/projetonovo');
     }
 
     const handleExcluir = async (id) => {
@@ -167,7 +169,7 @@ const ProjetosLista = () => {
                     </div>
                     <div className="navegador-item-container">
                         {(isProfessor() || isAdministrador()) && (
-                            <button onClick={() => handleCadastrar(projeto.id)} className="navegador-item-button">Novo Projeto</button>
+                            <button onClick={handleCadastrar} className="navegador-item-button">Novo Projeto</button>
                         )}
                     </div>
                 </div>
@@ -201,6 +203,11 @@ const ProjetosLista = () => {
                             </th>
                             <th>
                                 <div className="th-content">
+                                    Codigo
+                                </div>
+                            </th>
+                            <th>
+                                <div className="th-content">
                                     Responsável
                                 </div>
                             </th>
@@ -225,6 +232,13 @@ const ProjetosLista = () => {
                                     <div className="role-cell">
                                         <span className="role-badge" style={{background: 'linear-gradient(135deg, #545c59ff 0%, #6c7c77ff 100%)'}}>
                                             {projeto.tema}
+                                        </span> 
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="name-cell">
+                                        <span className="name-text">
+                                        {projeto.codigo}
                                         </span>
                                     </div>
                                 </td>

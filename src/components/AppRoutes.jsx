@@ -13,6 +13,7 @@ import ProjetoEditar from "./paginas/Projetos/ProjetoEditar"
 import ProjetoNovo from "./paginas/Projetos/ProjetoNovo"
 import ProjetosLista from "./paginas/Projetos/ProjetosLista"
 import Avaliacoes from "./paginas/Avaliacoes/Avaliacoes"
+import AvaliacoesAluno from "./paginas/Avaliacoes/AvaliacoesAluno"
 
 // Componente para redirecionar baseado no tipo de usuário
 const RoleBasedRedirect = () => {
@@ -86,6 +87,12 @@ function AppRoutes() {
         </ProtectedRoute>
       } />
 
+      <Route path="/avaliacoesaluno/:matricula" element={
+        <ProtectedRoute allowedRoles={['administrador']}>
+          <AvaliacoesAluno />
+        </ProtectedRoute>
+      } />
+
       {/* Rotas de projetos - professores e administradores */}
       
       <Route path="/projetoslista" element={
@@ -93,7 +100,7 @@ function AppRoutes() {
           <ProjetosLista />
         </ProtectedRoute>
       } />
-      <Route path="/projetonovo/:id" element={
+      <Route path="/projetonovo" element={
         <ProtectedRoute allowedRoles={['professor', 'administrador']}>
           <ProjetoNovo />
         </ProtectedRoute>

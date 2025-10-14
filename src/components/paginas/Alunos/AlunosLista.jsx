@@ -23,7 +23,14 @@ const AlunosLista = () => {
         }
     };
 
-    // Função para excluir aluno
+    const handleAvaliacoes = (matricula) => {
+        if (matricula) {
+            navigate(`/avaliacoesaluno/${matricula}`);
+        } else {
+            alert('Erro: Não foi possível identificar o aluno.');
+        }
+    };
+
     const handleExcluir = async (matricula) => {
         if (!matricula) {
             alert('Erro: Não foi possível identificar o aluno para exclusão.');
@@ -45,7 +52,7 @@ const AlunosLista = () => {
 
     const fetchAluno = async () => {
         try {
-            const response = await fetch('http://localhost:8080/api/Aluno');
+            const response = await fetch('https://productclienthub-ld2x.onrender.com/api/Aluno');
             const data = await response.json();
             
             if (Array.isArray(data)) {
@@ -238,7 +245,7 @@ const AlunosLista = () => {
                                                         <span className="btn-icon">✏️</span>
                                                         <span className="btn-text">Editar</span>
                                                     </button>
-                                                    <button onClick={() => handleExcluir(aluno.matricula)} className="btn btn-avaliacao">
+                                                    <button onClick={() => handleAvaliacoes(aluno.matricula)} className="btn btn-avaliacao">
                                                         <span className="btn-icon">⭐</span>
                                                         <span className="btn-text">Avaliações</span>
                                                     </button>

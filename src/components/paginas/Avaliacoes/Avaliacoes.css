@@ -115,13 +115,15 @@
   }
   
   /*=============== QUICK ACCESS ===============*/
-  .card-acesso-avaliacoes {
+  .card-acesso-avaliacoes-aluno {
     align-self: flex-start;
     margin: 2rem 0;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     border-radius: 1rem;
     background: white;
     padding: 1rem;
+    position: relative;
+    bottom: 750px;
   }
   
   .quick-access {
@@ -191,37 +193,44 @@
   }
 
   .avaliacoes-projetos {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    max-width: 1300px;
     width: 100%;
-    max-width: 1200px;
-    margin: 2rem auto;
-    position: absolute;
-    left: 500px;
-    top: 200px;
+    position: relative;
+    left: 400px;
+    bottom: 0;
   }
 
   .avaliacoes-projetos-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    max-width: 1200px;
-    height: auto;
-    margin: 2rem auto;
-    background-color: #fff;
-    border-radius: 1rem;
-    padding: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+
+    border-radius: 20px;
+    overflow: hidden;
+    
+    margin-bottom: 1.5rem;
   }
 
   .avaliacoes-projetos-container h3 {
-    font-size: 1.8rem;
-    color: #651f71;
-    margin-bottom: 2rem;
-    font-weight: 600;
-    align-self: center;
+    font-size: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 3rem;
+    font-weight: 800;
+    text-align: center;
+    padding: 3rem 0 0 0;
+    position: relative;
+  }
+
+  .avaliacoes-projetos-container h3::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 2px;
   }
 
   .avaliacoes-projetos-cards {
@@ -236,33 +245,324 @@
 
 .avaliacoes-table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  background: #fff;
-  border-radius: 1rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.95rem;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
 
-.avaliacoes-table th, .avaliacoes-table td {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: left;
+.avaliacoes-table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  position: relative;
+}
+
+.avaliacoes-table thead::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
 }
 
 .avaliacoes-table th {
-  background: #f3f3f3;
-  color: #651f71;
+  padding: 2rem 1.5rem;
+  font-weight: 700;
+  text-align: left;
+  font-size: 0.95rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.avaliacoes-table th::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 4px;
+  height: 60%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%);
+  border-radius: 0 4px 4px 0;
+}
+
+.avaliacoes-table td {
+  padding: 1.75rem 1.5rem;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(102, 126, 234, 0.08);
+  background: white;
+  position: relative;
+}
+
+.avaliacoes-table tbody tr {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.avaliacoes-table tbody tr::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.4s ease;
+}
+
+.avaliacoes-table tbody tr:hover {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+  transform: translateX(8px) scale(1.01);
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.15);
+}
+
+.avaliacoes-table tbody tr:hover::before {
+  width: 6px;
+}
+
+.avaliacoes-table tbody tr:nth-child(even) {
+  background: linear-gradient(135deg, #fafbff 0%, #f8fafc 100%);
+}
+
+.avaliacoes-table tbody tr:nth-child(even):hover {
+  background: linear-gradient(135deg, #f0f4ff 0%, #e8f2ff 100%);
+}
+
+.quick-access-wrapper {
+  position: relative;
+  bottom: 350px;
+}
+
+/* Informações do aluno */
+.aluno-info {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.info-card {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+  border: 2px solid rgba(102, 126, 234, 0.1);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 200px;
+  transition: all 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.info-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #667eea;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+/* Estatísticas */
+.avaliacoes-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  min-width: 150px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Melhorias na tabela */
+.avaliacao-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.avaliacao-info strong {
+  color: #2d3748;
   font-weight: 600;
 }
 
-.avaliacoes-table tr:nth-child(even) {
-  background: #faf7fd;
+.avaliacao-info small {
+  color: #718096;
+  font-size: 0.8rem;
 }
 
-.avaliacoes-table tr:hover {
-  background: #f0eafd;
+.comentario-cell {
+  max-width: 300px;
+  line-height: 1.4;
+  color: #4a5568;
 }
 
+.nota-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-align: center;
+  min-width: 60px;
+}
+
+.nota-boa {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+}
+
+.nota-media {
+  background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(237, 137, 54, 0.3);
+}
+
+.nota-baixa {
+  background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(245, 101, 101, 0.3);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.status-badge.avaliado {
+  background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+  color: #22543d;
+  border: 2px solid #68d391;
+}
+
+.status-badge.pendente {
+  background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%);
+  color: #742a2a;
+  border: 2px solid #fc8181;
+}
+
+/* Estados especiais */
+.loading-cell {
+  text-align: center;
+  padding: 3rem;
+  color: #667eea;
+  font-weight: 600;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(102, 126, 234, 0.3);
+  border-radius: 50%;
+  border-top-color: #667eea;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.empty-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  opacity: 0.5;
+}
+
+.empty-content h4 {
+  color: #4a5568;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.empty-content p {
+  color: #718096;
+  margin: 0;
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .avaliacoes-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .aluno-info {
+    flex-direction: column;
+  }
+  
+  .info-card {
+    min-width: auto;
+  }
+  
+  .avaliacoes-table {
+    font-size: 0.85rem;
+  }
+  
+  .avaliacoes-table th,
+  .avaliacoes-table td {
+    padding: 1rem 0.75rem;
+  }
+}
