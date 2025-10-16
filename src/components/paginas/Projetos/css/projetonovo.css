@@ -1,3 +1,7 @@
+.projeto-content-novo {
+  position: absolute;
+  top: 700px !important;
+}
 
 
 .section-usuario h2 {
@@ -113,3 +117,4 @@
     max-width: 100%;
   }
 } 
+

@@ -1,9 +1,9 @@
 
 
 /* Ajustes específicos para projetos */
-.projeto-content {
-  position: relative;
-  bottom: 500px !important;
+.projeto-content {  
+  position: absolute;
+  top: 700px !important;
 }
 
 .projeto-section {

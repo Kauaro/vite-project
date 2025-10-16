@@ -77,7 +77,7 @@ const ProjetosLista = () => {
                 <h2>Lista de Projetos</h2>
                 <p className="user-role">
                     {isAluno() && "🎓 Aluno"}
-                    {isProfessor() && "👨🏫 Professor"}
+                    {isProfessor() && "👨 Professor"}
                     {isAdministrador() && "⚙️ Administrador"}
                 </p>
 

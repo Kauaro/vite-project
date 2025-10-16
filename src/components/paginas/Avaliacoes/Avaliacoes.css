@@ -122,8 +122,9 @@
     border-radius: 1rem;
     background: white;
     padding: 1rem;
-    position: relative;
-    bottom: 750px;
+    position: absolute;
+    top: 0;
+    left: 25px;
   }
   
   .quick-access {
@@ -192,11 +193,11 @@
     margin: 0;
   }
 
-  .avaliacoes-projetos {
-    max-width: 1300px;
+  .avaliacoes-projetos-aluno {
+    max-width: 1500px;
     width: 100%;
     position: relative;
-    left: 400px;
+    left: 500px;
     bottom: 0;
   }
 

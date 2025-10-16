@@ -61,7 +61,73 @@ export default function AvaliacoesAluno() {
         </p>
       </div>
 
-      <div className="avaliacoes-projetos">
+      
+      <div className="quick-access-wrapper">
+        <div className="card-acesso-avaliacoes-aluno">
+          <div className="quick-access">
+            <h3>Acesso Rápido</h3>
+            <div className="cards-container">
+              {isAluno() && (
+                <>
+                  <Link to="/home" className="access-card">
+                    <div className="card-icon">🏠</div>
+                    <h4>Dashboard</h4>
+                    <p>Tela inicial com todas as navegações.</p>
+                  </Link>
+                  <Link to="/projetoslista" className="access-card">
+                    <div className="card-icon">📋</div>
+                    <h4>Meus Projetos</h4>
+                    <p>Visualizar projetos que participo</p>
+                  </Link>
+                </>
+              )}
+              {isProfessor() && (
+                <>
+                  <Link to="/home" className="access-card">
+                    <div className="card-icon">🏠</div>
+                    <h4>Dashboard</h4>
+                    <p>Tela inicial com todas as navegações.</p>
+                  </Link>
+                  <Link to="/projetoslista" className="access-card">
+                    <div className="card-icon">📋</div>
+                    <h4>Meus Projetos</h4>
+                    <p>Gerenciar projetos que administro</p>
+                  </Link>
+                  <Link to="/projetonovo" className="access-card">
+                    <div className="card-icon">➕</div>
+                    <h4>Novo Projeto</h4>
+                    <p>Criar um novo projeto</p>
+                  </Link>
+                </>
+              )}
+              {isAdministrador() && (
+                <>
+                  <Link to="/home" className="access-card">
+                    <div className="card-icon">🏠</div>
+                    <h4>Dashboard</h4>
+                    <p>Tela inicial com todas as navegações.</p>
+                  </Link>
+                  <Link to="/usuarioslista" className="access-card">
+                    <div className="card-icon">👥</div>
+                    <h4>Usuários</h4>
+                    <p>Gerenciar alunos, professores e administradores</p>
+                  </Link>
+                  <Link to="/alunoslista" className="access-card">
+                    <div className="card-icon">📱</div>
+                    <h4>Alunos</h4>
+                    <p>Gerenciar lista de alunos</p>
+                  </Link>
+                  <Link to="/projetoslista" className="access-card">
+                    <div className="card-icon">📊</div>
+                    <h4>Projetos</h4>
+                    <p>Visualizar e gerenciar todos os projetos</p>
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="avaliacoes-projetos-aluno">
         <div className="avaliacoes-projetos-container">
           <h3>Avaliações - {aluno?.nome || `Matrícula ${matricula}`}</h3>
           
@@ -166,72 +232,6 @@ export default function AvaliacoesAluno() {
           </table>
         </div>
       </div>
-
-      <div className="quick-access-wrapper">
-        <div className="card-acesso-avaliacoes-aluno">
-          <div className="quick-access">
-            <h3>Acesso Rápido</h3>
-            <div className="cards-container">
-              {isAluno() && (
-                <>
-                  <Link to="/home" className="access-card">
-                    <div className="card-icon">🏠</div>
-                    <h4>Dashboard</h4>
-                    <p>Tela inicial com todas as navegações.</p>
-                  </Link>
-                  <Link to="/projetoslista" className="access-card">
-                    <div className="card-icon">📋</div>
-                    <h4>Meus Projetos</h4>
-                    <p>Visualizar projetos que participo</p>
-                  </Link>
-                </>
-              )}
-              {isProfessor() && (
-                <>
-                  <Link to="/home" className="access-card">
-                    <div className="card-icon">🏠</div>
-                    <h4>Dashboard</h4>
-                    <p>Tela inicial com todas as navegações.</p>
-                  </Link>
-                  <Link to="/projetoslista" className="access-card">
-                    <div className="card-icon">📋</div>
-                    <h4>Meus Projetos</h4>
-                    <p>Gerenciar projetos que administro</p>
-                  </Link>
-                  <Link to="/projetonovo" className="access-card">
-                    <div className="card-icon">➕</div>
-                    <h4>Novo Projeto</h4>
-                    <p>Criar um novo projeto</p>
-                  </Link>
-                </>
-              )}
-              {isAdministrador() && (
-                <>
-                  <Link to="/home" className="access-card">
-                    <div className="card-icon">🏠</div>
-                    <h4>Dashboard</h4>
-                    <p>Tela inicial com todas as navegações.</p>
-                  </Link>
-                  <Link to="/usuarioslista" className="access-card">
-                    <div className="card-icon">👥</div>
-                    <h4>Usuários</h4>
-                    <p>Gerenciar alunos, professores e administradores</p>
-                  </Link>
-                  <Link to="/alunoslista" className="access-card">
-                    <div className="card-icon">📱</div>
-                    <h4>Alunos</h4>
-                    <p>Gerenciar lista de alunos</p>
-                  </Link>
-                  <Link to="/projetoslista" className="access-card">
-                    <div className="card-icon">📊</div>
-                    <h4>Projetos</h4>
-                    <p>Visualizar e gerenciar todos os projetos</p>
-                  </Link>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ const ProjetoNovo = () => {
         );
     }
 
-    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    const usuario = JSON.parse(localStorage.getItem("usuario")) || JSON.parse(localStorage.getItem("user")) || {};
 
 
 
@@ -161,7 +161,7 @@ const ProjetoNovo = () => {
                         </div>
                       </div>
                     </div>
-            <div className="projeto-content">
+            <div className="projeto-content-novo">
                 <div className="navegador-projetos">
                     <div className="navegador-item-container">
                     <Link to="/projetoslista" className="navegador-item">Projetos</Link>
@@ -196,7 +196,7 @@ const ProjetoNovo = () => {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputProfessor">Responsável</label>
-                                <input id="inputProfessor" value={usuario.nome} readOnly disabled />
+                                <input id="inputProfessor" value={usuario?.nome || ''} readOnly disabled />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputAlunos">Alunos (separados por vírgula)</label>
