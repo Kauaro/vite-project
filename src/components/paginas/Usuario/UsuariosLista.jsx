@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import './css/UsuariosLista.css';
 import UsuarioService from "../../services/UsuarioService";
+import Sidebar from "../../layout/Sidebar/Sidebar";
+import Navbar from "../../layout/navbar/navbar";
 
 const UsuariosLista = () => {
-    const { isUser, isAluno, isProfessor, isAdministrador, logout } = useAuth();
+    const { user, isAluno, isProfessor, isAdministrador, logout } = useAuth();
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -84,100 +86,13 @@ const UsuariosLista = () => {
 
 
     return (
-        <div className="usuario-container">
-            {/* Botão de sair no canto superior direito */}
-            <div className="logout-top-right">
-                <button onClick={handleLogout} className="logout-button-top">
-                    <span className="logout-icon">🚪</span>
-                    Sair
-                </button>
-            </div>
 
+        <>
+        <Navbar />  
             {/* Seção de boas-vindas personalizada */}
-            <div className="section-usuario">
-                <h2>LISTA DE USUÁRIOS</h2>
-                <p className="user-role">
-                    {isAluno() && "🎓 Aluno"}
-                    {isProfessor() && "👨‍🏫 Professor"}
-                    {isAdministrador() && "⚙️ Administrador"}
-                </p>
-            </div>
-
-            {/* Cards de acesso rápido baseados no tipo de usuário */}
-                    <div className="quick-access-wrapper">
-                      <div className="quick-access">
-                        <h3>Acesso Rápido</h3>
-                        <div className="cards-container">
-                          
-                          {/* Cards para Alunos */}
-                          {isAluno() && (
-                            <>
-                            <Link to="/home" className="access-card">
-                                <div className="card-icon">🏠</div>
-                                <h4>Dashboard</h4>
-                                <p>Tela inicial com todas as navegações.</p>
-                              </Link>
-                              <Link to="/projetoslista" className="access-card">
-                                <div className="card-icon">📋</div>
-                                <h4>Meus Projetos</h4>
-                                <p>Visualizar projetos que participo</p>
-                              </Link>
-                              
-                              
-                            </>
-                          )}
+        <Sidebar user={user} isAluno={isAluno} isProfessor={isProfessor} isAdministrador={isAdministrador} />
+        <div className="usuario-container">
             
-                          {/* Cards para Professores */}
-                          {isProfessor() && (
-                            <>
-                            <Link to="/home" className="access-card">
-                                <div className="card-icon">🏠</div>
-                                <h4>Dashboard</h4>
-                                <p>Tela inicial com todas as navegações.</p>
-                              </Link>
-                              <Link to="/projetoslista" className="access-card">
-                                <div className="card-icon">📋</div>
-                                <h4>Meus Projetos</h4>
-                                <p>Gerenciar projetos que administro</p>
-                              </Link>
-                              <Link to="/projetonovo" className="access-card">
-                                <div className="card-icon">➕</div>
-                                <h4>Novo Projeto</h4>
-                                <p>Criar um novo projeto</p>
-                              </Link>
-                              
-                            </>
-                          )}
-            
-                          {/* Cards para Administradores */}
-                          {isAdministrador() && (
-                            <>
-                            <Link to="/home" className="access-card">
-                                <div className="card-icon">🏠</div>
-                                <h4>Dashboard</h4>
-                                <p>Tela inicial com todas as navegações.</p>
-                              </Link>
-                              <Link to="/usuarioslista" className="access-card">
-                                <div className="card-icon">👥</div>
-                                <h4>Usuários</h4>
-                                <p>Gerenciar alunos, professores e administradores</p>
-                              </Link>
-                              <Link to="/alunoslista" className="access-card">
-                                <div className="card-icon">📱</div>
-                                <h4>Alunos</h4>
-                                <p>Gerenciar lista de alunos</p>
-                              </Link>
-                              <Link to="/projetoslista" className="access-card">
-                                <div className="card-icon">📊</div>
-                                <h4>Projetos</h4>
-                                <p>Visualizar e gerenciar todos os projetos</p>
-                              </Link>
-                              
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    </div>
 
             {/* Tabela de usuários */}
             <div className="usuario-content">
@@ -196,143 +111,186 @@ const UsuariosLista = () => {
                 </div>
 
                 <section className="usuario-section-tabela">
-                    {/* Header com estatísticas */}
-                    <div className="stats-header">
-                        <div className="stats-card">
-                            <div className="stats-icon">👥</div>
-                            <div className="stats-info">
-                                <span className="stats-number">{usuario.length}</span>
-                                <span className="stats-label">Total de Usuários</span>
-                            </div>
-                        </div>
-                        <div className="stats-card">
-                            <div className="stats-icon">🎓</div>
-                            <div className="stats-info">
-                                <span className="stats-number">{usuario.filter(u => u.nivelAcesso === 'aluno').length}</span>
-                                <span className="stats-label">Alunos</span>
-                            </div>
-                        </div>
-                        <div className="stats-card">
-                            <div className="stats-icon">👨‍🏫</div>
-                            <div className="stats-info">
-                                <span className="stats-number">{usuario.filter(u => u.nivelAcesso === 'professor').length}</span>
-                                <span className="stats-label">Professores</span>
-                            </div>
-                        </div>
-                        <div className="stats-card">
-                            <div className="stats-icon">⚙️</div>
-                            <div className="stats-info">
-                                <span className="stats-number">{usuario.filter(u => u.nivelAcesso === 'administrador').length}</span>
-                                <span className="stats-label">Administradores</span>
-                            </div>
-                        </div>
-                    </div>
+                    
 
-                    {/* Tabela moderna */}
-                    <div className="table-wrapper">
-                        <table className="usuarios-table">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <div className="th-content">
-                                            <span>Matrícula</span>
-                                            <div className="sort-icon">⇅</div>
-                                        </div>
-                                    </th>
-                                    <th>
-                                        <div className="th-content">
-                                            <span>Nome</span>
-                                            <div className="sort-icon">⇅</div>
-                                        </div>
-                                    </th>
-                                    <th>
-                                        <div className="th-content">
-                                            <span>Nível Acesso</span>
-                                            <div className="sort-icon">⇅</div>
-                                        </div>
-                                    </th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {usuario.map((usuarioItem, index) => {
-                                    const getRoleIcon = (role) => {
-                                        switch(role) {
-                                            case 'aluno': return '';
-                                            case 'professor': return '';
-                                            case 'administrador': return '';
-                                            default: return '';
-                                        }
-                                    };
+                    {/* Tabela moderna e sofisticada */}
+                    <div className="table-container">
+                        <div className="table-header">
+                            <div className="table-title">
+                                <h2>Gerenciamento de Usuários</h2>
+                                <p>Visualize e gerencie todos os usuários do sistema</p>
+                            </div>
+                            <div className="table-actions">
+                                <div className="search-container">
+                                    <svg className="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Buscar usuários..."
+                                        className="search-input"
+                                    />
+                                </div>
+                                <button className="filter-btn">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z" />
+                                    </svg>
+                                    Filtros
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div className="table-wrapper">
+                            <table className="usuarios-table">
+                                <thead>
+                                    <tr>
+                                        <th className="th-user">
+                                            <div className="th-content">
+                                                <span>Usuário</span>
+                                            </div>
+                                        </th>
+                                        <th className="th-matricula">
+                                            <div className="th-content">
+                                                <span>Matrícula</span>
+                                                <svg className="sort-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                                                </svg>
+                                            </div>
+                                        </th>
+                                        <th className="th-status">
+                                            <div className="th-content">
+                                                <span>Nivel de Acesso</span>
+                                                <svg className="sort-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                                                </svg>
+                                            </div>
+                                        </th>
+                                        <th className="th-role">
+                                            <div className="th-content">
+                                                <span>Função</span>
+                                                <svg className="sort-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                                                </svg>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {usuario.map((usuarioItem, index) => {
+                                        
 
-                                    const getRoleColor = (role) => {
-                                        switch(role) {
-                                            case 'aluno': return 'linear-gradient(135deg, #059669 0%, #10b981 100%)';
-                                            case 'professor': return 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)';
-                                            case 'administrador': return 'linear-gradient(135deg, #413c3cff 0%, #5e5959ff 100%)';
-                                            default: return 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)';
-                                        }
-                                    };
+                                        const getRoleColor = (role) => {
+                                            switch(role) {
+                                                case 'aluno': return 'success';
+                                                case 'professor': return 'primary';
+                                                case 'administrador': return 'dark';
+                                                default: return 'secondary';
+                                            }
+                                        };
 
-                                    return (
-                                        <tr key={usuarioItem.id || usuarioItem.matricula || index} className="table-row">
-                                            <td>
-                                                <div className="matricula-cell">
-                                                    <span className="matricula-badge">{usuarioItem.matricula}</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="name-cell">
-                                                    <div className="avatar">
-                                                        <span>{usuarioItem.nome?.charAt(0)?.toUpperCase()}</span>
+                                        
+                                        return (
+                                            <tr key={index} className="table-row">
+                                                <td className="user-cell">
+                                                    <div className="user-profile">
+                                                        <div className="avatar-container">
+                                                            <div className="avatar">
+                                                                {usuarioItem.nome ? usuarioItem.nome.charAt(0).toUpperCase() : 'U'}
+                                                            </div>
+                                                            <div className="status-indicator active"></div>
+                                                        </div>
+                                                        <div className="user-info">
+                                                            <div className="user-name">{usuarioItem.nome || 'Nome não informado'}</div>                                                        </div>
                                                     </div>
-                                                    <span className="name-text">{usuarioItem.nome}</span>
-                                                </div>
-                                            </td> 
-                                            <td>
-                                                <div className="role-cell">
-                                                    <span className="role-icon">{getRoleIcon(usuarioItem.nivelAcesso)}</span>
-                                                    <span 
-                                                        className="role-badge" 
-                                                        style={{ background: getRoleColor(usuarioItem.nivelAcesso) }}
-                                                    >
-                                                        {usuarioItem.nivelAcesso}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="actions-cell">
-                                                    <button onClick={() => getId(usuarioItem.id, usuarioItem.matricula)} className="btn btn-edit">
-                                                        <span className="btn-icon">📩</span>
-                                                        <span className="btn-text">Abrir</span>
-                                                    </button>
-                                                    <button onClick={() => handleExcluir(usuarioItem.id, usuarioItem.matricula)} className="btn btn-delete">
-                                                        <span className="btn-icon">🗑️</span>
-                                                        <span className="btn-text">Excluir</span>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
-                    </div>
-
-                    {/* Footer com informações */}
-                    <div className="table-footer">
-                        <div className="footer-info">
-                            <span>Mostrando {usuario.length} de {usuario.length} usuários</span>
+                                                </td>
+                                                <td className="matricula-cell">
+                                                    <div className="matricula-code">
+                                                        <span className="code-number">{usuarioItem.matricula || usuarioItem.id || 'N/A'}</span>
+                                                    </div>
+                                                </td>
+                                                <td className="status-cell">
+                                                    <div className={`role-badge ${getRoleColor(usuarioItem.nivelAcesso)}`}>
+                                                        <span className="role-text">{usuarioItem.nivelAcesso || 'Não definido'}</span>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td className="actions-cell">
+                                                    <div className="action-menu">
+                                                        <button 
+                                                            className="action-btn primary"
+                                                            onClick={() => getId(usuarioItem.id, usuarioItem.matricula)}
+                                                            title="Editar usuário"
+                                                        >
+                                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                            </svg>
+                                                        </button>
+                                                        <button 
+                                                            className="action-btn secondary"
+                                                            title="Ver detalhes"
+                                                        >
+                                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                            </svg>
+                                                        </button>
+                                                        <button 
+                                                            className="action-btn danger"
+                                                            onClick={() => handleExcluir(usuarioItem.id, usuarioItem.matricula)}
+                                                            title="Excluir usuário"
+                                                        >
+                                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
                         </div>
-                        <div className="footer-actions">
-                            <button className="btn-refresh" onClick={fetchUsuarios}>
-                                <span>🔄</span> Atualizar
-                            </button>
+                        
+                        {/* Footer sofisticado */}
+                        <div className="table-footer">
+                            <div className="footer-left">
+                                <div className="pagination-info">
+                                    <span>Mostrando <strong>1-{usuario.length}</strong> de <strong>{usuario.length}</strong> usuários</span>
+                                </div>
+                            </div>
+                            <div className="footer-right">
+                                <div className="pagination">
+                                    <button className="page-btn disabled">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                        </svg>
+                                    </button>
+                                    <button className="page-btn active">1</button>
+                                    <button className="page-btn">2</button>
+                                    <button className="page-btn">3</button>
+                                    <button className="page-btn">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <button 
+                                    className="refresh-btn"
+                                    onClick={fetchUsuarios}
+                                    title="Atualizar dados"
+                                >
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </section>
             </div>
         </div>
+        </>
     );
 };
 
