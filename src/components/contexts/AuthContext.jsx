@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }) => {
     const data = await response.json();
 
     const loggedUser = {
+      id: data.id,
       matricula: data.matricula,
       nome: data.nome,
       role: data.role?.toLowerCase(), // ✅ garante que role fique minúsculo

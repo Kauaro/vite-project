@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import './navbar.css';
@@ -47,6 +48,13 @@ const Icon = ({ name, className = "" }) => {
 
 export default function Navbar() {
     const { isAluno, isProfessor, isAdministrador, user } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
 
     return (
         <nav className="professional-navbar">
@@ -160,11 +168,11 @@ export default function Navbar() {
             </div>
 
             {/* Footer com Logout */}
-            <div className="navbar-footer">
-                <Link to="/login" className="logout-item">
+            <div onClick={handleLogout} className="logout-item">
+                
                     <Icon name="logout" className="logout-icon" />
                     <span>Sair</span>
-                </Link>
+                
             </div>
         </nav>
     );

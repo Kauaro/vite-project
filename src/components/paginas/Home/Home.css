@@ -15,7 +15,7 @@
     height: 43rem; /* 96px (tailwind h-96) */
     overflow: hidden;
     position: relative;
-    top: 0;
+    top: 100px;
     left: 300px;
   }
   
@@ -87,7 +87,7 @@
     line-height: 1.75; /* leading-relaxed */
     position: relative;
     left: 300px;
-    top: 0;
+    top: 50px;
   }
   
   .main-text-left {

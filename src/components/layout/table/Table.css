@@ -1,0 +1,295 @@
+/* Container principal */
+.modern-table-container {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 20px 0;
+  position: relative;
+  bottom: 1200px;
+  left: 700px;
+}
+
+.modern-table-container-projeto {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 20px 0;
+  position: relative;
+  bottom: 1200px;
+  left: 700px;
+  
+}
+
+
+.modern-table-container-avaliacoes-aluno {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 20px 0;
+  position: relative;
+  top: 200px;
+  left: 400px;
+}
+
+
+/* Header da tabela */
+.table-header-modern {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #9874bb 0%, #764ba2 100%);
+  color: white;
+}
+
+.header-content {
+  flex: 1;
+}
+
+.table-title-modern {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: white;
+}
+
+.table-subtitle {
+  font-size: 14px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* Botão moderno */
+.btn-modern {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.btn-primary:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Conteúdo da tabela */
+.table-content {
+  overflow-x: auto;
+  width: 100%;
+  max-width: 2000px;
+}
+
+.modern-table {
+  width: 1300px;
+  max-width: 2000px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+/* Cabeçalho da tabela */
+.modern-table thead {
+  background: #f8fafc;
+}
+
+.modern-table th {
+  padding: 32px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.th-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Linhas da tabela */
+.table-row-modern {
+  transition: all 0.2s ease;
+}
+
+.table-row-modern:hover {
+  background: #f9fafb;
+}
+
+.modern-table td {
+  padding: 16px;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+}
+
+/* Célula do usuário */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #9874bb 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Email */
+.email-text {
+  color: #6b7280;
+}
+
+/* Badge da matrícula */
+.matricula-badge-as {
+  background: linear-gradient(135deg, #3730a3 0%, #764ba2 100%);
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-style: bold;
+  font-weight: 600;
+}
+
+/* Badge do nível */
+.nivel-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.nivel-badge.administrador {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.nivel-badge.professor {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.nivel-badge.aluno {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.nivel-badge.default {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+/* Botões de ação */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-action {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.btn-edit {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.btn-edit:hover {
+  background: #dbeafe;
+  transform: translateY(-1px);
+}
+
+.btn-star {
+  background: #c7b300;
+  color: #f3ffd8;
+}
+
+.btn-star:hover {
+  background: #dbeafe;
+  transform: translateY(-1px);
+}
+
+.btn-delete {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.btn-delete:hover {
+  background: #fee2e2;
+  transform: translateY(-1px);
+}
+
+/* Footer da tabela */
+.table-footer-modern {
+  padding: 16px 24px;
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+}
+
+.footer-info {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .table-header-modern {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  
+  .modern-table {
+    font-size: 12px;
+  }
+  
+  .modern-table th,
+  .modern-table td {
+    padding: 12px 8px;
+  }
+  
+  .user-info {
+    gap: 8px;
+  }
+  
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+}

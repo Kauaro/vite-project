@@ -34,11 +34,8 @@
 
 /* Container principal sofisticado */
 .usuario-container {
-  min-height: 100vh;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, #8b5cf60d 0%, transparent 50%),
-    linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  max-height: 100px;
+  height: 100%;
     position: absolute;
     top: 1300px;
     right: 300px;
@@ -52,8 +49,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
-    url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23f1f5f9" fill-opacity="0.4"><circle cx="30" cy="30" r="1"/></g></g></svg>') repeat;
   opacity: 0.3;
   pointer-events: none;
 }
@@ -106,7 +101,7 @@
 
 .stats-icon {
   font-size: 2rem;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: linear-gradient(135deg, #9874bb 0%, #764ba2 100%);
   border-radius: 12px;
   width: 56px;
   height: 56px;
@@ -139,18 +134,18 @@
   letter-spacing: -0.025em;
 }
 
-/* Container da tabela sofisticado */
+/* Container da tabela sofisticado */ /*
 .table-container {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
   box-shadow: 
     0 25px 50px -12px rgba(0, 0, 0, 0.08),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
+    0 0 0 1px rgba(255, 0, 0, 0.05);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
   animation: fadeInUp 0.6s ease-out;
-}
+} */
 
 /* Header da tabela */
 .table-header {
@@ -212,9 +207,9 @@
 }
 
 .search-input:focus {
-  outline: 2px solid rgba(59, 130, 246, 0.5);
+  outline: 2px solid #764ba2;
   outline-offset: 2px;
-  border-color: #3b82f6;
+  border-color: #764ba2;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   background: rgba(255, 255, 255, 1);
 }
@@ -229,7 +224,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.25rem;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: linear-gradient(135deg, #9874bb 0%, #764ba2 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -241,13 +236,13 @@
 }
 
 .filter-btn:hover {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  background: linear-gradient(135deg, #9874bb 0%, #764ba2 100%);
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
 }
 
 .filter-btn:focus {
-  outline: 2px solid rgba(59, 130, 246, 0.5);
+  outline: 2px solid #764ba2;
   outline-offset: 2px;
 }
 
@@ -272,17 +267,18 @@
 }
 
 .table-wrapper::-webkit-scrollbar-thumb {
-  background: rgba(59, 130, 246, 0.3);
+  background: #764ba2;
   border-radius: 3px;
 }
 
 .table-wrapper::-webkit-scrollbar-thumb:hover {
-  background: rgba(59, 130, 246, 0.5);
+  background: linear-gradient(135deg, #9874bb 0%, #764ba2 100%);
 }
 
 /* Tabela sofisticada */
 .usuarios-table {
   width: 100%;
+  max-width: 1500px;
   border-collapse: separate;
   border-spacing: 0;
   font-size: 0.875rem;
@@ -326,7 +322,7 @@
 
 .sort-icon:hover {
   opacity: 1;
-  color: #3b82f6;
+  color: #764ba2;
   transform: scale(1.1);
 }
 
@@ -379,7 +375,7 @@
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: linear-gradient(135deg, #764ba2 0%, #2563eb 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -651,20 +647,20 @@
 }
 
 .page-btn:hover:not(.disabled) {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: rgba(59, 130, 246, 0.3);
-  color: #2563eb;
+  background: #7744aa;
+  border-color: #3b82f64d;
+  color: #fff;
 }
 
 .page-btn:focus {
-  outline: 2px solid rgba(59, 130, 246, 0.5);
+  outline: 2px solid #764ba2;
   outline-offset: 2px;
 }
 
 .page-btn.active {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: linear-gradient(135deg, #9874bb 0%, #764ba2 100%);
   color: white;
-  border-color: #3b82f6;
+  border-color: #764ba2;
   font-weight: 600;
 }
 
@@ -753,7 +749,7 @@
 .navegador-item.active {
   color: white;
   font-weight: 600;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: linear-gradient(135deg, #9874bb 0%, #764ba2 100%);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
   border-color: transparent;
 }

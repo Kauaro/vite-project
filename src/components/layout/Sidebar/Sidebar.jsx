@@ -56,9 +56,7 @@ const Sidebar = ({user, isAluno, isProfessor, isAdministrador}) => {
             {/* Header com Welcome */}
             <div className="sidebar-header">
                 <div className="welcome-card">
-                    <div className="user-avatar-large">
-                        <span>{user?.nome?.charAt(0) || 'U'}</span>
-                    </div>
+                    
                     <div className="welcome-content">
                         <h2 className="welcome-title">Bem-vindo(a), {user?.nome}!</h2>
                         <div className="user-role-badge">
