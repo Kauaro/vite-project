@@ -2,6 +2,11 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from '../../contexts/AuthContext';
 import './css/UsuarioEditar.css';
+import './css/UsuarioNovo.css';
+import Navbar from "../../layout/navbar/navbar"
+import Sidebar from "../../layout/Sidebar/Sidebar"
+
+
 
 const UsuarioEditar = () => {
     const { id } = useParams();
@@ -27,7 +32,7 @@ const UsuarioEditar = () => {
                 console.error('Erro ao buscar usuário:', error);
                 setError('Erro ao carregar dados do usuário');
             } finally {
-                setLoading(false);
+                setLoading(false);  
             }
         };
 
@@ -55,6 +60,8 @@ const UsuarioEditar = () => {
             alert('Por favor, preencha todos os campos obrigatórios.');
             return;
         }
+
+        
         
         // Se a senha estiver vazia, remove do objeto para não sobrescrever a atual
         const dadosParaEnviar = { ...usuario };
@@ -130,161 +137,125 @@ const UsuarioEditar = () => {
     }
 
     return (
-        <div className="usuario-container">
-            {/* Botão de sair no canto superior direito */}
-            <div className="logout-top-right">
-                <button onClick={handleLogout} className="logout-button-top">
-                    <span className="logout-icon">🚪</span>
-                    Sair
-                </button>
-            </div>
+        <>
 
-            {/* Seção de boas-vindas personalizada */}
-            <div className="section-usuario">
-                <h2>EDITAR USUÁRIO</h2>
-                <p className="user-role">
-                    {isAluno() && "🎓 Aluno"}
-                    {isProfessor() && "👨‍🏫 Professor"}
-                    {isAdministrador() && "⚙️ Administrador"}
-                </p>
-            </div>
-
-           {/* Cards de acesso rápido baseados no tipo de usuário */}
-                   <div className="quick-access-wrapper">
-                     <div className="quick-access">
-                       <h3>Acesso Rápido</h3>
-                       <div className="cards-container">
-                         
-                         {/* Cards para Alunos */}
-                         {isAluno() && (
-                           <>
-                           <Link to="/home" className="access-card">
-                               <div className="card-icon">🏠</div>
-                               <h4>Dashboard</h4>
-                               <p>Tela inicial com todas as navegações.</p>
-                             </Link>
-                             <Link to="/projetoslista" className="access-card">
-                               <div className="card-icon">📋</div>
-                               <h4>Meus Projetos</h4>
-                               <p>Visualizar projetos que participo</p>
-                             </Link>
-                             
-                             
-                           </>
-                         )}
-           
-                         {/* Cards para Professores */}
-                         {isProfessor() && (
-                           <>
-                           <Link to="/home" className="access-card">
-                               <div className="card-icon">🏠</div>
-                               <h4>Dashboard</h4>
-                               <p>Tela inicial com todas as navegações.</p>
-                             </Link>
-                             <Link to="/projetoslista" className="access-card">
-                               <div className="card-icon">📋</div>
-                               <h4>Meus Projetos</h4>
-                               <p>Gerenciar projetos que administro</p>
-                             </Link>
-                             <Link to="/projetonovo" className="access-card">
-                               <div className="card-icon">➕</div>
-                               <h4>Novo Projeto</h4>
-                               <p>Criar um novo projeto</p>
-                             </Link>
-                             
-                           </>
-                         )}
-           
-                         {/* Cards para Administradores */}
-                         {isAdministrador() && (
-                           <>
-                           <Link to="/home" className="access-card">
-                               <div className="card-icon">🏠</div>
-                               <h4>Dashboard</h4>
-                               <p>Tela inicial com todas as navegações.</p>
-                             </Link>
-                             <Link to="/usuarioslista" className="access-card">
-                               <div className="card-icon">👥</div>
-                               <h4>Usuários</h4>
-                               <p>Gerenciar alunos, professores e administradores</p>
-                             </Link>
-                             <Link to="/alunoslista" className="access-card">
-                               <div className="card-icon">📱</div>
-                               <h4>Alunos</h4>
-                               <p>Gerenciar lista de alunos</p>
-                             </Link>
-                             <Link to="/projetoslista" className="access-card">
-                               <div className="card-icon">📊</div>
-                               <h4>Projetos</h4>
-                               <p>Visualizar e gerenciar todos os projetos</p>
-                             </Link>
-                             
-                           </>
-                         )}
-                       </div>
-                     </div>
-                   </div>
-
-            <div className="usuario-content">
-                {/* Navegador Breadcrumb */}
-                <div className="breadcrumb-navigator-usuario-novo">
-                    <div className="navegador-item-container">
-                        <Link to="/usuario" className="navegador-usuario-item">Usuário</Link>
-                    </div>
-                    <div className="navegador-separator-container">
-                        <span className="navegador-usuario-separator">/</span>
-                    </div>
-                    <div className="navegador-item-container">
-                        <Link to="/usuarioslista" className="navegador-usuario-item">Lista Usuário</Link>
-                    </div>
-                    <div className="navegador-separator-container">
-                        <span className="navegador-usuario-separator">/</span>
-                    </div>
-                    <div className="navegador-item-container">
-                        <span className="navegador-usuario-item active">Editar Usuário</span>
+        <Navbar /> 
+        <Sidebar user={user} isAluno={isAluno} isProfessor={isProfessor} isAdministrador={isAdministrador} />
+        <div className="usuario-container-editar">
+            
+            
+        {/* Formulário de cadastro */}
+        <div className="modern-form-container">
+                <div className="form-header">
+                    <div className="header-content">
+                      
+                        <h1 className="form-title">Novo Usuário</h1>
+                        <p className="form-subtitle">Preencha os dados para cadastrar um novo usuário no sistema</p>
                     </div>
                 </div>
-                
-                <section className="usuario-section">
-                    <form className="form-grid-edit" onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="inputID">ID</label>
-                            <input type="text" id="inputID" value={usuario.id || ''} readOnly disabled />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="inputMatricula">Matrícula</label>
-                            <input type="text" id="inputMatricula" name="matricula" value={usuario.matricula || ''} readOnly disabled />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="inputNome">Nome</label>
-                            <input type="text" id="inputNome" name="nome" value={usuario.nome || ''} onChange={handleInputChange} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="inputEmail4">Email</label>
-                            <input type="email" id="inputEmail4" name="email" value={usuario.email || ''} onChange={handleInputChange} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="inputSenha">Senha</label>
-                            <input type="password" id="inputSenha" name="senha" value={usuario.senha || ''} onChange={handleInputChange} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="inputAcesso">Nível de Acesso</label>
-                            <select id="inputAcesso" name="nivelAcesso" value={usuario.nivelAcesso || ''} onChange={handleInputChange}>
-                                <option value="">Selecione o nível de acesso</option>
-                                <option value="aluno">Aluno</option>
-                                <option value="professor">Professor</option>
-                                <option value="administrador">Administrador</option>
-                            </select>
-                        </div>
 
-                        <div className="form-actions">
-                            <button type="submit" className="btn primary">Gravar Alterações</button>
-                            <Link to="/usuarioslista" className="btn secondary">Cancelar</Link>
+                <div className="form-novo-content">
+                    <form className="modern-form" onSubmit={handleSubmit}>
+                        <div className="form-grid">
+                        <div className="form-field">
+                                <label htmlFor="inputId" className="field-label">ID</label>
+                                <input 
+                                    type="text" 
+                                    id="inputMatricula" 
+                                    className="field-input"
+                                    value={usuario.id || ''}
+                                    readOnly disabled 
+                                     
+                                />
+                            </div>
+                            <div className="form-field">
+                                <label htmlFor="inputNome" className="field-label">Nome Completo</label>
+                                <input 
+                                    type="text" 
+                                    id="inputNome" 
+                                    className="field-input"
+                                    value={usuario.nome || ""}
+                                    onChange={handleInputChange} 
+                                     
+                                />
+                            </div>
+                            
+                            <div className="form-field">
+                                <label htmlFor="inputMatricula" className="field-label">Matrícula</label>
+                                <input 
+                                    type="text" 
+                                    id="inputMatricula" 
+                                    className="field-input"
+                                    value={usuario.matricula || ''}
+                                    readOnly disabled 
+                                     
+                                />
+                            </div>
+                            
+                            <div className="form-field">
+                                <label htmlFor="inputEmail4" className="field-label">Email</label>
+                                <input 
+                                    type="email" 
+                                    id="inputEmail4" 
+                                    className="field-input"
+                                    value={usuario.email || ''}
+                                    onChange={handleInputChange} 
+                                     
+                                />
+                            </div>
+                            
+                            <div className="form-field">
+                                <label htmlFor="inputSenha" className="field-label">Senha</label>
+                                <input 
+                                    type="password" 
+                                    id="inputSenha" 
+                                    className="field-input"
+                                    value={usuario.senha || ''}
+                                    onChange={handleInputChange}
+                                     
+                                />
+                            </div>
+                            
+                           
+                            
+                            <div className="form-field full-width">
+                                <label htmlFor="inputAcesso" className="field-label">Nível de Acesso</label>
+                                <select 
+                                    id="inputAcesso" 
+                                    className="field-select"
+                                    value={usuario.nivelAcesso || ''}
+                                    onChange={handleInputChange}
+                                    
+                                >
+                                    <option value="">Selecione o nível de acesso</option>
+                                    <option value="aluno">Aluno</option>
+                                    <option value="professor">Professor</option>
+                                    <option value="administrador">Administrador</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div className="form-novo-actions">
+                            <button type="submit" className="btn-modern btn-primary-cadastro">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                                Cadastrar Usuário
+                            </button>
+                            <Link to="/usuarioslista" className="btn-modern btn-secondary-cadastro">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                                Cancelar
+                            </Link>
                         </div>
                     </form>
-                </section>
+                </div>
+
             </div>
         </div>
+
+        </>
     );
 };
 
