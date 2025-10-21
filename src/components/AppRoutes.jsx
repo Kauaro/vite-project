@@ -100,7 +100,7 @@ function AppRoutes() {
           <ProjetosLista />
         </ProtectedRoute>
       } />
-      <Route path="/projetonovo" element={
+      <Route path="/projetonovo/:id" element={
         <ProtectedRoute allowedRoles={['professor', 'administrador']}>
           <ProjetoNovo />
         </ProtectedRoute>

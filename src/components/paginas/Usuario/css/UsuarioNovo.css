@@ -1,238 +1,252 @@
-
-
-/* Botão de sair no canto superior direito */
-.logout-top-right {
+/* Container principal */
+.modern-form-container {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
   position: absolute;
-  top: 1rem;
-  right: 2rem;
-  z-index: 1000;
+  bottom: 100px;
+  left: 500px;
 }
 
-.logout-button-top {
-  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+/* Header do formulário */
+.form-header {
+  background: linear-gradient(135deg, #9874bb 0%, #764ba2 100%);
+  padding: 32px;
+  margin: -20px -20px 32px -20px;
   color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  border: none;
-  cursor: pointer;
-  display: flex;
+  position: relative;
+}
+
+.header-content {
+  position: relative;
+}
+
+.back-button {
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
-.logout-button-top:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  background: linear-gradient(135deg, #c82333 0%, #a71e2a 100%);
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  transform: translateX(-2px);
 }
 
-.logout-icon {
-  font-size: 1.1rem;
+.form-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: white;
 }
 
-/* Estilos específicos para o formulário */
-.form-grid-novo {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  align-items: flex-end;
+.form-subtitle {
+  font-size: 16px;
+  opacity: 0.9;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Conteúdo do formulário */
+.form-novo-content {
+  padding: 0 8px;
+  position: relative;
+  bottom: 400px;
+}
+
+.modern-form {
   width: 100%;
 }
 
-.form-group {
+/* Grid do formulário */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.form-field.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Campos do formulário */
+.form-field {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
-.form-group.small {
-  max-width: 180px;
-}
-
-.form-group label {
+.field-label {
+  font-size: 14px;
   font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #651f71;
+  color: #374151;
+  margin-bottom: 4px;
+  height: 20px;
 }
 
-.form-group input,
-.form-group select {
-  padding: 0.75rem;
+.field-input,
+.field-select {
+  padding: 16px;
   border: 2px solid #e5e7eb;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  background: #ffffff;
+  color: #111827;
 }
 
-.form-group input:focus,
-.form-group select:focus {
+.field-input:focus,
+.field-select:focus {
   outline: none;
   border-color: #667eea;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  transform: translateY(-1px);
 }
 
-.form-actions {
-  grid-column: 1 / -1;
-  margin-top: 2rem;
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.btn {
-  padding: 0.75rem 1.5rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-  min-width: 150px;
-}
-
-.btn.primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.btn.primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  color: white;
-  text-decoration: none;
-}
-
-.btn.secondary {
-  background: #6b7280;
-  color: white;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.btn.secondary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  background: #4b5563;
-  color: white;
-  text-decoration: none;
-}
-
-.btn.logout {
-  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-  color: white;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.btn.logout:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  background: linear-gradient(135deg, #c82333 0%, #a71e2a 100%);
-  color: white;
-  text-decoration: none;
-}
-
-/* Ajustes específicos para a página de novo usuário */
-.usuario-section {
-  max-width: 1000px !important;
-  height: auto !important;
-  padding: 2rem !important;
-  position: relative;
-  right: 250px;
-  bottom: 200px;
-}
-
-.usuario-content {
-  flex: 1;
-  padding: 1rem;
-  width: 100%;
-  max-width: 2000px;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  bottom: 1000px;
-}
-/* Navegar entre os usuarios */
-.breadcrumb-navigator-usuario-novo {
-  display: flex;
-  align-items: center;
-  max-width: 800px;
-  width: 100%;
-  position: relative;
-  left: 500px;
-  bottom: 550px;
-}
-
-.navegador-item-container {
-  display: flex;
-  align-items: center;
-}
-
-.navegador-separator-container {
-  display: flex;
-  align-items: center;
-  padding: 0 0.25rem;
-}
-
-.navegador-usuario-item {
-  color: #fff;
-  text-decoration: none;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  font-weight: 500;
-  transition: color 0.3s ease;
-  padding: 1rem 2rem;
-  margin: 1rem 1rem;
-  border-radius: 10px;
-  
-}
-
-.navegador-usuario-item:hover {
-  color: #764ba2;
-  background-color: #f8f9ff;
-  text-decoration: none;
-}
-
-.navegador-usuario-item.active {
-  color: #651f71;
-  font-weight: 600;
-  background-color: #f0f0f0;
-}
-
-.navegador-usuario-separator {
+.field-input::placeholder {
   color: #9ca3af;
-  font-weight: 500;
-  
 }
 
-
-
-* Botão de sair no canto superior direito */
-.logout-top-right {
-  position: absolute;
-  top: 1rem;
-  right: 2rem;
-  z-index: 1000;
-}
-
-.logout-button-top {
-  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  border: none;
+.field-select {
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
+}
+
+.field-select option {
+  padding: 12px;
+}
+
+/* Ações do formulário */
+.form-novo-actions {
   position: relative;
-  top: 50px;
-  right: 20px;
+  top: 400px;
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  padding-top: 50px;
+  border-top: 1px solid #d6d6d6;
+}
+
+/* Botões modernos */
+.btn-modern {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  min-width: 160px;
+  justify-content: center;
+}
+
+.btn-primary-cadastro {
+  background: linear-gradient(135deg, #9874bb 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary-cadastro {
+  background: #f9fafb;
+  color: #6b7280;
+  border: 2px solid #e5e7eb;
+}
+
+.btn-secondary:hover {
+  background: #694444;
+  color: #374151;
+  transform: translateY(-1px);
+}
+
+/* Estados de validação */
+.field-input:invalid:not(:focus):not(:placeholder-shown) {
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+.field-input:valid:not(:focus):not(:placeholder-shown) {
+  border-color: #10b981;
+  background: #f0fdf4;
+}
+
+.field-input.error {
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .modern-form-container {
+    margin: 10px;
+    padding: 16px;
+  }
+  
+  .form-header {
+    padding: 24px;
+    margin: -16px -16px 24px -16px;
+  }
+  
+  .form-title {
+    font-size: 24px;
+  }
+  
+  .form-subtitle {
+    font-size: 14px;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+  
+  .btn-modern {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .field-input,
+  .field-select {
+    padding: 14px;
+    font-size: 16px; /* Evita zoom no iOS */
+  }
+  
+  .btn-modern {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
 }
