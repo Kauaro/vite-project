@@ -34,18 +34,27 @@ const AlunosLista = () => {
         }
     };
 
-    const handleExcluir = async (matricula) => {
-        if (!matricula) {
+    const handleExcluir = async (id) => {
+        if (!id) {
             alert('Erro: Não foi possível identificar o aluno para exclusão.');
             return;
         }
         
         if (window.confirm('Tem certeza que deseja excluir este aluno?')) {
             try {
-                await AlunoService.deleteAluno(matricula);
-                alert("Aluno excluído com sucesso!");
-                // Atualiza a lista de alunos sem recarregar a página
-                fetchAluno();
+                const response = await fetch(`https://productclienthub-ld2x.onrender.com/api/Aluno/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                
+                if (response.ok) {
+                    alert("Aluno excluído com sucesso!");
+                    fetchAluno();
+                } else {
+                    alert("Erro ao excluir aluno. Tente novamente.");
+                }
             } catch (error) {
                 console.error("Erro ao excluir aluno:", error);
                 alert("Erro ao excluir aluno. Tente novamente.");

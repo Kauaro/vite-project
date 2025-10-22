@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
       id: data.id,
       matricula: data.matricula,
       nome: data.nome,
-      role: data.role?.toLowerCase(), // ✅ garante que role fique minúsculo
+      role: (data.role || data.nivelAcesso)?.toLowerCase(), // ✅ usa role ou nivelAcesso
       projetos: data.projetos || []
     };
 

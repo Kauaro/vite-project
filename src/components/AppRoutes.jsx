@@ -12,6 +12,7 @@ import AlunosLista from "./paginas/Alunos/AlunosLista"
 import ProjetoEditar from "./paginas/Projetos/ProjetoEditar"
 import ProjetoNovo from "./paginas/Projetos/ProjetoNovo"
 import ProjetosLista from "./paginas/Projetos/ProjetosLista"
+import ProjetoListaProfessor from "./paginas/Projetos/ProjetoListaProfessor"
 import Avaliacoes from "./paginas/Avaliacoes/Avaliacoes"
 import AvaliacoesAluno from "./paginas/Avaliacoes/AvaliacoesAluno"
 
@@ -98,6 +99,11 @@ function AppRoutes() {
       <Route path="/projetoslista" element={
         <ProtectedRoute allowedRoles={['professor', 'administrador', 'aluno']}>
           <ProjetosLista />
+        </ProtectedRoute>
+      } />
+      <Route path="/projetolistaprofessor" element={
+        <ProtectedRoute allowedRoles={['professor', 'administrador', 'aluno']}>
+          <ProjetoListaProfessor />
         </ProtectedRoute>
       } />
       <Route path="/projetonovo/:id" element={

@@ -5,20 +5,13 @@ import './css/projetolista.css';
 import ProjetoService from "../../services/ProjetoService";
 import Sidebar from "../../layout/Sidebar/Sidebar";
 import Navbar from "../../layout/navbar/navbar";
-import Table from "../../layout/table/tableprojeto";
+import TableProjetoProfessor from "../../layout/table/tableprojetoprofessor";
 
-const ProjetosLista = () => {
+const ProjetosListaProfessor = () => {
+    console.log('ProjetoListaProfessor renderizado!');
     const { user, isAluno, isProfessor, isAdministrador, logout, canEditProject } = useAuth();
     const navigate = useNavigate();
     const [projeto, setProjeto] = useState([]);
-
-        useState(() => {
-        try {
-            return JSON.parse(localStorage.getItem("user")) || {};
-        } catch {
-            return {};
-        }
-    });
 
 
     const fetchProjeto = async () => {
@@ -38,33 +31,7 @@ const ProjetosLista = () => {
         fetchProjeto();
     }, []);
 
-    const handleLogout = () => {
-  localStorage.removeItem("user"); // Remove apenas os dados do usuário
-  navigate("/login");
-};
-    const handleEditar = (id) => {
-        navigate(`/projetoeditar/${id}`);
-    };
 
-    const handleAvalia = (id) => {
-        navigate(`/avaliacoes/${id}`);
-    };
-
-    const handleCadastrar = () => {
-        navigate('/projetonovo');
-    }
-
-    const handleExcluir = async (id) => {
-        if (window.confirm('Tem certeza que deseja excluir este projeto?')) {
-            try {
-                await ProjetoService.deleteProjeto(id);
-                setProjeto(projeto.filter(p => p.id !== id));
-            } catch (error) {
-                console.error('Erro ao excluir projeto:', error);
-                alert('Erro ao excluir projeto. Tente novamente.');
-            }
-        }
-    };
 
     return (
         
@@ -75,12 +42,10 @@ const ProjetosLista = () => {
 
 
         <div className="usuario-container">
-            
-            <Table />
-
+            <TableProjetoProfessor />
         </div>
         </>
     );
 };
 
-export default ProjetosLista;
+export default ProjetosListaProfessor;

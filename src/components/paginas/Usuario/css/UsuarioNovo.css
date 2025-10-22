@@ -65,7 +65,13 @@
 .form-novo-content {
   padding: 0 8px;
   position: relative;
-  bottom: 400px;
+  bottom: 0;
+}
+
+.form-content-editar {
+  padding: 0 8px;
+  position: relative;
+  bottom: 0;
 }
 
 .modern-form {
@@ -133,13 +139,25 @@
 /* Ações do formulário */
 .form-novo-actions {
   position: relative;
-  top: 400px;
+  top: 0;
   display: flex;
   gap: 16px;
   justify-content: flex-end;
   padding-top: 50px;
   border-top: 1px solid #d6d6d6;
 }
+
+
+.form-actions-editar {
+  position: relative;
+  top: 0;
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  padding-top: 50px;
+  border-top: 1px solid #d6d6d6;
+}
+
 
 /* Botões modernos */
 .btn-modern {

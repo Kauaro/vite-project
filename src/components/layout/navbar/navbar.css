@@ -237,6 +237,8 @@
   transition: all 0.2s ease;
   border: 1px solid transparent;
   background: rgba(254, 242, 242, 0.6);
+  position: relative;
+  bottom: 50px;
 }
 
 .logout-item:hover {

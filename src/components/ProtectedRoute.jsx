@@ -4,7 +4,7 @@ import { useAuth } from './contexts/AuthContext';
 
 const ProtectedRoute = ({ children, allowedRoles = [], redirectTo = '/login' }) => {
   const { user, isAuthenticated } = useAuth();
-
+  
   // Se não está autenticado, redireciona para login
   if (!isAuthenticated) {
     return <Navigate to={redirectTo} replace />;
@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children, allowedRoles = [], redirectTo = '/login' }) 
   if (allowedRoles.length === 0) {
     return children;
   }
-
+  
   // Verifica se o usuário tem uma das roles permitidas
   if (allowedRoles.includes(user.role)) {
     return children;

@@ -1,216 +1,214 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import './css/projetonovo.css';
+import Sidebar from "../../layout/Sidebar/Sidebar";
+import Navbar from "../../layout/navbar/navbar";
 import { useAuth } from '../../contexts/AuthContext';
-import ProjetoService from "../../services/ProjetoService";
-import './css/ProjetoEditar.css';
 
 
 const ProjetoEditar = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const { user, isAluno, isProfessor, isAdministrador, logout } = useAuth();
-  const usuario = JSON.parse(localStorage.getItem("usuario"));
+      const { user, isAluno, isProfessor, isAdministrador, logout } = useAuth();
 
-  const [projeto, setProjeto] = useState({
-    nome: "",
-    descricao: "",
-    tema: "",
-    alunos: ""
-  });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const [projeto, setProjeto] = useState({});
+    const [loading, setLoading] = useState(true);
+    const usuario = JSON.parse(localStorage.getItem("usuario")) || JSON.parse(localStorage.getItem("user")) || {};
 
-  useEffect(() => {
-    const fetchProjeto = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(`https://productclienthub-ld2x.onrender.com/api/Projeto/${id}`);
-        if (response.ok) {
-          const data = await response.json();
-          setProjeto({
-            nome: data.nome,
-            descricao: data.descricao,
-            tema: data.tema,
-            alunos: data.aluno // assumindo que o backend envia string
-          });
-        } else {
-          setError("Projeto não encontrado");
+    useEffect(() => {
+        const fetchProjeto = async () => {
+            try {
+                const response = await fetch(`https://productclienthub-ld2x.onrender.com/api/Projeto/id/${id}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Dados do projeto:', data);
+                    setProjeto(data);
+                } else {
+                    console.error('Projeto não encontrado');
+                    alert('Projeto não encontrado');
+                }
+            } catch (error) {
+                console.error('Erro ao buscar projeto:', error);
+                alert('Erro ao carregar dados do projeto');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (id) {
+            fetchProjeto();
         }
-      } catch (err) {
-        console.error("Erro ao buscar projeto:", err);
-        setError("Erro ao carregar dados do projeto");
-      } finally {
-        setLoading(false);
-      }
+    }, [id]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        if (!projeto.nome || !projeto.descricao || !projeto.tema) {
+            alert('Por favor, preencha todos os campos obrigatórios.');
+            return;
+        }
+        
+        try {
+            const response = await fetch(`https://productclienthub-ld2x.onrender.com/api/Projeto/editar/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(projeto),
+            });
+
+            if (response.ok) {
+                alert('Projeto atualizado com sucesso!');
+                navigate('/projetoslista');
+            } else {
+                alert('Erro ao atualizar projeto. Tente novamente.');
+            }
+        } catch (error) {
+            console.error('Erro ao atualizar projeto:', error);
+            alert('Erro ao atualizar projeto. Tente novamente.');
+        }
     };
 
-    if (id) fetchProjeto();
-  }, [id]);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setProjeto((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!projeto.nome || !projeto.descricao || !projeto.tema || !projeto.alunos) {
-      alert("Preencha todos os campos.");
-      return;
-    }
-
-    const dadosParaEnviar = {
-      nome: projeto.nome,
-      descricao: projeto.descricao,
-      tema: projeto.tema,
-      aluno: projeto.alunos // enviar como string para o backend
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setProjeto(prev => ({
+            ...prev,
+            [name]: value
+        }));
     };
 
-    try {
-      await ProjetoService.updateProjeto(id, dadosParaEnviar);
-      alert("Projeto atualizado com sucesso!");
-      navigate("/projetoslista");
-    } catch (err) {
-      console.error("Erro ao atualizar projeto:", err);
-      alert("Erro ao atualizar projeto.");
+    if (loading) {
+        return <div className="loading">Carregando...</div>;
     }
-  };
 
-  const handleLogout = () => {
-    localStorage.removeItem("usuario");
-    navigate("/login");
-  };
+    return (
 
 
-  if (loading) return <div className="loading">Carregando...</div>;
-  if (error) return <div className="error">{error}</div>;
+        <>
+        <Sidebar user={user} isAluno={isAluno} isProfessor={isProfessor} isAdministrador={isAdministrador} />
+        <Navbar />
 
-
-  return (
-    <div className="projeto-editar-container">
-      <div className="logout-top-right">
-        <button onClick={handleLogout} className="btn danger">🚪 Sair</button>
-      </div>
-
-      <div className="projeto-editar-content layout-flex">
-        {/* Cards no canto esquerdo */}
-        <div className="cards-sidebar">
-          <div className="welcome-section-projeto-editar">
-            <h2>EDITAR PROJETO</h2>
-            <p className="user-role">
-              {isAluno() && "🎓 Aluno"}
-              {isProfessor() && "👨‍🏫 Professor"}
-              {isAdministrador() && "⚙️ Administrador"}
-            </p>
-          </div>
-          <div className="quick-access">
-            <h3>Acesso Rápido</h3>
-            <div className="cards-container">
-              {isAluno() && (
-                <>
-                  <Link to="/home" className="access-card">
-                    <div className="card-icon">🏠</div>
-                    <h4>Dashboard</h4>
-                    <p>Tela inicial com todas as navegações.</p>
-                  </Link>
-                  <Link to="/projetoslista" className="access-card">
-                    <div className="card-icon">📋</div>
-                    <h4>Meus Projetos</h4>
-                    <p>Visualizar projetos que participo</p>
-                  </Link>
-                </>
-              )}
-              {isProfessor() && (
-                <>
-                  <Link to="/home" className="access-card">
-                    <div className="card-icon">🏠</div>
-                    <h4>Dashboard</h4>
-                    <p>Tela inicial com todas as navegações.</p>
-                  </Link>
-                  <Link to="/projetoslista" className="access-card">
-                    <div className="card-icon">📋</div>
-                    <h4>Meus Projetos</h4>
-                    <p>Gerenciar projetos que administro</p>
-                  </Link>
-                  <Link to="/projetonovo" className="access-card">
-                    <div className="card-icon">➕</div>
-                    <h4>Novo Projeto</h4>
-                    <p>Criar um novo projeto</p>
-                  </Link>
-                </>
-              )}
-              {isAdministrador() && (
-                <>
-                  <Link to="/home" className="access-card">
-                    <div className="card-icon">🏠</div>
-                    <h4>Dashboard</h4>
-                    <p>Tela inicial com todas as navegações.</p>
-                  </Link>
-                  <Link to="/usuarioslista" className="access-card">
-                    <div className="card-icon">👥</div>
-                    <h4>Usuários</h4>
-                    <p>Gerenciar alunos, professores e administradores</p>
-                  </Link>
-                  <Link to="/alunoslista" className="access-card">
-                    <div className="card-icon">📱</div>
-                    <h4>Alunos</h4>
-                    <p>Gerenciar lista de alunos</p>
-                  </Link>
-                  <Link to="/projetoslista" className="access-card">
-                    <div className="card-icon">📊</div>
-                    <h4>Projetos</h4>
-                    <p>Visualizar e gerenciar todos os projetos</p>
-                  </Link>
-                </>
-              )}
+        <div className="modern-form-container">
+            <div className="form-header">
+                <div className="header-content">
+                    <Link to="/projetoslista" className="back-button">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                        Voltar para Lista
+                    </Link>
+                    <h1 className="form-title">Editar Projeto</h1>
+                    <p className="form-subtitle">Atualize os dados do projeto no sistema</p>
+                </div>
             </div>
-          </div>
+
+            <div className="form-content">
+                <form className="modern-form" onSubmit={handleSubmit}>
+                    <div className="form-grid">
+                        <div className="form-field">
+                            <label htmlFor="inputID" className="field-label">ID</label>
+                            <input 
+                                type="text" 
+                                id="inputID" 
+                                className="field-input"
+                                value={projeto.id || ''} 
+                                readOnly 
+                                disabled 
+                            />
+                        </div>
+                        
+                        <div className="form-field">
+                            <label htmlFor="inputNome" className="field-label">Nome do Projeto</label>
+                            <input 
+                                type="text" 
+                                id="inputNome" 
+                                name="nome" 
+                                className="field-input"
+                                placeholder="Digite o nome do projeto"
+                                value={projeto.nome || ''} 
+                                onChange={handleInputChange} 
+                                required 
+                            />
+                        </div>
+                        
+                        <div className="form-field">
+                            <label htmlFor="tema" className="field-label">Tema</label>
+                            <select 
+                                id="tema" 
+                                name="tema" 
+                                className="field-select"
+                                value={projeto.tema || ''} 
+                                onChange={handleInputChange} 
+                                required
+                            >
+                                <option value="">Selecione o tema</option>
+                                <option value="Racismo">Racismo</option>
+                                <option value="Homofobia">Homofobia</option>
+                                <option value="Neurodivergente">Neurodivergente</option>
+                                <option value="Feminicídio">Feminicídio</option>
+                                <option value="Cultural">Cultural</option>
+                            </select>
+                        </div>
+                        
+                        <div className="form-field full-width">
+                            <label htmlFor="inputDescricao" className="field-label">Descrição</label>
+                            <textarea 
+                                id="inputDescricao" 
+                                name="descricao" 
+                                className="field-textarea"
+                                placeholder="Digite a descrição do projeto"
+                                value={projeto.descricao || ''} 
+                                onChange={handleInputChange} 
+                                required 
+                                rows="4"
+                            />
+                        </div>
+                        
+                        <div className="form-field">
+                            <label htmlFor="inputProfessor" className="field-label">Responsável</label>
+                            <input 
+                                id="inputProfessor" 
+                                className="field-input"
+                                value={usuario?.nome || ''} 
+                                readOnly 
+                                disabled 
+                            />
+                        </div>
+                        
+                        <div className="form-field">
+                            <label htmlFor="inputAlunos" className="field-label">Alunos</label>
+                            <input 
+                                type="text" 
+                                id="inputAlunos" 
+                                name="aluno" 
+                                className="field-input"
+                                placeholder="Digite os alunos (separados por vírgula)"
+                                value={projeto.aluno || ''} 
+                                onChange={handleInputChange} 
+                                required
+                            />
+                        </div>
+                    </div>
+                    
+                    <div className="form-actions">
+                        <button type="submit" className="btn-modern btn-primary">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            Gravar Alterações
+                        </button>
+                        <Link to="/projetoslista" className="btn-modern btn-secondary">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                            Cancelar
+                        </Link>
+                    </div>
+                </form>
+            </div>
         </div>
-        {/* Formulário ocupa o restante, abaixo do WelcomeSection */}
-        <div className="form-main-area">
-          <div className="projeto-editar-section" >
-            <form className="form-grid" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>ID</label>
-                <input type="text" value={id} readOnly disabled />
-              </div>
-              <div className="form-group">
-                <label>Nome</label>
-                <input type="text" name="nome" value={projeto.nome} onChange={handleInputChange} />
-              </div>
-              <div className="form-group">
-                <label>Descrição</label>
-                <textarea name="descricao"  value={projeto.descricao} onChange={handleInputChange} />
-              </div>
-              <div className="form-group">
-                <label>Tema</label>
-                <select name="tema" value={projeto.tema} onChange={handleInputChange}>
-                  <option value="">Selecione</option>
-                  <option value="Racismo">Racismo</option>
-                  <option value="Homofobia">Homofobia</option>
-                  <option value="Neurodivergente">Neurodivergente</option>
-                  <option value="Feminicidio">Feminicidio</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label>Alunos (separados por vírgula)</label>
-                <input type="text" name="alunos" value={projeto.alunos} onChange={handleInputChange} />
-              </div>
-              <div className="form-group">
-                <label>Responsável</label>
-                <input type="text" value={usuario.nome} readOnly disabled />
-              </div>
-              <div className="form-actions">
-                <button type="submit" className="btn primary">Gravar Alterações</button>
-                <Link to="/projetoslista" className="btn secondary">Cancelar</Link>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+        </>
+    );
 };
 
 export default ProjetoEditar;

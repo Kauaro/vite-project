@@ -110,7 +110,7 @@ export default function Navbar() {
                                 </div>
                             </Link>
                             
-                            <Link to="/projetoslista" className="nav-item">
+                            <Link to="/projetolistaprofessor" className="nav-item">
                                 <Icon name="projects" className="nav-icon" />
                                 <div className="nav-content">
                                     <span className="nav-title">Meus Projetos</span>

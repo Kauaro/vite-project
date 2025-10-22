@@ -12,6 +12,8 @@
   left: 700px;
 }
 
+
+
 /* Header do formulário */
 .form-header-projeto {
   background: linear-gradient(135deg, #9874bb 0%, #764ba2 100%);
@@ -64,9 +66,9 @@
 }
 
 /* Conteúdo do formulário */
-.form-content-projeto {
+.form-content-projeto-novo {
   position: relative;
-  bottom: 400px;
+  bottom: 0;
   padding: 0 8px;
 }
 
@@ -147,14 +149,14 @@
 }
 
 /* Ações do formulário */
-.form-actions-projeto {
+.form-actions-projeto-novo {
   display: flex;
   gap: 16px;
   justify-content: flex-end;
   padding-top: 24px;
   border-top: 1px solid #f3f4f6;
   position: relative;
-  top: 400px;
+  top: 0;
 }
 
 /* Botões modernos */

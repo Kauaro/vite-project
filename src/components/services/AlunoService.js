@@ -23,9 +23,9 @@ const updateAluno = (matricula, dadosAtualizados) => {
   return http.mainInstance.put(`${API_PREFIX}update/${matricula}`, dadosAtualizados);
 };
 
-const deleteAluno = (matricula) => {
+const deleteAluno = (id) => {
   // DELETE /api/Aluno/delete/{matricula}
-  return http.mainInstance.delete(`${API_PREFIX}delete/${matricula}`);
+  return http.mainInstance.delete(`${API_PREFIX}${id}`);
 };
 
 const AlunoService = {
